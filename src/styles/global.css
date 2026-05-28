@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'Perfect DOS VGA 437';
+  src: url('/fonts/Perfect DOS VGA 437 Win.ttf') format('truetype');
+  font-display: swap;
+}
+
 @layer reset, base, a11y, components;
 
 @layer reset {
@@ -27,13 +33,13 @@
     --menu-highlight-bg: #000088;
     --menu-highlight-fg: #fff;
     --status-bg: #d8d7d7;
-    --desktop-bg: #b3b3b3;
+    --desktop-bg: #bababa;
     --editor-bg: #000088;
     --editor-fg: #fff;
     --editor-title-bg: #8888ff;
     --border-light: #fff;
     --border-dark: #808080;
-    --font-mono: 'Courier New', Courier, 'Lucida Console', monospace;
+    --font-mono: 'Perfect DOS VGA 437', 'Courier New', Courier, 'Lucida Console', monospace;
     --font-size: clamp(16px, 2.5vw, 24px);
   }
 
