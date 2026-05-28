@@ -14,10 +14,9 @@ const t = useTranslations(lang);
   <div class="menu-bar" role="menubar" aria-label={lang === 'ca' ? "Navegació principal" : "Navegación principal"}>
     <div class="menu-left" role="group">
       <span class="hamburger" role="button" tabindex="0" aria-label="Menú">☰</span>
-      <a href="/" class="menu-item" role="menuitem">{t('nav.inici')}</a>
-      <a href="/blog" class="menu-item" role="menuitem">{t('nav.blog')}</a>
       <a href="/projects" class="menu-item" role="menuitem">{t('nav.projectes')}</a>
-      <a href="/about" class="menu-item" role="menuitem">{t('nav.acerca')}</a>
+      <a href="/about" class="menu-item" role="menuitem">{t('nav.sobre')}</a>
+      <a href="/contact" class="menu-item" role="menuitem">{t('nav.contacte')}</a>
     </div>
 
     <span class="menu-center">[Mutiny — Turbo Edition]</span>
@@ -38,7 +37,8 @@ const t = useTranslations(lang);
   }
 
   .menu-bar {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
     background: var(--menu-bg);
     color: var(--menu-fg);
@@ -50,17 +50,16 @@ const t = useTranslations(lang);
   }
 
   .menu-left {
-    flex: 1;
     display: flex;
     align-items: center;
   }
 
   .menu-center {
-    flex-shrink: 0;
     color: #000;
     font-size: 0.85em;
     font-weight: 500;
     white-space: nowrap;
+    text-align: center;
   }
 
   .menu-item {
@@ -96,7 +95,6 @@ const t = useTranslations(lang);
   }
 
   .lang-switcher {
-    flex: 1;
     display: flex;
     justify-content: flex-end;
     gap: 4px;

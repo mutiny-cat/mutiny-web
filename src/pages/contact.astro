@@ -1,11 +1,11 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout lang="es" title="Mutiny — Sobre mí">
-      <div class="editor-window" role="region" aria-label="Editor: ABOUT.PAS">
+<BaseLayout lang="ca" title="Mutiny — Contacte">
+  <div class="editor-window">
     <div class="window-title-bar">
-      <span class="window-title">ABOUT.PAS</span>
+      <span class="window-title">CONTACT.PAS</span>
       <div class="window-controls" aria-hidden="true">
         <span class="ctrl">↑</span>
         <span class="ctrl">↓</span>
@@ -13,25 +13,16 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </div>
     </div>
     <div class="window-body">
-      <pre class="code" tabindex="0"><span class="kw">program</span> AboutMe;
-
-<span class="kw">uses</span> Mutiny, Web;
-
-<span class="kw">var</span>
-  name, passion: <span class="kw">string</span>;
+      <pre class="code"><span class="kw">program</span> Contact;
 
 <span class="kw">begin</span>
-  name := <span class="str">'Mutiny'</span>;
-  passion := <span class="str">'web development'</span>;
-
-  WriteLn(<span class="str">'Hola, soy '</span>, name);
-  WriteLn(<span class="str">'Desarrollador web'</span>);
-  WriteLn(<span class="str">'apasionado por crear'</span>);
-  WriteLn(<span class="str">'cosas increíbles.'</span>);
+  WriteLn(<span class="str">'Pots trobar-me a:'</span>);
   WriteLn;
-  WriteLn(<span class="str">'Full-stack · Open source'</span>);
-  WriteLn(<span class="str">'Arquitectura software'</span>);
-<span class="kw">end.</span></pre>
+  WriteLn(<span class="str">'  Email:  hola@mutiny.cat'</span>);
+  WriteLn(<span class="str">'  GitHub: @mutiny-cat'</span>);
+  WriteLn;
+  WriteLn(<span class="str">'  Mutiny.cat — Turbo Edition'</span>);
+<span class="kw">end</span>.</pre>
     </div>
     <div class="window-status">
       <span>Line 1  Col 1</span>
@@ -65,10 +56,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     border-block-end: 1px solid var(--border-dark);
   }
 
-  .window-controls {
-    display: flex;
-    gap: 1px;
-  }
+  .window-controls { display: flex; gap: 1px; }
 
   .ctrl {
     display: inline-block;
@@ -77,16 +65,10 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     border: 1px solid var(--border-dark);
     background: var(--menu-bg);
     font-size: var(--font-size);
-
-    &:hover {
-      background: var(--menu-highlight-bg);
-      color: var(--menu-highlight-fg);
-    }
+    &:hover { background: var(--menu-highlight-bg); color: var(--menu-highlight-fg); }
   }
 
-  .window-body {
-    padding: 8px;
-  }
+  .window-body { padding: 8px; }
 
   .code {
     font-family: var(--font-mono);
@@ -96,13 +78,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     white-space: pre;
   }
 
-  .kw {
-    color: #ff0;
-  }
-
-  .str {
-    color: #f0f;
-  }
+  .kw { color: #ff0; }
+  .str { color: #f0f; }
 
   .window-status {
     display: flex;
