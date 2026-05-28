@@ -2,17 +2,27 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
+import { useTranslations } from '../i18n/utils';
 
 export interface Props {
   title?: string;
   description?: string;
+  lang?: 'ca' | 'es';
 }
 
-const { title = "Turbo Pascal", description = "" } = Astro.props;
+const { lang = 'ca', description = "" } = Astro.props;
+const t = useTranslations(lang);
+
+const defaults: Record<string, string> = {
+  ca: 'Mutiny — Turbo Edition',
+  es: 'Mutiny — Turbo Edition',
+};
+
+const title = Astro.props.title || defaults[lang];
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,11 +33,11 @@ const { title = "Turbo Pascal", description = "" } = Astro.props;
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
     <div class="turbo-container">
-      <Header />
+      <Header lang={lang} />
       <main id="main-content" class="desktop" tabindex="-1">
         <slot />
       </main>
-      <Footer />
+      <Footer lang={lang} />
     </div>
   </body>
 </html>
@@ -60,7 +70,10 @@ const { title = "Turbo Pascal", description = "" } = Astro.props;
     flex: 1;
     overflow: auto;
     position: relative;
-    background: var(--desktop-bg);
+    background-color: var(--desktop-bg);
+    background-image:
+      radial-gradient(circle, rgba(0, 0, 0, 0.15) 1.5px, transparent 1.5px);
+    background-size: 6px 6px;
 
     &:focus {
       outline: none;

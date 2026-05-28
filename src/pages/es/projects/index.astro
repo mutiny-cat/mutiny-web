@@ -1,11 +1,11 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout lang="ca" title="Mutiny — Quant a">
-      <div class="editor-window" role="region" aria-label="Editor: ABOUT.PAS">
+<BaseLayout lang="es" title="Mutiny — Proyectos">
+      <div class="editor-window" role="region" aria-label="Editor: PROJ.PAS">
     <div class="window-title-bar">
-      <span class="window-title">ABOUT.PAS</span>
+      <span class="window-title">PROJ.PAS</span>
       <div class="window-controls" aria-hidden="true">
         <span class="ctrl">↑</span>
         <span class="ctrl">↓</span>
@@ -13,28 +13,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
     <div class="window-body">
-      <pre class="code" tabindex="0"><span class="kw">program</span> AboutMe;
+      <pre class="code" tabindex="0"><span class="kw">program</span> Projects;
 
-<span class="kw">uses</span> Mutiny, Web;
+<span class="kw">type</span>
+  TProject = <span class="kw">record</span>
+    name: <span class="kw">string</span>[40];
+    status: (active, paused, done);
+  <span class="kw">end</span>;
+
+<span class="kw">const</span>
+  projects: <span class="kw">array</span>[1..3] <span class="kw">of</span> TProject = (
+    (name: <span class="str">'mutiny-web'</span>; status: active),
+    (name: <span class="str">'turbo-ui'</span>;   status: active),
+    (name: <span class="str">'retro-blog'</span>; status: paused),
+  );
 
 <span class="kw">var</span>
-  name, passion: <span class="kw">string</span>;
+  i: <span class="kw">integer</span>;
 
 <span class="kw">begin</span>
-  name := <span class="str">'Mutiny'</span>;
-  passion := <span class="str">'web development'</span>;
-
-  WriteLn(<span class="str">'Hola, soy '</span>, name);
-  WriteLn(<span class="str">'Desarrollador web'</span>);
-  WriteLn(<span class="str">'apasionado por crear'</span>);
-  WriteLn(<span class="str">'cosas increíbles.'</span>);
-  WriteLn;
-  WriteLn(<span class="str">'Full-stack · Open source'</span>);
-  WriteLn(<span class="str">'Arquitectura software'</span>);
-<span class="kw">end.</span></pre>
+  <span class="kw">for</span> i := 1 <span class="kw">to</span> 3 <span class="kw">do</span>
+    WriteLn(projects[i].name);
+<span class="kw">end</span>.</pre>
     </div>
     <div class="window-status">
-      <span>Line 1  Col 1</span>
+      <span>Line 22  Col 5</span>
       <span>Insert Indent</span>
     </div>
   </div>

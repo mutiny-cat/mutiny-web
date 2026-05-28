@@ -1,17 +1,26 @@
 ---
+import { useTranslations } from '../i18n/utils';
+import { defaultLang } from '../i18n/ui';
+
+export interface Props {
+  lang?: 'ca' | 'es';
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
 const year = new Date().getFullYear();
 ---
 
 <footer role="contentinfo">
   <div class="status-bar">
-    <nav aria-label="Enlaces legales">
-      <a href="#" class="legal-link">Aviso Legal</a>
-      <a href="#" class="legal-link">Privacidad</a>
-      <a href="#" class="legal-link">Cookies</a>
-      <a href="#" class="legal-link">Accesibilidad</a>
-      <a href="#" class="legal-link">Créditos</a>
+    <nav aria-label={lang === 'ca' ? "Enllaços legals" : "Enlaces legales"}>
+      <a href="#" class="legal-link">{t('nav.legal')}</a>
+      <a href="#" class="legal-link">{t('nav.privacitat')}</a>
+      <a href="#" class="legal-link">{t('nav.cookies')}</a>
+      <a href="#" class="legal-link">{t('nav.accessibilitat')}</a>
+      <a href="#" class="legal-link">{t('nav.credits')}</a>
     </nav>
-    <span class="footer-text"><span class="cc-icon" aria-hidden="true">CC</span> Mutiny.cat &mdash; Turbo Edition (1993 &ndash; {year})</span>
+    <span class="footer-text"><span class="cc-icon" aria-hidden="true">CC</span> Mutiny &mdash; Turbo Edition (1993 &ndash; {year})</span>
   </div>
 </footer>
 

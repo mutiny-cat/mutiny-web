@@ -1,11 +1,11 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout lang="ca" title="Mutiny — Quant a">
-      <div class="editor-window" role="region" aria-label="Editor: ABOUT.PAS">
+<BaseLayout lang="es" title="Mutiny — Blog">
+      <div class="editor-window" role="region" aria-label="Editor: BLOG.PAS">
     <div class="window-title-bar">
-      <span class="window-title">ABOUT.PAS</span>
+      <span class="window-title">BLOG.PAS</span>
       <div class="window-controls" aria-hidden="true">
         <span class="ctrl">↑</span>
         <span class="ctrl">↓</span>
@@ -13,28 +13,31 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </div>
     <div class="window-body">
-      <pre class="code" tabindex="0"><span class="kw">program</span> AboutMe;
+      <pre class="code" tabindex="0"><span class="kw">unit</span> Blog;
 
-<span class="kw">uses</span> Mutiny, Web;
+<span class="kw">interface</span>
 
-<span class="kw">var</span>
-  name, passion: <span class="kw">string</span>;
+<span class="kw">procedure</span> Post(title: <span class="kw">string</span>);
+
+<span class="kw">implementation</span>
+
+<span class="kw">procedure</span> Post(title: <span class="kw">string</span>);
+<span class="kw">begin</span>
+  WriteLn(<span class="str">'Artículo: '</span>, title);
+  WriteLn(<span class="str">'Próximamente...'</span>);
+<span class="kw">end</span>;
 
 <span class="kw">begin</span>
-  name := <span class="str">'Mutiny'</span>;
-  passion := <span class="str">'web development'</span>;
-
-  WriteLn(<span class="str">'Hola, soy '</span>, name);
-  WriteLn(<span class="str">'Desarrollador web'</span>);
-  WriteLn(<span class="str">'apasionado por crear'</span>);
-  WriteLn(<span class="str">'cosas increíbles.'</span>);
-  WriteLn;
-  WriteLn(<span class="str">'Full-stack · Open source'</span>);
-  WriteLn(<span class="str">'Arquitectura software'</span>);
-<span class="kw">end.</span></pre>
+  WriteLn(<span class="str">'Blog cargado.'</span>);
+<span class="kw">end</span>.</pre>
+      <div class="output-panel">
+        <span>Output: </span>
+        <span class="output-text">Blog cargado.</span>
+        <span class="cursor">█</span>
+      </div>
     </div>
     <div class="window-status">
-      <span>Line 1  Col 1</span>
+      <span>Line 15  Col 1</span>
       <span>Insert Indent</span>
     </div>
   </div>
@@ -94,6 +97,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     line-height: 1.5;
     color: var(--editor-fg);
     white-space: pre;
+    margin-block-end: 8px;
   }
 
   .kw {
@@ -102,6 +106,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .str {
     color: #f0f;
+  }
+
+  .output-panel {
+    background: #000;
+    color: #0f0;
+    padding: 4px 6px;
+    font-size: var(--font-size);
+  }
+
+  .output-text {
+    color: #0f0;
+  }
+
+  .cursor {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
   }
 
   .window-status {
