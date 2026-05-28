@@ -1,0 +1,90 @@
+<header role="banner">
+  <div class="menu-bar" role="menubar" aria-label="Navegación principal">
+    <div class="menu-left" role="group">
+      <span class="hamburger" role="button" tabindex="0" aria-label="Menú">☰</span>
+      <a href="/" class="menu-item" role="menuitem">Inicio</a>
+      <a href="/blog" class="menu-item" role="menuitem">Blog</a>
+      <a href="/projects" class="menu-item" role="menuitem">Proyectos</a>
+      <a href="/about" class="menu-item" role="menuitem">Acerca</a>
+    </div>
+    <div class="menu-right">
+      <span class="menu-path" aria-label="Versión">[Mutiny Web 1.0]</span>
+    </div>
+  </div>
+</header>
+
+<style>
+  header {
+    flex-shrink: 0;
+  }
+
+  .menu-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--menu-bg);
+    color: var(--menu-fg);
+    padding-block: 4px;
+    padding-inline: 24px;
+    font-size: var(--font-size);
+    flex-shrink: 0;
+    border-block-end: 1px solid var(--border-dark);
+  }
+
+  .menu-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .menu-right {
+    display: flex;
+    align-items: center;
+    padding-inline-end: 4px;
+  }
+
+  .menu-item {
+    padding-inline: 12px;
+    padding-block: 2px;
+    color: #000;
+    font-weight: 700;
+
+    &::first-letter {
+      color: #ff0000;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: var(--menu-highlight-bg);
+      color: var(--menu-highlight-fg);
+      outline: none;
+    }
+  }
+
+  .hamburger {
+    padding-inline: 8px;
+    font-size: var(--font-size);
+    line-height: 1;
+    color: #ff0000;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--menu-highlight-bg);
+      color: var(--menu-highlight-fg);
+      outline: none;
+    }
+  }
+
+  .menu-path {
+    color: #000;
+    font-size: var(--font-size);
+
+    &:hover {
+      color: #ff0000;
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--menu-highlight-bg);
+    outline-offset: 2px;
+  }
+</style>

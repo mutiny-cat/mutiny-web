@@ -1,0 +1,75 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer role="contentinfo">
+  <div class="status-bar">
+    <nav aria-label="Enlaces legales">
+      <a href="#" class="legal-link">Aviso Legal</a>
+      <a href="#" class="legal-link">Privacidad</a>
+      <a href="#" class="legal-link">Cookies</a>
+      <a href="#" class="legal-link">Accesibilidad</a>
+      <a href="#" class="legal-link">Créditos</a>
+    </nav>
+    <span class="footer-text"><span class="cc-icon" aria-hidden="true">CC</span> Mutiny.cat &mdash; Turbo Edition (1993 &ndash; {year})</span>
+  </div>
+</footer>
+
+<style>
+  footer {
+    flex-shrink: 0;
+  }
+
+  .status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--status-bg);
+    color: #000;
+    padding-block: 4px;
+    padding-inline: 24px;
+    font-size: var(--font-size);
+    font-weight: 700;
+    border-block-start: 1px solid var(--border-dark);
+  }
+
+  .footer-text::first-letter {
+    color: #ff0000;
+  }
+
+  .cc-icon {
+    display: inline-block;
+    border: 2px solid #000;
+    border-radius: 50%;
+    padding-inline: 4px;
+    font-size: 0.8em;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-inline-end: 4px;
+  }
+
+  nav {
+    display: flex;
+    gap: 20px;
+  }
+
+  .legal-link {
+    color: #000;
+
+    &::first-letter {
+      color: #ff0000;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background: var(--menu-highlight-bg);
+      color: var(--menu-highlight-fg);
+      outline: none;
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--menu-highlight-bg);
+    outline-offset: 2px;
+  }
+</style>

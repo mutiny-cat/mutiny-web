@@ -1,0 +1,86 @@
+@layer reset, base, a11y, components;
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html, body {
+    block-size: 100%;
+    overflow: hidden;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer base {
+  :root {
+    --menu-bg: #d8d7d7;
+    --menu-fg: #000;
+    --menu-highlight-bg: #000088;
+    --menu-highlight-fg: #fff;
+    --status-bg: #d8d7d7;
+    --desktop-bg: #3a3a3a;
+    --editor-bg: #000088;
+    --editor-fg: #fff;
+    --editor-title-bg: #8888ff;
+    --border-light: #fff;
+    --border-dark: #808080;
+    --font-mono: 'Courier New', Courier, 'Lucida Console', monospace;
+    --font-size: clamp(16px, 2.5vw, 24px);
+  }
+
+  body {
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    color: #000;
+    line-height: 1.4;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
+  }
+
+  ::selection {
+    background: #000088;
+    color: #fff;
+  }
+}
+
+@layer a11y {
+  :focus-visible {
+    outline: 2px solid var(--menu-highlight-bg);
+    outline-offset: 2px;
+  }
+
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    :root {
+      --menu-bg: #ffffff;
+      --desktop-bg: #000000;
+      --border-dark: #000000;
+    }
+
+    .cc-icon {
+      border-color: #000 !important;
+    }
+  }
+}
