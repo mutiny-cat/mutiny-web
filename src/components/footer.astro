@@ -1,6 +1,7 @@
 ---
 import { useTranslations } from '../i18n/utils';
 import { defaultLang } from '../i18n/ui';
+import { Icon } from 'astro-icon/components';
 
 export interface Props {
   lang?: 'ca' | 'es';
@@ -20,7 +21,7 @@ const year = new Date().getFullYear();
       <a href="#" class="legal-link">{t('nav.accessibilitat')}</a>
       <a href="#" class="legal-link">{t('nav.credits')}</a>
     </nav>
-    <span class="footer-text"><span class="cc-icon" aria-hidden="true">CC</span> Mutiny &mdash; Turbo Edition (1993 &ndash; {year})</span>
+    <span class="footer-text"><Icon name="simple-icons:creativecommons" class="cc-icon" aria-hidden="true" /> Mutiny &mdash; Turbo Edition (1993 &ndash; {year})</span>
   </div>
 </footer>
 
@@ -48,12 +49,9 @@ const year = new Date().getFullYear();
 
   .cc-icon {
     display: inline-block;
-    border: 2px solid #000;
-    border-radius: 50%;
-    padding-inline: 4px;
-    font-size: 0.8em;
-    line-height: 1.2;
-    font-weight: 700;
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: middle;
     margin-inline-end: 4px;
   }
 

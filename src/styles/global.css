@@ -2,7 +2,7 @@
   font-family: 'Perfect DOS VGA 437';
   src:
     url('/fonts/perfect-dos-vga-437.woff2') format('woff2'),
-    url('/fonts/Perfect DOS VGA 437 Win.ttf') format('truetype');
+    url('/fonts/perfect-dos-vga-437-win.ttf') format('truetype');
   font-display: swap;
 }
 
