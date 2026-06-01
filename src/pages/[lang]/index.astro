@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/base-layout.astro';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const { lang } = Astro.params;
+---
+
+<BaseLayout lang={lang as 'es' | 'en'}>
+</BaseLayout>

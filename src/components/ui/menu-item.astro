@@ -1,0 +1,27 @@
+---
+const { text, keyIndex, href, class: className } = Astro.props;
+const before = text.slice(0, keyIndex);
+const keyChar = text[keyIndex];
+const after = text.slice(keyIndex + 1);
+---
+
+{href ? (
+  <a href={href} class={['menu-item', className].filter(Boolean).join(' ')}>
+    {before}<span class="key-letter">{keyChar}</span>{after}
+  </a>
+) : (
+  <span class={['menu-item', className].filter(Boolean).join(' ')}>
+    {before}<span class="key-letter">{keyChar}</span>{after}
+  </span>
+)}
+
+<style>
+  .menu-item {
+    color: var(--black);
+    padding: 8px 16px;
+  }
+
+  .key-letter {
+    color: var(--red);
+  }
+</style>

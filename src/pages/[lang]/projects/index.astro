@@ -1,11 +1,17 @@
 ---
-import BaseLayout from '../../layouts/base-layout.astro';
+import BaseLayout from '../../../layouts/base-layout.astro';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const { lang } = Astro.params;
 ---
 
-<BaseLayout lang="es" title="Mutiny — Contacto">
-  <div class="editor-window">
+<BaseLayout lang={lang as 'es' | 'en'} title="Mutiny — Proyectos">
+      <div class="editor-window" role="region" aria-label="Editor: PROJ.PAS">
     <div class="window-title-bar">
-      <span class="window-title">CONTACT.PAS</span>
+      <span class="window-title">PROJ.PAS</span>
       <div class="window-controls" aria-hidden="true">
         <span class="ctrl">↑</span>
         <span class="ctrl">↓</span>
@@ -13,19 +19,31 @@ import BaseLayout from '../../layouts/base-layout.astro';
       </div>
     </div>
     <div class="window-body">
-      <pre class="code"><span class="kw">program</span> Contact;
+      <pre class="code" tabindex="0"><span class="kw">program</span> Projects;
+
+<span class="kw">type</span>
+  TProject = <span class="kw">record</span>
+    name: <span class="kw">string</span>[40];
+    status: (active, paused, done);
+  <span class="kw">end</span>;
+
+<span class="kw">const</span>
+  projects: <span class="kw">array</span>[1..3] <span class="kw">of</span> TProject = (
+    (name: <span class="str">'mutiny-web'</span>; status: active),
+    (name: <span class="str">'turbo-ui'</span>;   status: active),
+    (name: <span class="str">'retro-blog'</span>; status: paused),
+  );
+
+<span class="kw">var</span>
+  i: <span class="kw">integer</span>;
 
 <span class="kw">begin</span>
-  WriteLn(<span class="str">'Puedes encontrarme en:'</span>);
-  WriteLn;
-  WriteLn(<span class="str">'  Email:  hola@mutiny.cat'</span>);
-  WriteLn(<span class="str">'  GitHub: @mutiny-cat'</span>);
-  WriteLn;
-  WriteLn(<span class="str">'  Mutiny.cat — Turbo Edition'</span>);
+  <span class="kw">for</span> i := 1 <span class="kw">to</span> 3 <span class="kw">do</span>
+    WriteLn(projects[i].name);
 <span class="kw">end</span>.</pre>
     </div>
     <div class="window-status">
-      <span>Line 1  Col 1</span>
+      <span>Line 22  Col 5</span>
       <span>Insert Indent</span>
     </div>
   </div>
@@ -56,7 +74,10 @@ import BaseLayout from '../../layouts/base-layout.astro';
     border-block-end: 1px solid var(--border-dark);
   }
 
-  .window-controls { display: flex; gap: 1px; }
+  .window-controls {
+    display: flex;
+    gap: 1px;
+  }
 
   .ctrl {
     display: inline-block;
@@ -65,10 +86,16 @@ import BaseLayout from '../../layouts/base-layout.astro';
     border: 1px solid var(--border-dark);
     background: var(--menu-bg);
     font-size: var(--font-size);
-    &:hover { background: var(--menu-highlight-bg); color: var(--menu-highlight-fg); }
+
+    &:hover {
+      background: var(--menu-highlight-bg);
+      color: var(--menu-highlight-fg);
+    }
   }
 
-  .window-body { padding: 8px; }
+  .window-body {
+    padding: 8px;
+  }
 
   .code {
     font-family: var(--font-mono);
@@ -78,8 +105,13 @@ import BaseLayout from '../../layouts/base-layout.astro';
     white-space: pre;
   }
 
-  .kw { color: #ff0; }
-  .str { color: #f0f; }
+  .kw {
+    color: #ff0;
+  }
+
+  .str {
+    color: #f0f;
+  }
 
   .window-status {
     display: flex;

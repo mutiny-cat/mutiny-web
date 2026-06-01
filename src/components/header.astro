@@ -1,130 +1,190 @@
 ---
+import { Icon } from 'astro-icon/components';
 import { useTranslations } from '../i18n/utils';
-import { languages, defaultLang } from '../i18n/ui';
+import { defaultLang } from '../i18n/ui';
+import { headerMenuOptions } from '@data/menu-options';
+import MenuOption from './ui/menu-item.astro';
 
 export interface Props {
-  lang?: 'ca' | 'es';
+  lang?: 'ca' | 'es' | 'en';
 }
 
 const { lang = defaultLang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<header role="banner">
-  <div class="menu-bar" role="menubar" aria-label={lang === 'ca' ? "Navegació principal" : "Navegación principal"}>
-    <div class="menu-left" role="group">
-      <span class="hamburger" role="button" tabindex="0" aria-label="Menú">☰</span>
-      <a href="/projects" class="menu-item" role="menuitem">{t('nav.projectes')}</a>
-      <a href="/about" class="menu-item" role="menuitem">{t('nav.sobre')}</a>
-      <a href="/contact" class="menu-item" role="menuitem">{t('nav.contacte')}</a>
-    </div>
-
-    <span class="menu-center">[Mutiny — Turbo Edition]</span>
-
-    <nav class="lang-switcher" aria-label={lang === 'ca' ? "Canvi d'idioma" : "Cambio de idioma"}>
-      {Object.entries(languages).map(([code, label]) => (
-        code === lang
-          ? <span class="lang-item lang-current">[{label}]</span>
-          : <a href={code === defaultLang ? '/' : `/${code}/`} class="lang-item lang-link">[{label}]</a>
-      ))}
-    </nav>
+<header>
+  <div class="logo">
+    <a href="/" aria-label="Inici">
+      <Icon name="logo-mutiny" />
+    </a>
   </div>
+  <nav class="menu-bar" aria-label="Principal">
+    <ul>
+      {headerMenuOptions.map((opt) => {
+        const label = t(opt.labelKey);
+        if (opt.children && opt.children.length > 0) {
+          return (
+            <li class="top-item">
+              <MenuOption text={label} keyIndex={opt.keyIndex} class="top-trigger" />
+              <div class="dropdown" role="menu" aria-label={label}>
+                <ul>
+                  {opt.children.map(child => {
+                    if (child.separator) {
+                      return <li class="dropdown-sep" role="separator"></li>;
+                    }
+                    return (
+                      <li>
+                        <MenuOption text={t(child.labelKey)} keyIndex={child.keyIndex ?? 0} href={child.href} class="dropdown-link" />
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </li>
+          );
+        }
+        return (
+          <li class="top-item">
+            <MenuOption text={label} keyIndex={opt.keyIndex} href={opt.href} class="top-link" />
+          </li>
+        );
+      })}
+    </ul>
+  </nav>
+  <div class="toggle">Aquí va el Icono de barras</div>
 </header>
 
 <style>
   header {
-    flex-shrink: 0;
+    background-color: var(--light-gray);
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    padding: 0 16px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    line-height: 0;
+    
+    svg {
+      width: 48px;
+      height: auto;
+      color: var(--red);
+    }
+  }
+
+
+  .toggle {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    .toggle {
+      display: block;
+    }
   }
 
   .menu-bar {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    background: var(--menu-bg);
-    color: var(--menu-fg);
-    padding-block: 4px;
-    padding-inline: 24px;
-    font-size: var(--font-size);
-    flex-shrink: 0;
-    border-block-end: 1px solid var(--border-dark);
+    padding: 0 16px;
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      padding: 0;
+    }
+  }
+    
+
+  .top-item {
+    position: relative;
   }
 
-  .menu-left {
+  .top-link,
+  .top-trigger {
     display: flex;
     align-items: center;
-  }
-
-  .menu-center {
-    color: #000;
-    font-size: 0.85em;
-    font-weight: 500;
+    padding: 8px 0;
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    line-height: 1.4;
     white-space: nowrap;
-    text-align: center;
   }
 
-  .menu-item {
-    padding-inline: 12px;
-    padding-block: 2px;
-    color: #000;
-    font-weight: 700;
-
-    &::first-letter {
-      color: #ff0000;
-    }
-
-    &:hover,
-    &:focus-visible {
-      background: var(--menu-highlight-bg);
-      color: var(--menu-highlight-fg);
-      outline: none;
-    }
+  :global(.top-item.open .top-trigger) {
+    background: var(--green);
+    cursor: var(--cursor-dos-magenta);
   }
 
-  .hamburger {
-    padding-inline: 8px;
-    font-size: var(--font-size);
-    line-height: 1;
-    color: #ff0000;
-
-    &:hover,
-    &:focus-visible {
-      background: var(--menu-highlight-bg);
-      color: var(--menu-highlight-fg);
-      outline: none;
-    }
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: max-content;
+    padding: 8px 16px;
+    z-index: 60;
+    background: var(--light-gray);
+    box-shadow: 16px 16px 0 var(--black);
   }
-
-  .lang-switcher {
+  
+  .top-item.open .dropdown {
+    display: block;
+  }
+  
+  .dropdown ul {
     display: flex;
-    justify-content: flex-end;
-    gap: 4px;
-    font-size: 0.85em;
+    flex-direction: column;
+    background: var(--light-gray);
+    border: 2px solid var(--black);
   }
 
-  .lang-item {
-    padding-inline: 6px;
-    padding-block: 2px;
-    color: #000;
-    font-weight: 700;
-
-    &::first-letter {
-      color: #ff0000;
-    }
-
-    &:hover,
-    &:focus-visible {
-      background: var(--menu-highlight-bg);
-      color: var(--menu-highlight-fg);
-      outline: none;
-    }
+  .dropdown .dropdown-link {
+    display: flex;
+    padding: 4px 16px;
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    line-height: 1.4;
+    white-space: nowrap;
   }
 
-  .lang-current {
-    color: #000088;
-  }
-
-  :focus-visible {
-    outline: 2px solid var(--menu-highlight-bg);
-    outline-offset: 2px;
+  .dropdown-sep {
+    height: 1px;
+    margin: 1px 4px;
+    background: var(--border-dark);
   }
 </style>
+
+<script>
+  const triggers = document.querySelectorAll('.top-trigger');
+  const dropdowns = document.querySelectorAll('.dropdown');
+
+  function closeAll() {
+    triggers.forEach(t => t.parentElement?.classList.remove('open'));
+  }
+
+  triggers.forEach(t => {
+    t.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const li = t.parentElement!;
+      if (li.classList.contains('open')) {
+        closeAll();
+      } else {
+        closeAll();
+        li.classList.add('open');
+      }
+    });
+  });
+
+  dropdowns.forEach(d => {
+    d.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  });
+
+  document.addEventListener('click', closeAll);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+</script>

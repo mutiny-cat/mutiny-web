@@ -1,83 +1,147 @@
 ---
-import { useTranslations } from '../i18n/utils';
-import { defaultLang } from '../i18n/ui';
 import { Icon } from 'astro-icon/components';
+import { languages, defaultLang } from '../i18n/ui';
 
 export interface Props {
-  lang?: 'ca' | 'es';
+  lang?: 'ca' | 'es' | 'en';
 }
 
 const { lang = defaultLang } = Astro.props;
-const t = useTranslations(lang);
-const year = new Date().getFullYear();
+const currentYear = new Date().getFullYear();
 ---
 
 <footer role="contentinfo">
-  <div class="status-bar">
-    <nav aria-label={lang === 'ca' ? "Enllaços legals" : "Enlaces legales"}>
-      <a href="#" class="legal-link">{t('nav.legal')}</a>
-      <a href="#" class="legal-link">{t('nav.privacitat')}</a>
-      <a href="#" class="legal-link">{t('nav.cookies')}</a>
-      <a href="#" class="legal-link">{t('nav.accessibilitat')}</a>
-      <a href="#" class="legal-link">{t('nav.credits')}</a>
-    </nav>
-    <span class="footer-text"><Icon name="simple-icons:creativecommons" class="cc-icon" aria-hidden="true" /> Mutiny &mdash; Turbo Edition (1993 &ndash; {year})</span>
+  <div class="wrapper">
+    <div class="shortcuts"><span class="f10">F10</span>&nbsp;Men&uacute;&nbsp;&nbsp;<span class="f11">F11</span>&nbsp;Idiomes&nbsp;[{languages[lang]}]</div>
+    <div class="credit">
+      <Icon name="simple-icons:creativecommons" aria-label="Creative Commons" />
+      <span>Mutiny &mdash; Turbo Edition (1993&ndash;{currentYear})</span>
+    </div>
+  </div>
+
+  <div class="lang-modal-overlay" id="lang-modal" aria-hidden="true">
+    <div class="lang-modal">
+      <div class="lang-modal-title">Idiomes</div>
+      <ul>
+        {Object.entries(languages).map(([code, label]) => (
+          <li>
+            <a href={code === defaultLang ? '/' : `/${code}/`} class={code === lang ? 'active' : ''}>
+              {code === lang ? '\u25ba ' : '  '}{label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   </div>
 </footer>
 
+<script>
+  const modal = document.getElementById('lang-modal')!;
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'F11') {
+      e.preventDefault();
+      modal.setAttribute('aria-hidden', modal.getAttribute('aria-hidden') === 'false' ? 'true' : 'false');
+    }
+    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
+      modal.setAttribute('aria-hidden', 'true');
+    }
+  });
+  modal.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).classList.contains('lang-modal-overlay')) {
+      modal.setAttribute('aria-hidden', 'true');
+    }
+  });
+</script>
+
 <style>
   footer {
-    flex-shrink: 0;
+    background-color: var(--light-gray);
   }
 
-  .status-bar {
-    display: flex;
-    justify-content: space-between;
+  .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    background: var(--status-bg);
-    color: #000;
-    padding-block: 4px;
     padding-inline: 24px;
+  }
+
+  .credit {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-self: end;
+    padding-block: 8px;
+    white-space: nowrap;
+
+    svg {
+      width: 1.2em;
+      height: 1.2em;
+    }
+  }
+
+  .shortcuts {
+    justify-self: start;
+    padding-block: 8px;
+    white-space: nowrap;
+  }
+
+  .f10, .f11 {
+    color: var(--red);
+  }
+
+  .lang-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lang-modal-overlay[aria-hidden="true"] {
+    display: none;
+  }
+
+  .lang-modal {
+    background: var(--menu-bg);
+    border: 1px solid var(--dark-gray);
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+    padding: 0;
+    min-width: 200px;
+  }
+
+  .lang-modal-title {
+    background: var(--menu-bg);
+    padding: 4px 16px;
+    font-family: var(--font-mono);
     font-size: var(--font-size);
     font-weight: 700;
-    border-block-start: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--dark-gray);
   }
 
-  .footer-text::first-letter {
-    color: #ff0000;
+  .lang-modal ul {
+    list-style: none;
+    padding: 2px 0;
   }
 
-  .cc-icon {
-    display: inline-block;
-    width: 1.2em;
-    height: 1.2em;
-    vertical-align: middle;
-    margin-inline-end: 4px;
-  }
-
-  nav {
-    flex: 1;
-    display: flex;
-    gap: 20px;
-  }
-
-  .legal-link {
+  .lang-modal a {
+    display: block;
+    padding: 4px 16px;
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
     color: #000;
-
-    &::first-letter {
-      color: #ff0000;
-    }
-
-    &:hover,
-    &:focus-visible {
-      background: var(--menu-highlight-bg);
-      color: var(--menu-highlight-fg);
-      outline: none;
-    }
+    text-decoration: none;
+    cursor: var(--cursor-dos);
   }
 
-  :focus-visible {
-    outline: 2px solid var(--menu-highlight-bg);
-    outline-offset: 2px;
+  .lang-modal a:hover,
+  .lang-modal a:focus-visible {
+    background: var(--blue);
+    color: var(--white);
+    outline: none;
+  }
+
+  .lang-modal a.active {
+    font-weight: 700;
   }
 </style>

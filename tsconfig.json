@@ -3,13 +3,14 @@
   "compilerOptions": {
     "paths": {
       "@components/*": ["./src/components/*"],
-      "@layouts/*": ["./src/layouts/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@styles/*": ["./src/styles/*"],
+      "@data/*": ["./src/data/*"],
+      "@fonts/*": ["./src/assets/fonts/*"],
+      "@i18n/*": ["./src/i18n/*"],
       "@icons/*": ["./src/assets/icons/*"],
       "@images/*": ["./src/assets/images/*"],
-      "@fonts/*": ["./src/assets/fonts/*"],
-      "@i18n/*": ["./src/i18n/*"]
+      "@layouts/*": ["./src/layouts/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@styles/*": ["./src/styles/*"]
     }
   }
 }

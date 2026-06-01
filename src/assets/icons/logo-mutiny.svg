@@ -1,0 +1,8 @@
+<svg width="512" height="205" viewBox="0 0 512 205" fill="currentColor">
+    <path d="M512 0V204.8H409.6V102.4H307.2V0H512Z" />
+    <path d="M307.2 102.4H204.8V204.8H307.2V102.4Z" />
+    <path d="M204.8 0V102.4H102.4V204.8H0V0H204.8Z" />
+    <clipPath id="clip0_2039_45">
+        <rect width="512" height="204.8" />
+    </clipPath>
+</svg>
