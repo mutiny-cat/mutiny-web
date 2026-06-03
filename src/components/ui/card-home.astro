@@ -1,0 +1,110 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section>
+    <div>
+        <button class="card-marker" aria-hidden="true">■</button>
+        <span class="card-title">Mutiny</span>
+        <article>
+            <Icon name="logo-mutiny" />
+            <h2>Hola, som Mutiny</h2>
+            <p>Estudi digital d'inspiració retro.</p>
+            <p>Disseny web, identitat visual i consultoria tecnològica amb estètica dels 80.</p>
+            <p>Com deien a Halt and Catch Fire: <strong>«Vull construir alguna cosa que importi»</strong>.</p>
+            <button>OK</button>
+        </article>
+    </div>
+</section>
+
+<style>
+    section {
+        position: relative;
+        background-color: var(--light-gray);
+        padding: 8px;
+        max-width: 640px;
+        margin: 0 auto;
+        box-shadow: 16px 16px 0 var(--black);
+    }
+
+    div {
+        position: relative;
+        border: 8px double var(--white);
+        padding: 64px;
+
+        .card-title {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-family: var(--font-mono);
+            font-size: var(--font-size);
+            font-weight: 700;
+            color: var(--white);
+            background: var(--light-gray);
+            max-inline-size: fit-content;
+            padding: 0 24px;
+        }
+        
+        .card-marker {
+            position: absolute;
+            top: -14px;
+            left: 16px;
+            font-family: var(--font-mono);
+            font-size: var(--font-size);
+            color: var(--light-green);
+            box-shadow: none;
+            padding: 0;
+            background: var(--light-gray);
+            line-height: 1;
+            min-width: 0;
+            
+            &::before {
+                content: "[";
+                font-family: var(--font-mono);
+                font-size: var(--font-size);
+                padding-right: 2px;
+                color: var(--white);
+            }
+            
+            &::after {
+                font-family: var(--font-mono);
+                font-size: var(--font-size);
+                content: "]";
+                padding-left: 2px;
+                color: var(--white);
+            }
+        }
+    }
+
+
+    article {
+        text-align: center;
+        color: var(--black);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+
+        svg {
+            width: 180px;
+            height: auto;
+            color: var(--red);
+        }
+    }
+
+    button {
+        font-family: var(--font-mono);
+        font-size: var(--font-size);
+        padding: 16px;
+        min-width: 128px;
+        background-color: var(--green);
+        color: var(--yellow);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 8px 8px 0 var(--black);
+    }
+</style>

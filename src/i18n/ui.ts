@@ -37,7 +37,7 @@ export const ui = {
     /* ── home ── */
     'home.greeting': 'Hola, som Mutiny',
     'home.subtitle': 'Estudi digital d\'inspiració retro',
-    'home.description': 'Disseny web, identitat visual i consultoria tecnològica amb estètica dels 80. Com deien a Halt and Catch Fire: «Keep calm and halt and catch fire».',
+    'home.description': 'Disseny web, identitat visual i consultoria tecnològica amb estètica dels 80. Com deien a Halt and Catch Fire: «Vull construir alguna cosa que importi».',
 
     /* ── projectes ── */
     'projects.heading': 'Projectes',
@@ -164,7 +164,7 @@ export const ui = {
     /* ── home ── */
     'home.greeting': 'Hola, somos Mutiny',
     'home.subtitle': 'Estudio digital de inspiración retro',
-    'home.description': 'Diseño web, identidad visual y consultoría tecnológica con estética de los 80. Como decían en Halt and Catch Fire: «Keep calm and halt and catch fire».',
+    'home.description': 'Diseño web, identidad visual y consultoría tecnológica con estética de los 80. Como decían en Halt and Catch Fire: «Quiero construir algo que importe».',
 
     /* ── proyectos ── */
     'projects.heading': 'Proyectos',
@@ -291,7 +291,7 @@ export const ui = {
     /* ── home ── */
     'home.greeting': 'Hello, we are Mutiny',
     'home.subtitle': 'Retro-inspired digital studio',
-    'home.description': 'Web design, visual identity and tech consulting with 80s aesthetics. As they said in Halt and Catch Fire: "Keep calm and halt and catch fire".',
+    'home.description': 'Web design, visual identity and tech consulting with 80s aesthetics. As they said in Halt and Catch Fire: "I want to build something that matters."',
 
     /* ── projects ── */
     'projects.heading': 'Projects',

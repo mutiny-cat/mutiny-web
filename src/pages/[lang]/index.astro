@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../layouts/base-layout.astro';
+import CardHome from '../../components/ui/card-home.astro';
+import { Icon } from 'astro-icon/components';
 import { useTranslations } from '../../i18n/utils';
 
 export function getStaticPaths() {
@@ -11,39 +13,5 @@ const t = useTranslations(lang as 'es' | 'en');
 ---
 
 <BaseLayout lang={lang as 'es' | 'en'} variant="home">
-  <article class="page" aria-labelledby="home-heading">
-    <header class="home-header">
-      <h1 id="home-heading" class="home-title">{t('home.greeting')}</h1>
-      <p class="home-subtitle">{t('home.subtitle')}</p>
-    </header>
-    <section class="home-content">
-      <p class="home-description">{t('home.description')}</p>
-    </section>
-  </article>
+  <CardHome />
 </BaseLayout>
-
-<style>
-  .home-header {
-    margin-block-end: 48px;
-  }
-
-  .home-title {
-    font-family: var(--font-mono);
-    font-size: clamp(32px, 5vw, 64px);
-    line-height: 1.1;
-    margin-block-end: 16px;
-  }
-
-  .home-subtitle {
-    font-family: var(--font-mono);
-    font-size: clamp(18px, 3vw, 32px);
-    opacity: 0.85;
-  }
-
-  .home-description {
-    font-family: var(--font-mono);
-    font-size: var(--font-size);
-    line-height: 1.6;
-    max-inline-size: 72ch;
-  }
-</style>
