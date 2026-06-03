@@ -1,0 +1,31 @@
+---
+interface Props {
+  label: string;
+}
+
+const { label, ...attrs } = Astro.props;
+---
+
+<button {...attrs}>
+  {label}
+</button>
+
+<style>
+  button {
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    padding: 16px;
+    min-width: 128px;
+    background-color: var(--green);
+    color: var(--yellow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 8px 8px 0 var(--black);
+  }
+
+  button:active {
+    box-shadow: none;
+    translate: 4px 4px;
+  }
+</style>
