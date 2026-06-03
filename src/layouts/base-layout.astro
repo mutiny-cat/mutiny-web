@@ -46,6 +46,8 @@ const title = Astro.props.title || defaults[lang];
         {
           variant === "default" ? (
             <div class="main-border">
+              <button class="card-maker" aria-hidden="true" data-close>■</button>
+              <span class="card-title">{windowTitle || "Título de la página"}.pas</span>
               <div class="main-container">
                 <slot />
               </div>
@@ -123,6 +125,49 @@ const title = Astro.props.title || defaults[lang];
 </style>
 
 <style>
+  .card-maker {
+    position: absolute;
+    top: 8px;
+    left: 48px;
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    color: var(--light-green);
+    box-shadow: none;
+    padding: 0;
+    background: var(--blue);
+    line-height: 1;
+    min-width: 0;
+
+    &::before {
+      content: "[";
+      font-family: var(--font-mono);
+      font-size: var(--font-size);
+      color: var(--white);
+    }
+
+    &::after {
+      font-family: var(--font-mono);
+      font-size: var(--font-size);
+      content: "]";
+      color: var(--white);
+    }
+  }
+
+  .card-title {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    font-weight: 700;
+    color: var(--white);
+    background: var(--blue);
+    max-inline-size: fit-content;
+    padding: 0 16px;
+  }
+  
   .skip-link {
     position: absolute;
     top: -9999px;

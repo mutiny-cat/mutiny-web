@@ -10,7 +10,7 @@ const { lang } = Astro.params;
 const t = useTranslations(lang as "es" | "en");
 ---
 
-<BaseLayout lang={lang as "es" | "en"} title="Mutiny — Crèdits">
+<BaseLayout lang={lang as "es" | "en"} title="Mutiny — Crèdits" windowTitle={t("nav.legal")}>
   <article class="page" aria-labelledby="heading">
     <h1 id="heading" class="page-title">{t("legal.credits.heading")}</h1>
     <p class="section-desc">{t("legal.credits.p1")}</p>
