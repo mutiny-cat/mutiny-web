@@ -162,13 +162,12 @@ const t = useTranslations(lang);
     padding: 8px 0;
     font-family: var(--font-mono);
     font-size: var(--font-size);
-    line-height: 1.4;
     white-space: nowrap;
   }
 
   :global(.top-item.open .top-trigger) {
     background: var(--green);
-    cursor: var(--cursor-dos-magenta);
+    cursor: pointer;
   }
 
   .dropdown {
@@ -196,11 +195,10 @@ const t = useTranslations(lang);
   }
 
   .dropdown .dropdown-link {
-    display: flex;
+    display: block;
     padding: 4px 16px;
     font-family: var(--font-mono);
     font-size: var(--font-size);
-    line-height: 1.4;
     white-space: nowrap;
   }
 
@@ -240,10 +238,10 @@ const t = useTranslations(lang);
   }
 
   .sub-flyout .dropdown-link {
+    display: block;
     padding: 4px 16px;
     font-family: var(--font-mono);
     font-size: var(--font-size);
-    line-height: 1.4;
     white-space: nowrap;
   }
 

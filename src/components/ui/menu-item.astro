@@ -24,7 +24,18 @@ const after = text.slice(keyIndex + 1);
 <style>
   .menu-item {
     color: var(--black);
-    padding: 8px 16px;
+    padding: 0 16px;
+    width: 100%;
+    display: block;
+  }
+
+  .menu-item:hover {
+    background: var(--green);
+    color: var(--white);
+  }
+
+  .menu-item:hover .key-letter {
+    color: var(--red);
   }
 
   .key-letter {

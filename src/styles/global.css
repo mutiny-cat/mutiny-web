@@ -30,7 +30,6 @@
   a:active {
     color: inherit;
     text-decoration: none;
-    cursor: var(--cursor-dos);
   }
 
   :global(.desktop) a:hover {
@@ -44,7 +43,7 @@
     background: transparent;
     padding: 0;
     line-height: 0;
-    cursor: var(--cursor-dos);
+    cursor: pointer;
   }
 
   ul {
@@ -74,18 +73,9 @@
     --white: #ffffff;
 
     --cursor-dos:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='24'%3E%3Crect width='16' height='24' fill='%23000'/%3E%3C/svg%3E")
-        0 0,
-      text;
-    --cursor-dos-red:
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='24'%3E%3Crect width='16' height='24' fill='%23AA5500'/%3E%3C/svg%3E")
         0 0,
       text;
-    --cursor-dos-magenta:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='24'%3E%3Crect width='16' height='24' fill='%23FF55FF'/%3E%3C/svg%3E")
-        0 0,
-      text;
-
     --menu-bg: var(--light-gray);
     --menu-fg: var(--black);
     --menu-highlight-bg: var(--blue);
@@ -109,7 +99,7 @@
     font-family: var(--font-mono);
     font-size: var(--font-size);
     color: #000;
-    line-height: 1.4;
+    line-height: 1.6;
     -webkit-font-smoothing: none;
     -moz-osx-font-smoothing: unset;
   }
@@ -183,7 +173,6 @@
   .section-desc {
     font-family: var(--font-mono);
     font-size: var(--font-size);
-    line-height: 1.6;
     margin-block-end: 16px;
     max-inline-size: 72ch;
   }
@@ -196,7 +185,6 @@
   .list li {
     font-family: var(--font-mono);
     font-size: var(--font-size);
-    line-height: 1.6;
     padding-inline-start: 24px;
     position: relative;
   }

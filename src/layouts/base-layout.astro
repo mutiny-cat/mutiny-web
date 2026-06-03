@@ -97,7 +97,16 @@ const title = Astro.props.title || defaults[lang];
   *,
   *::before,
   *::after {
-    cursor: var(--cursor-dos);
+    cursor: default;
+  }
+
+  a,
+  a:link,
+  a:visited,
+  a:hover,
+  a:active,
+  button {
+    cursor: pointer;
   }
 </style>
 
@@ -130,7 +139,7 @@ const title = Astro.props.title || defaults[lang];
     overflow-y: auto;
     overflow-x: hidden;
     position: relative;
-    cursor: var(--cursor-dos-red);
+    cursor: var(--cursor-dos);
 
     &:focus {
       outline: none;
@@ -158,6 +167,6 @@ const title = Astro.props.title || defaults[lang];
   .desktop a:visited,
   .desktop a:active,
   .desktop button {
-    cursor: var(--cursor-dos-red);
+    cursor: pointer;
   }
 </style>
