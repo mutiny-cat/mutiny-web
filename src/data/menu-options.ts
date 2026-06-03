@@ -20,100 +20,46 @@ export interface TopMenuItem {
 export const headerMenuOptions: TopMenuItem[] = [
   {
     labelKey: "nav.projectes",
+    href: "/projects",
     keyIndex: 0,
-    children: [
-      {
-        labelKey: "nav.projectes.web",
-        href: "/projects",
-        keyIndex: 0,
-      },
-      {
-        labelKey: "nav.projectes.uxui",
-        href: "/projects",
-        keyIndex: 0,
-      },
-      {
-        labelKey: "nav.projectes.grafic",
-        href: "/projects",
-        keyIndex: 0,
-      },
-      {
-        separator: true,
-        labelKey: "" as LabelKey,
-      },
-      {
-        labelKey: "nav.veureTots",
-        href: "/projects",
-        keyIndex: 0,
-      },
-    ],
   },
   {
     labelKey: "nav.serveis",
+    href: "/serveis",
     keyIndex: 0,
-    children: [
-      { labelKey: "nav.serveis.web", href: "/contact", keyIndex: 0 },
-      { labelKey: "nav.serveis.consultoria", href: "/contact", keyIndex: 0 },
-      { labelKey: "nav.serveis.formacio", href: "/contact", keyIndex: 0 },
-      { labelKey: "nav.serveis.disseny", href: "/contact", keyIndex: 0 },
-    ],
   },
   {
     labelKey: "nav.sobre",
     keyIndex: 0,
     children: [
-      { labelKey: "nav.sobre.biografia", href: "/about", keyIndex: 0 },
-      { labelKey: "nav.sobre.cronologia", href: "/about", keyIndex: 0 },
-      { labelKey: "nav.sobre.cv", href: "/about", keyIndex: 0 },
+      { labelKey: "nav.sobre.biografia", href: "/about#biografia", keyIndex: 0 },
+      { labelKey: "nav.sobre.cronologia", href: "/about#cronologia", keyIndex: 0 },
+      { labelKey: "nav.sobre.cv", href: "/about#cv", keyIndex: 0 },
       { separator: true, labelKey: "" as LabelKey },
-      {
-        labelKey: "nav.recursos",
-        keyIndex: 0,
-        children: [
-          { labelKey: "nav.recursos.iniciarse", href: "/recursos", keyIndex: 0 },
-          { labelKey: "nav.recursos.eines", href: "/recursos", keyIndex: 0 },
-          { labelKey: "nav.recursos.tutorials", href: "/recursos", keyIndex: 0 },
-        ],
-      },
-      { separator: true, labelKey: "" as LabelKey },
-      {
-        labelKey: "nav.referents",
-        keyIndex: 0,
-        children: [
-          { labelKey: "nav.referents.devs", href: "/referents", keyIndex: 0 },
-          { labelKey: "nav.referents.asix", href: "/referents", keyIndex: 0 },
-          { separator: true, labelKey: "" as LabelKey },
-          { labelKey: "nav.referents.uxui", href: "/referents", keyIndex: 0 },
-          { labelKey: "nav.referents.grafic", href: "/referents", keyIndex: 0 },
-          { separator: true, labelKey: "" as LabelKey },
-          { labelKey: "nav.referents.holamon", href: "/referents", keyIndex: 0 },
-        ],
-      },
+      { labelKey: "nav.sobre.referents", href: "/about#referents", keyIndex: 0 },
     ],
   },
   {
-    labelKey: "nav.contacte",
+    labelKey: "nav.recursos",
+    href: "/recursos",
     keyIndex: 0,
-    children: [
-      { labelKey: "nav.contact.form", href: "/contact", keyIndex: 0 },
-      { labelKey: "nav.contact.pressupost", href: "/contact", keyIndex: 0 },
-      { separator: true, labelKey: "" as LabelKey },
-      { labelKey: "nav.contact.github", href: "https://github.com/mutiny-cat", keyIndex: 0 },
-      { labelKey: "nav.contact.linkedin", href: "#", keyIndex: 0 },
-      { labelKey: "nav.contact.codepen", href: "#", keyIndex: 0 },
-    ],
+  },
+  {
+    labelKey: "nav.contacte",
+    href: "/contact",
+    keyIndex: 0,
   },
   {
     labelKey: "nav.legal",
     keyIndex: 0,
     children: [
-      { labelKey: "nav.legal.avis", href: "#", keyIndex: 0 },
-      { labelKey: "nav.legal.privacitat", href: "#", keyIndex: 0 },
-      { labelKey: "nav.legal.cookies", href: "#", keyIndex: 0 },
+      { labelKey: "nav.legal.avis", href: "/legal/avis", keyIndex: 0 },
+      { labelKey: "nav.legal.privacitat", href: "/legal/privacitat", keyIndex: 0 },
+      { labelKey: "nav.legal.cookies", href: "/legal/cookies", keyIndex: 0 },
       { separator: true, labelKey: "" as LabelKey },
-      { labelKey: "nav.legal.accessibilitat", href: "#", keyIndex: 0 },
+      { labelKey: "nav.legal.accessibilitat", href: "/legal/accessibilitat", keyIndex: 0 },
       { separator: true, labelKey: "" as LabelKey },
-      { labelKey: "nav.legal.credits", href: "#", keyIndex: 0 },
+      { labelKey: "nav.legal.credits", href: "/legal/credits", keyIndex: 0 },
     ],
   },
 ];

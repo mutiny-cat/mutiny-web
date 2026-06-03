@@ -1,6 +1,50 @@
 ---
 import BaseLayout from '../layouts/base-layout.astro';
+import { useTranslations } from '../i18n/utils';
+const t = useTranslations('ca');
 ---
 
-<BaseLayout lang="ca">
+<BaseLayout lang="ca" variant="home">
+  <article class="home" aria-labelledby="home-heading">
+    <header class="home-header">
+      <h1 id="home-heading" class="home-title">{t('home.greeting')}</h1>
+      <p class="home-subtitle">{t('home.subtitle')}</p>
+    </header>
+    <section class="home-content">
+      <p class="home-description">{t('home.description')}</p>
+    </section>
+  </article>
 </BaseLayout>
+
+<style>
+  .home {
+    padding-block: 96px;
+    padding-inline: 32px;
+    max-inline-size: 800px;
+    margin-inline: auto;
+  }
+
+  .home-header {
+    margin-block-end: 48px;
+  }
+
+  .home-title {
+    font-family: var(--font-mono);
+    font-size: clamp(32px, 5vw, 64px);
+    line-height: 1.1;
+    margin-block-end: 16px;
+  }
+
+  .home-subtitle {
+    font-family: var(--font-mono);
+    font-size: clamp(18px, 3vw, 32px);
+    opacity: 0.85;
+  }
+
+  .home-description {
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    line-height: 1.6;
+    max-inline-size: 72ch;
+  }
+</style>

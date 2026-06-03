@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/base-layout.astro';
+import { useTranslations } from '../../i18n/utils';
+const t = useTranslations('ca');
+---
+
+<BaseLayout lang="ca" title={t('title.serveis')}>
+  <article class="page" aria-labelledby="heading">
+    <h1 id="heading" class="page-title">{t('services.heading')}</h1>
+
+    <section class="section" aria-labelledby="web-heading">
+      <h2 id="web-heading" class="section-title">{t('services.web')}</h2>
+      <p class="section-desc">{t('services.web.desc')}</p>
+    </section>
+
+    <section class="section" aria-labelledby="uxui-heading">
+      <h2 id="uxui-heading" class="section-title">{t('services.uxui')}</h2>
+      <p class="section-desc">{t('services.uxui.desc')}</p>
+    </section>
+
+    <section class="section" aria-labelledby="consulting-heading">
+      <h2 id="consulting-heading" class="section-title">{t('services.consulting')}</h2>
+      <p class="section-desc">{t('services.consulting.desc')}</p>
+    </section>
+
+    <section class="section" aria-labelledby="training-heading">
+      <h2 id="training-heading" class="section-title">{t('services.training')}</h2>
+      <p class="section-desc">{t('services.training.desc')}</p>
+    </section>
+
+    <section class="section" aria-labelledby="graphic-heading">
+      <h2 id="graphic-heading" class="section-title">{t('services.graphic')}</h2>
+      <p class="section-desc">{t('services.graphic.desc')}</p>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-family: var(--font-mono);
+    font-size: clamp(28px, 4vw, 48px);
+    margin-block-end: 48px;
+  }
+
+  .section {
+    margin-block-end: 48px;
+  }
+
+  .section-title {
+    font-family: var(--font-mono);
+    font-size: clamp(20px, 2.5vw, 28px);
+    margin-block-end: 16px;
+    border-block-end: 1px solid var(--yellow);
+    padding-block-end: 8px;
+  }
+
+  .section-desc {
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    line-height: 1.6;
+    max-inline-size: 72ch;
+  }
+</style>

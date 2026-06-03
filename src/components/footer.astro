@@ -1,12 +1,14 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { languages, defaultLang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
 
 export interface Props {
   lang?: 'ca' | 'es' | 'en';
 }
 
 const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
 const currentYear = new Date().getFullYear();
 ---
 
@@ -15,7 +17,7 @@ const currentYear = new Date().getFullYear();
     <div class="shortcuts"><span class="f10">F10</span>&nbsp;Men&uacute;&nbsp;&nbsp;<span class="f11">F11</span>&nbsp;Idiomes&nbsp;[{languages[lang]}]</div>
     <div class="credit">
       <Icon name="simple-icons:creativecommons" aria-label="Creative Commons" />
-      <span>Mutiny &mdash; Turbo Edition (1993&ndash;{currentYear})</span>
+      <span>{t('footer.year')}{currentYear})</span>
     </div>
   </div>
 

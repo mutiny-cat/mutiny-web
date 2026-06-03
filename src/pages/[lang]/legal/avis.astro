@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../../../layouts/base-layout.astro';
+import { useTranslations } from '../../../i18n/utils';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+}
+
+const { lang } = Astro.params;
+const t = useTranslations(lang as 'es' | 'en');
+---
+
+<BaseLayout lang={lang as 'es' | 'en'} title="Mutiny — Avís legal">
+  <article class="page" aria-labelledby="heading">
+    <h1 id="heading" class="page-title">{t('legal.avis.heading')}</h1>
+    <p class="section-desc">{t('legal.avis.p1')}</p>
+    <p class="section-desc">{t('legal.avis.p2')}</p>
+  </article>
+</BaseLayout>

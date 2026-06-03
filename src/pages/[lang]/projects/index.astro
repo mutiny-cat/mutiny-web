@@ -1,127 +1,44 @@
 ---
 import BaseLayout from '../../../layouts/base-layout.astro';
+import { useTranslations } from '../../../i18n/utils';
 
 export function getStaticPaths() {
   return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
 }
 
 const { lang } = Astro.params;
+const t = useTranslations(lang as 'es' | 'en');
 ---
 
-<BaseLayout lang={lang as 'es' | 'en'} title="Mutiny — Proyectos">
-      <div class="editor-window" role="region" aria-label="Editor: PROJ.PAS">
-    <div class="window-title-bar">
-      <span class="window-title">PROJ.PAS</span>
-      <div class="window-controls" aria-hidden="true">
-        <span class="ctrl">↑</span>
-        <span class="ctrl">↓</span>
-        <span class="ctrl">×</span>
-      </div>
-    </div>
-    <div class="window-body">
-      <pre class="code" tabindex="0"><span class="kw">program</span> Projects;
+<BaseLayout lang={lang as 'es' | 'en'} title={t('title.projectes')}>
+  <article class="page" aria-labelledby="heading">
+    <h1 id="heading" class="page-title">{t('projects.heading')}</h1>
 
-<span class="kw">type</span>
-  TProject = <span class="kw">record</span>
-    name: <span class="kw">string</span>[40];
-    status: (active, paused, done);
-  <span class="kw">end</span>;
+    <section class="section" aria-labelledby="web-heading">
+      <h2 id="web-heading" class="section-title">{t('projects.web')}</h2>
+      <p class="section-desc">{t('projects.web.desc')}</p>
+      <ul class="list">
+        <li>{t('projects.web.1')}</li>
+        <li>{t('projects.web.2')}</li>
+      </ul>
+    </section>
 
-<span class="kw">const</span>
-  projects: <span class="kw">array</span>[1..3] <span class="kw">of</span> TProject = (
-    (name: <span class="str">'mutiny-web'</span>; status: active),
-    (name: <span class="str">'turbo-ui'</span>;   status: active),
-    (name: <span class="str">'retro-blog'</span>; status: paused),
-  );
+    <section class="section" aria-labelledby="uxui-heading">
+      <h2 id="uxui-heading" class="section-title">{t('projects.uxui')}</h2>
+      <p class="section-desc">{t('projects.uxui.desc')}</p>
+      <ul class="list">
+        <li>{t('projects.uxui.1')}</li>
+        <li>{t('projects.uxui.2')}</li>
+      </ul>
+    </section>
 
-<span class="kw">var</span>
-  i: <span class="kw">integer</span>;
-
-<span class="kw">begin</span>
-  <span class="kw">for</span> i := 1 <span class="kw">to</span> 3 <span class="kw">do</span>
-    WriteLn(projects[i].name);
-<span class="kw">end</span>.</pre>
-    </div>
-    <div class="window-status">
-      <span>Line 22  Col 5</span>
-      <span>Insert Indent</span>
-    </div>
-  </div>
+    <section class="section" aria-labelledby="grafic-heading">
+      <h2 id="grafic-heading" class="section-title">{t('projects.grafic')}</h2>
+      <p class="section-desc">{t('projects.grafic.desc')}</p>
+      <ul class="list">
+        <li>{t('projects.grafic.1')}</li>
+        <li>{t('projects.grafic.2')}</li>
+      </ul>
+    </section>
+  </article>
 </BaseLayout>
-
-<style>
-  .editor-window {
-    position: absolute;
-    inset-block-start: 40px;
-    inset-inline-start: 50%;
-    translate: -50% 0;
-    background: var(--editor-bg);
-    border: 2px solid;
-    border-color: var(--border-light) var(--border-dark) var(--border-dark) var(--border-light);
-    min-inline-size: 480px;
-  }
-
-  .window-title-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--menu-bg);
-    color: #000;
-    padding-block: 4px;
-    padding-inline: 8px;
-    font-size: var(--font-size);
-    font-weight: 700;
-    border-block-end: 1px solid var(--border-dark);
-  }
-
-  .window-controls {
-    display: flex;
-    gap: 1px;
-  }
-
-  .ctrl {
-    display: inline-block;
-    padding-inline: 4px;
-    cursor: pointer;
-    border: 1px solid var(--border-dark);
-    background: var(--menu-bg);
-    font-size: var(--font-size);
-
-    &:hover {
-      background: var(--menu-highlight-bg);
-      color: var(--menu-highlight-fg);
-    }
-  }
-
-  .window-body {
-    padding: 8px;
-  }
-
-  .code {
-    font-family: var(--font-mono);
-    font-size: var(--font-size);
-    line-height: 1.5;
-    color: var(--editor-fg);
-    white-space: pre;
-  }
-
-  .kw {
-    color: #ff0;
-  }
-
-  .str {
-    color: #f0f;
-  }
-
-  .window-status {
-    display: flex;
-    justify-content: space-between;
-    background: var(--menu-bg);
-    color: #000;
-    padding-inline: 6px;
-    padding-block: 2px;
-    font-size: var(--font-size);
-    font-weight: 700;
-    border-block-start: 1px solid var(--border-dark);
-  }
-</style>
