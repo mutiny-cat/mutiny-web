@@ -15,9 +15,14 @@ const currentYear = new Date().getFullYear();
 <footer role="contentinfo">
   <div class="wrapper">
     <div class="shortcuts">
-      <span class="f10">F10</span>&nbsp;Men&uacute;&nbsp;&nbsp;<span class="f11"
-        >F11</span
-      >&nbsp;Idiomes&nbsp;[{languages[lang]}]
+      <button class="fkey" data-action="menu">
+        <span class="fkey-label">F10</span>
+        <span>Menú</span>
+      </button>
+      <button class="fkey" data-action="lang">
+        <span class="fkey-label">F11</span>
+        <span>Idiomes [{languages[lang]}]</span>
+      </button>
     </div>
     <div class="credit">
       <Icon name="simple-icons:creativecommons" aria-label="Creative Commons" />
@@ -47,27 +52,6 @@ const currentYear = new Date().getFullYear();
   </div>
 </footer>
 
-<script>
-  const modal = document.getElementById("lang-modal")!;
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "F11") {
-      e.preventDefault();
-      modal.setAttribute(
-        "aria-hidden",
-        modal.getAttribute("aria-hidden") === "false" ? "true" : "false",
-      );
-    }
-    if (e.key === "Escape" && modal.getAttribute("aria-hidden") === "false") {
-      modal.setAttribute("aria-hidden", "true");
-    }
-  });
-  modal.addEventListener("click", (e) => {
-    if ((e.target as HTMLElement).classList.contains("lang-modal-overlay")) {
-      modal.setAttribute("aria-hidden", "true");
-    }
-  });
-</script>
-
 <style>
   footer {
     background-color: var(--light-gray);
@@ -96,13 +80,27 @@ const currentYear = new Date().getFullYear();
 
   .shortcuts {
     justify-self: start;
-    padding-block: 8px;
+    padding: 8px 0 0;
     white-space: nowrap;
+    display: flex;
+    gap: 16px;
   }
-
-  .f10,
-  .f11 {
+  
+  .fkey {
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: var(--cursor-dos);
+    line-height: inherit;
+    display: flex;
+    gap: 0;
+  }
+  
+  .fkey-label {
     color: var(--red);
+    padding-right: 6px;
   }
 
   .lang-modal-overlay {
@@ -161,3 +159,47 @@ const currentYear = new Date().getFullYear();
     font-weight: 700;
   }
 </style>
+
+<script>
+  const modal = document.getElementById("lang-modal")!;
+
+  function handleShortcut(action: string) {
+    if (action === "lang") {
+      const isHidden = modal.getAttribute("aria-hidden") === "true";
+      modal.setAttribute("aria-hidden", isHidden ? "false" : "true");
+    }
+    if (action === "menu") {
+      const firstLink = document.querySelector("nav a");
+      if (firstLink instanceof HTMLElement) {
+        firstLink.focus();
+      }
+    }
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "F10") {
+      e.preventDefault();
+      handleShortcut("menu");
+    }
+    if (e.key === "F11") {
+      e.preventDefault();
+      handleShortcut("lang");
+    }
+    if (e.key === "Escape" && modal.getAttribute("aria-hidden") === "false") {
+      modal.setAttribute("aria-hidden", "true");
+    }
+  });
+
+  document.querySelectorAll(".fkey").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const action = (btn as HTMLElement).dataset.action;
+      if (action) handleShortcut(action);
+    });
+  });
+
+  modal.addEventListener("click", (e) => {
+    if ((e.target as HTMLElement).classList.contains("lang-modal-overlay")) {
+      modal.setAttribute("aria-hidden", "true");
+    }
+  });
+</script>

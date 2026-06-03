@@ -1,5 +1,14 @@
 ---
 import { Icon } from "astro-icon/components";
+import { useTranslations } from "../../i18n/utils";
+import { defaultLang } from "../../i18n/ui";
+
+export interface Props {
+  lang?: "ca" | "es" | "en";
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <section id="card-home">
@@ -8,33 +17,14 @@ import { Icon } from "astro-icon/components";
     <span class="card-title">Mutiny</span>
     <article>
       <Icon name="logo-mutiny" />
-      <h2>Hola, som Mutiny</h2>
-      <p>Estudi digital d'inspiració retro.</p>
-      <p>
-        Disseny web, identitat visual i consultoria tecnològica amb estètica
-        dels 80.
-      </p>
-      <p>
-        Com deien a Halt and Catch Fire: <strong
-          >«Vull construir alguna cosa que importi»</strong
-        >.
-      </p>
+      <h2>{t("home.greeting")}</h2>
+      <p>{t("home.subtitle")}</p>
+      <p>{t("home.body")}</p>
+      <p>{t("home.quote.prefix")} <strong>{t("home.quote")}</strong></p>
       <button data-close>OK</button>
     </article>
   </div>
 </section>
-
-<script>
-  const card = document.getElementById("card-home");
-  if (card) {
-    const closeBtns = card.querySelectorAll("[data-close]");
-    closeBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        card.style.display = "none";
-      });
-    });
-  }
-</script>
 
 <style>
   section {
@@ -85,7 +75,7 @@ import { Icon } from "astro-icon/components";
         font-size: var(--font-size);
         color: var(--white);
       }
-      
+
       &::after {
         font-family: var(--font-mono);
         font-size: var(--font-size);
@@ -123,4 +113,20 @@ import { Icon } from "astro-icon/components";
     align-items: center;
     box-shadow: 8px 8px 0 var(--black);
   }
+
+  &.is-hidden {
+    display: none;
+  }
 </style>
+
+<script>
+  const card = document.getElementById("card-home");
+  if (card) {
+    const closeBtns = card.querySelectorAll("[data-close]");
+    closeBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        card.classList.add("is-hidden");
+      });
+    });
+  }
+</script>

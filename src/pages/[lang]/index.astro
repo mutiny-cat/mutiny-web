@@ -13,5 +13,16 @@ const t = useTranslations(lang as "es" | "en");
 ---
 
 <BaseLayout lang={lang as "es" | "en"} variant="home">
-  <CardHome />
+  <div class="home-wrapper">
+    <CardHome lang={lang as "es" | "en"} />
+  </div>
 </BaseLayout>
+
+<style>
+  .home-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-block-size: 100%;
+  }
+</style>
