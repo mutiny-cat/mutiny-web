@@ -1,8 +1,8 @@
 @font-face {
-  font-family: 'Perfect DOS VGA 437';
+  font-family: "Perfect DOS VGA 437";
   src:
-    url('/fonts/perfect-dos-vga-437.woff2') format('woff2'),
-    url('/fonts/perfect-dos-vga-437-win.ttf') format('truetype');
+    url("/fonts/perfect-dos-vga-437.woff2") format("woff2"),
+    url("/fonts/perfect-dos-vga-437-win.ttf") format("truetype");
   font-display: swap;
 }
 
@@ -17,12 +17,17 @@
     box-sizing: border-box;
   }
 
-  html, body {
+  html,
+  body {
     block-size: 100%;
     overflow: hidden;
   }
 
-  a, a:link, a:visited, a:hover, a:active {
+  a,
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
     color: inherit;
     text-decoration: none;
     cursor: var(--cursor-dos);
@@ -51,42 +56,52 @@
 
 @layer base {
   :root {
-    --black:         #000000;
-    --blue:          #0000AA;
-    --green:         #00AA00;
-    --cyan:          #00AAAA;
-    --red:           #AA0000;
-    --magenta:       #AA00AA;
-    --brown:         #AA5500;
-    --light-gray:    #AAAAAA;
-    --dark-gray:     #555555;
-    --light-blue:    #5555FF;
-    --light-green:   #55FF55;
-    --light-cyan:    #55FFFF;
-    --light-red:     #FF5555;
-    --light-magenta: #FF55FF;
-    --yellow:        #FFFF55;
-    --white:         #FFFFFF;
+    --black: #000000;
+    --blue: #0000aa;
+    --green: #00aa00;
+    --cyan: #00aaaa;
+    --red: #aa0000;
+    --magenta: #aa00aa;
+    --brown: #aa5500;
+    --light-gray: #aaaaaa;
+    --dark-gray: #555555;
+    --light-blue: #5555ff;
+    --light-green: #55ff55;
+    --light-cyan: #55ffff;
+    --light-red: #ff5555;
+    --light-magenta: #ff55ff;
+    --yellow: #ffff55;
+    --white: #ffffff;
 
-    --cursor-dos: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='24'%3E%3Crect width='16' height='24' fill='%23000'/%3E%3C/svg%3E") 0 0, text;
-    --cursor-dos-red: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='24'%3E%3Crect width='16' height='24' fill='%23AA5500'/%3E%3C/svg%3E") 0 0, text;
-    --cursor-dos-magenta: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='24'%3E%3Crect width='16' height='24' fill='%23FF55FF'/%3E%3C/svg%3E") 0 0, text;
+    --cursor-dos:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='24'%3E%3Crect width='16' height='24' fill='%23000'/%3E%3C/svg%3E")
+        0 0,
+      text;
+    --cursor-dos-red:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='24'%3E%3Crect width='16' height='24' fill='%23AA5500'/%3E%3C/svg%3E")
+        0 0,
+      text;
+    --cursor-dos-magenta:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='24'%3E%3Crect width='16' height='24' fill='%23FF55FF'/%3E%3C/svg%3E")
+        0 0,
+      text;
 
-    --menu-bg:           var(--light-gray);
-    --menu-fg:           var(--black);
+    --menu-bg: var(--light-gray);
+    --menu-fg: var(--black);
     --menu-highlight-bg: var(--blue);
     --menu-highlight-fg: var(--white);
-    --status-bg:         var(--light-gray);
-    --desktop-bg:        var(--light-gray);
-    --editor-bg:         var(--blue);
-    --editor-fg:         var(--white);
-    --editor-title-bg:   var(--light-blue);
-    --border-light:      var(--white);
-    --border-dark:       var(--dark-gray);
+    --status-bg: var(--light-gray);
+    --desktop-bg: var(--light-gray);
+    --editor-bg: var(--blue);
+    --editor-fg: var(--white);
+    --editor-title-bg: var(--light-blue);
+    --border-light: var(--white);
+    --border-dark: var(--dark-gray);
 
-    --desktop-bg-alt:    var(--blue);
-    
-    --font-mono: 'Perfect DOS VGA 437', 'Courier New', Courier, 'Lucida Console', monospace;
+    --desktop-bg-alt: var(--blue);
+
+    --font-mono:
+      "Perfect DOS VGA 437", "Courier New", Courier, "Lucida Console", monospace;
     --font-size: clamp(16px, 2.5vw, 24px);
   }
 
@@ -187,7 +202,7 @@
   }
 
   .list li::before {
-    content: '>';
+    content: ">";
     position: absolute;
     inset-inline-start: 0;
     color: var(--yellow);

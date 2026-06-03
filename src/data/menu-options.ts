@@ -1,6 +1,6 @@
 import { ui, defaultLang } from "../i18n/ui";
 
-type LabelKey = keyof typeof ui[typeof defaultLang];
+type LabelKey = keyof (typeof ui)[typeof defaultLang];
 
 export interface MenuChild {
   labelKey: LabelKey;
@@ -32,11 +32,23 @@ export const headerMenuOptions: TopMenuItem[] = [
     labelKey: "nav.sobre",
     keyIndex: 0,
     children: [
-      { labelKey: "nav.sobre.biografia", href: "/about#biografia", keyIndex: 0 },
-      { labelKey: "nav.sobre.cronologia", href: "/about#cronologia", keyIndex: 0 },
+      {
+        labelKey: "nav.sobre.biografia",
+        href: "/about#biografia",
+        keyIndex: 0,
+      },
+      {
+        labelKey: "nav.sobre.cronologia",
+        href: "/about#cronologia",
+        keyIndex: 0,
+      },
       { labelKey: "nav.sobre.cv", href: "/about#cv", keyIndex: 0 },
       { separator: true, labelKey: "" as LabelKey },
-      { labelKey: "nav.sobre.referents", href: "/about#referents", keyIndex: 0 },
+      {
+        labelKey: "nav.sobre.referents",
+        href: "/about#referents",
+        keyIndex: 0,
+      },
     ],
   },
   {
@@ -54,10 +66,18 @@ export const headerMenuOptions: TopMenuItem[] = [
     keyIndex: 0,
     children: [
       { labelKey: "nav.legal.avis", href: "/legal/avis", keyIndex: 0 },
-      { labelKey: "nav.legal.privacitat", href: "/legal/privacitat", keyIndex: 0 },
+      {
+        labelKey: "nav.legal.privacitat",
+        href: "/legal/privacitat",
+        keyIndex: 0,
+      },
       { labelKey: "nav.legal.cookies", href: "/legal/cookies", keyIndex: 0 },
       { separator: true, labelKey: "" as LabelKey },
-      { labelKey: "nav.legal.accessibilitat", href: "/legal/accessibilitat", keyIndex: 0 },
+      {
+        labelKey: "nav.legal.accessibilitat",
+        href: "/legal/accessibilitat",
+        keyIndex: 0,
+      },
       { separator: true, labelKey: "" as LabelKey },
       { labelKey: "nav.legal.credits", href: "/legal/credits", keyIndex: 0 },
     ],

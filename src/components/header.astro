@@ -1,12 +1,12 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { useTranslations } from '../i18n/utils';
-import { defaultLang } from '../i18n/ui';
-import { headerMenuOptions } from '@data/menu-options';
-import MenuOption from './ui/menu-item.astro';
+import { Icon } from "astro-icon/components";
+import { useTranslations } from "../i18n/utils";
+import { defaultLang } from "../i18n/ui";
+import { headerMenuOptions } from "@data/menu-options";
+import MenuOption from "./ui/menu-item.astro";
 
 export interface Props {
-  lang?: 'ca' | 'es' | 'en';
+  lang?: "ca" | "es" | "en";
 }
 
 const { lang = defaultLang } = Astro.props;
@@ -21,56 +21,87 @@ const t = useTranslations(lang);
   </div>
   <nav class="menu-bar" aria-label="Principal">
     <ul>
-      {headerMenuOptions.map((opt) => {
-        const label = t(opt.labelKey);
-        if (opt.children && opt.children.length > 0) {
-          return (
-            <li class="top-item">
-              <MenuOption text={label} keyIndex={opt.keyIndex} class="top-trigger" />
-              <div class="dropdown" role="menu" aria-label={label}>
-                <ul>
-                  {opt.children.map(child => {
-                    if (child.separator) {
-                      return <li class="dropdown-sep" role="separator"></li>;
-                    }
-                    if (child.children && child.children.length > 0) {
+      {
+        headerMenuOptions.map((opt) => {
+          const label = t(opt.labelKey);
+          if (opt.children && opt.children.length > 0) {
+            return (
+              <li class="top-item">
+                <MenuOption
+                  text={label}
+                  keyIndex={opt.keyIndex}
+                  class="top-trigger"
+                />
+                <div class="dropdown" role="menu" aria-label={label}>
+                  <ul>
+                    {opt.children.map((child) => {
+                      if (child.separator) {
+                        return <li class="dropdown-sep" role="separator" />;
+                      }
+                      if (child.children && child.children.length > 0) {
+                        return (
+                          <li class="sub-item">
+                            <MenuOption
+                              text={t(child.labelKey)}
+                              keyIndex={child.keyIndex ?? 0}
+                              class="dropdown-link sub-trigger"
+                              href="#"
+                            />
+                            <div class="sub-flyout" role="menu">
+                              <ul>
+                                {child.children.map((sub) => {
+                                  if (sub.separator) {
+                                    return (
+                                      <li
+                                        class="dropdown-sep"
+                                        role="separator"
+                                      />
+                                    );
+                                  }
+                                  return (
+                                    <li>
+                                      <MenuOption
+                                        text={t(sub.labelKey)}
+                                        keyIndex={sub.keyIndex ?? 0}
+                                        href={sub.href}
+                                        class="dropdown-link"
+                                      />
+                                    </li>
+                                  );
+                                })}
+                              </ul>
+                            </div>
+                          </li>
+                        );
+                      }
                       return (
-                        <li class="sub-item">
-                          <MenuOption text={t(child.labelKey)} keyIndex={child.keyIndex ?? 0} class="dropdown-link sub-trigger" href="#" />
-                          <div class="sub-flyout" role="menu">
-                            <ul>
-                              {child.children.map(sub => {
-                                if (sub.separator) {
-                                  return <li class="dropdown-sep" role="separator"></li>;
-                                }
-                                return (
-                                  <li>
-                                    <MenuOption text={t(sub.labelKey)} keyIndex={sub.keyIndex ?? 0} href={sub.href} class="dropdown-link" />
-                                  </li>
-                                );
-                              })}
-                            </ul>
-                          </div>
+                        <li>
+                          <MenuOption
+                            text={t(child.labelKey)}
+                            keyIndex={child.keyIndex ?? 0}
+                            href={child.href}
+                            class="dropdown-link"
+                          />
                         </li>
                       );
-                    }
-                    return (
-                      <li>
-                        <MenuOption text={t(child.labelKey)} keyIndex={child.keyIndex ?? 0} href={child.href} class="dropdown-link" />
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
+                    })}
+                  </ul>
+                </div>
+              </li>
+            );
+          }
+          return (
+            <li class="top-item">
+              <MenuOption
+                text={label}
+                keyIndex={opt.keyIndex}
+                href={opt.href}
+                class="top-link"
+              />
             </li>
           );
-        }
-        return (
-          <li class="top-item">
-            <MenuOption text={label} keyIndex={opt.keyIndex} href={opt.href} class="top-link" />
-          </li>
-        );
-      })}
+        })
+      }
     </ul>
   </nav>
   <div class="toggle" aria-label="Menú" role="button" tabindex="0">
@@ -91,14 +122,13 @@ const t = useTranslations(lang);
     display: flex;
     align-items: center;
     line-height: 0;
-    
+
     svg {
       width: 48px;
       height: auto;
       color: var(--red);
     }
   }
-
 
   .toggle {
     display: none;
@@ -120,7 +150,6 @@ const t = useTranslations(lang);
       padding: 0;
     }
   }
-    
 
   .top-item {
     position: relative;
@@ -153,11 +182,11 @@ const t = useTranslations(lang);
     background: var(--light-gray);
     box-shadow: 16px 16px 0 var(--black);
   }
-  
+
   .top-item.open .dropdown {
     display: block;
   }
-  
+
   .dropdown ul {
     display: flex;
     flex-direction: column;
@@ -232,54 +261,56 @@ const t = useTranslations(lang);
 </style>
 
 <script>
-  const triggers = document.querySelectorAll('.top-trigger');
-  const dropdowns = document.querySelectorAll('.dropdown');
-  const subTriggers = document.querySelectorAll('.sub-trigger');
+  const triggers = document.querySelectorAll(".top-trigger");
+  const dropdowns = document.querySelectorAll(".dropdown");
+  const subTriggers = document.querySelectorAll(".sub-trigger");
 
   function closeAll() {
-    triggers.forEach(t => t.parentElement?.classList.remove('open'));
-    subTriggers.forEach(s => s.parentElement?.classList.remove('open'));
+    triggers.forEach((t) => t.parentElement?.classList.remove("open"));
+    subTriggers.forEach((s) => s.parentElement?.classList.remove("open"));
   }
 
-  triggers.forEach(t => {
-    t.addEventListener('click', (e) => {
+  triggers.forEach((t) => {
+    t.addEventListener("click", (e) => {
       e.stopPropagation();
       const li = t.parentElement!;
-      if (li.classList.contains('open')) {
+      if (li.classList.contains("open")) {
         closeAll();
       } else {
         closeAll();
-        li.classList.add('open');
+        li.classList.add("open");
       }
     });
   });
 
-  subTriggers.forEach(s => {
-    s.addEventListener('click', (e) => {
+  subTriggers.forEach((s) => {
+    s.addEventListener("click", (e) => {
       e.preventDefault();
       e.stopPropagation();
       const li = s.parentElement!;
-      if (li.classList.contains('open')) {
-        li.classList.remove('open');
+      if (li.classList.contains("open")) {
+        li.classList.remove("open");
       } else {
-        subTriggers.forEach(st => st.parentElement?.classList.remove('open'));
-        li.classList.add('open');
+        subTriggers.forEach((st) => st.parentElement?.classList.remove("open"));
+        li.classList.add("open");
       }
     });
   });
 
-  dropdowns.forEach(d => {
-    d.addEventListener('click', (e) => {
+  dropdowns.forEach((d) => {
+    d.addEventListener("click", (e) => {
       e.stopPropagation();
     });
   });
 
-  document.querySelectorAll('.sub-flyout').forEach(sf => {
-    sf.addEventListener('click', (e) => {
+  document.querySelectorAll(".sub-flyout").forEach((sf) => {
+    sf.addEventListener("click", (e) => {
       e.stopPropagation();
     });
   });
 
-  document.addEventListener('click', closeAll);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+  document.addEventListener("click", closeAll);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAll();
+  });
 </script>

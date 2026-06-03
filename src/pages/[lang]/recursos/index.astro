@@ -1,38 +1,38 @@
 ---
-import BaseLayout from '../../../layouts/base-layout.astro';
-import { useTranslations } from '../../../i18n/utils';
+import BaseLayout from "../../../layouts/base-layout.astro";
+import { useTranslations } from "../../../i18n/utils";
 
 export function getStaticPaths() {
-  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
 }
 
 const { lang } = Astro.params;
-const t = useTranslations(lang as 'es' | 'en');
+const t = useTranslations(lang as "es" | "en");
 ---
 
-<BaseLayout lang={lang as 'es' | 'en'} title={t('title.recursos')}>
+<BaseLayout lang={lang as "es" | "en"} title={t("title.recursos")}>
   <article class="page" aria-labelledby="heading">
-    <h1 id="heading" class="page-title">{t('resources.heading')}</h1>
+    <h1 id="heading" class="page-title">{t("resources.heading")}</h1>
 
     <section class="section" aria-labelledby="tools-heading">
-      <h2 id="tools-heading" class="section-title">{t('resources.tools')}</h2>
-      <p class="section-desc">{t('resources.tools.intro')}</p>
+      <h2 id="tools-heading" class="section-title">{t("resources.tools")}</h2>
+      <p class="section-desc">{t("resources.tools.intro")}</p>
       <ul class="list">
-        <li>{t('resources.tools.1')}</li>
-        <li>{t('resources.tools.2')}</li>
-        <li>{t('resources.tools.3')}</li>
-        <li>{t('resources.tools.4')}</li>
+        <li>{t("resources.tools.1")}</li>
+        <li>{t("resources.tools.2")}</li>
+        <li>{t("resources.tools.3")}</li>
+        <li>{t("resources.tools.4")}</li>
       </ul>
     </section>
 
     <section class="section" aria-labelledby="docs-heading">
-      <h2 id="docs-heading" class="section-title">{t('resources.docs')}</h2>
-      <p class="section-desc">{t('resources.docs.intro')}</p>
+      <h2 id="docs-heading" class="section-title">{t("resources.docs")}</h2>
+      <p class="section-desc">{t("resources.docs.intro")}</p>
       <ul class="list">
-        <li>{t('resources.docs.1')}</li>
-        <li>{t('resources.docs.2')}</li>
-        <li>{t('resources.docs.3')}</li>
-        <li>{t('resources.docs.4')}</li>
+        <li>{t("resources.docs.1")}</li>
+        <li>{t("resources.docs.2")}</li>
+        <li>{t("resources.docs.3")}</li>
+        <li>{t("resources.docs.4")}</li>
       </ul>
     </section>
   </article>

@@ -1,10 +1,10 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { languages, defaultLang } from '../i18n/ui';
-import { useTranslations } from '../i18n/utils';
+import { Icon } from "astro-icon/components";
+import { languages, defaultLang } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
 
 export interface Props {
-  lang?: 'ca' | 'es' | 'en';
+  lang?: "ca" | "es" | "en";
 }
 
 const { lang = defaultLang } = Astro.props;
@@ -14,10 +14,14 @@ const currentYear = new Date().getFullYear();
 
 <footer role="contentinfo">
   <div class="wrapper">
-    <div class="shortcuts"><span class="f10">F10</span>&nbsp;Men&uacute;&nbsp;&nbsp;<span class="f11">F11</span>&nbsp;Idiomes&nbsp;[{languages[lang]}]</div>
+    <div class="shortcuts">
+      <span class="f10">F10</span>&nbsp;Men&uacute;&nbsp;&nbsp;<span class="f11"
+        >F11</span
+      >&nbsp;Idiomes&nbsp;[{languages[lang]}]
+    </div>
     <div class="credit">
       <Icon name="simple-icons:creativecommons" aria-label="Creative Commons" />
-      <span>{t('footer.year')}{currentYear})</span>
+      <span>{t("footer.year")}{currentYear})</span>
     </div>
   </div>
 
@@ -25,32 +29,41 @@ const currentYear = new Date().getFullYear();
     <div class="lang-modal">
       <div class="lang-modal-title">Idiomes</div>
       <ul>
-        {Object.entries(languages).map(([code, label]) => (
-          <li>
-            <a href={code === defaultLang ? '/' : `/${code}/`} class={code === lang ? 'active' : ''}>
-              {code === lang ? '\u25ba ' : '  '}{label}
-            </a>
-          </li>
-        ))}
+        {
+          Object.entries(languages).map(([code, label]) => (
+            <li>
+              <a
+                href={code === defaultLang ? "/" : `/${code}/`}
+                class={code === lang ? "active" : ""}
+              >
+                {code === lang ? "\u25ba " : "  "}
+                {label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </div>
 </footer>
 
 <script>
-  const modal = document.getElementById('lang-modal')!;
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'F11') {
+  const modal = document.getElementById("lang-modal")!;
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "F11") {
       e.preventDefault();
-      modal.setAttribute('aria-hidden', modal.getAttribute('aria-hidden') === 'false' ? 'true' : 'false');
+      modal.setAttribute(
+        "aria-hidden",
+        modal.getAttribute("aria-hidden") === "false" ? "true" : "false",
+      );
     }
-    if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') {
-      modal.setAttribute('aria-hidden', 'true');
+    if (e.key === "Escape" && modal.getAttribute("aria-hidden") === "false") {
+      modal.setAttribute("aria-hidden", "true");
     }
   });
-  modal.addEventListener('click', (e) => {
-    if ((e.target as HTMLElement).classList.contains('lang-modal-overlay')) {
-      modal.setAttribute('aria-hidden', 'true');
+  modal.addEventListener("click", (e) => {
+    if ((e.target as HTMLElement).classList.contains("lang-modal-overlay")) {
+      modal.setAttribute("aria-hidden", "true");
     }
   });
 </script>
@@ -87,7 +100,8 @@ const currentYear = new Date().getFullYear();
     white-space: nowrap;
   }
 
-  .f10, .f11 {
+  .f10,
+  .f11 {
     color: var(--red);
   }
 

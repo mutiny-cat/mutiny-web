@@ -1,17 +1,17 @@
 ---
-import BaseLayout from '../../layouts/base-layout.astro';
-import CardHome from '../../components/ui/card-home.astro';
-import { Icon } from 'astro-icon/components';
-import { useTranslations } from '../../i18n/utils';
+import BaseLayout from "../../layouts/base-layout.astro";
+import CardHome from "../../components/ui/card-home.astro";
+import { Icon } from "astro-icon/components";
+import { useTranslations } from "../../i18n/utils";
 
 export function getStaticPaths() {
-  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
 }
 
 const { lang } = Astro.params;
-const t = useTranslations(lang as 'es' | 'en');
+const t = useTranslations(lang as "es" | "en");
 ---
 
-<BaseLayout lang={lang as 'es' | 'en'} variant="home">
+<BaseLayout lang={lang as "es" | "en"} variant="home">
   <CardHome />
 </BaseLayout>

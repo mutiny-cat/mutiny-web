@@ -13,5 +13,9 @@
     "@iconify-json/simple-icons": "^1.2.84",
     "astro": "^5.0.0",
     "astro-icon": "^1.1.5"
+  },
+  "devDependencies": {
+    "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1"
   }
 }

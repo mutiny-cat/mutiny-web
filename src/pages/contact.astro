@@ -1,36 +1,40 @@
 ---
-import BaseLayout from '../layouts/base-layout.astro';
-import { useTranslations } from '../i18n/utils';
-const t = useTranslations('ca');
+import BaseLayout from "../layouts/base-layout.astro";
+import { useTranslations } from "../i18n/utils";
+const t = useTranslations("ca");
 ---
 
-<BaseLayout lang="ca" title={t('title.contacte')}>
+<BaseLayout lang="ca" title={t("title.contacte")}>
   <article class="page" aria-labelledby="heading">
-    <h1 id="heading" class="page-title">{t('contact.heading')}</h1>
+    <h1 id="heading" class="page-title">{t("contact.heading")}</h1>
 
-    <p class="intro">{t('contact.intro')}</p>
+    <p class="intro">{t("contact.intro")}</p>
 
     <dl class="contact-list">
       <div class="contact-item">
-        <dt class="contact-label">{t('contact.email')}</dt>
+        <dt class="contact-label">{t("contact.email")}</dt>
         <dd class="contact-value">
           <a href="mailto:hola@mutiny.cat">hola@mutiny.cat</a>
         </dd>
       </div>
 
       <div class="contact-item">
-        <dt class="contact-label">{t('contact.github')}</dt>
+        <dt class="contact-label">{t("contact.github")}</dt>
         <dd class="contact-value">
-          <a href="https://github.com/mutiny-cat" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/mutiny-cat"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             github.com/mutiny-cat
           </a>
         </dd>
       </div>
 
       <div class="contact-item">
-        <dt class="contact-label">{t('contact.linkedin')}</dt>
+        <dt class="contact-label">{t("contact.linkedin")}</dt>
         <dd class="contact-value">
-          <span class="contact-note">{t('contact.linkedin.note')}</span>
+          <span class="contact-note">{t("contact.linkedin.note")}</span>
         </dd>
       </div>
     </dl>

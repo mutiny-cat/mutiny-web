@@ -1,22 +1,22 @@
 ---
-import Header from '../components/header.astro';
-import Footer from '../components/footer.astro';
-import '../styles/global.css';
-import { useTranslations } from '../i18n/utils';
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+import "../styles/global.css";
+import { useTranslations } from "../i18n/utils";
 
 export interface Props {
   title?: string;
   description?: string;
-  lang?: 'ca' | 'es' | 'en';
-  variant?: 'default' | 'home';
+  lang?: "ca" | "es" | "en";
+  variant?: "default" | "home";
 }
 
-const { lang = 'ca', description = "", variant = 'default' } = Astro.props;
+const { lang = "ca", description = "", variant = "default" } = Astro.props;
 const t = useTranslations(lang);
 
 const defaults: Record<string, string> = {
-  ca: 'Mutiny — Turbo Edition',
-  es: 'Mutiny — Turbo Edition',
+  ca: "Mutiny — Turbo Edition",
+  es: "Mutiny — Turbo Edition",
 };
 
 const title = Astro.props.title || defaults[lang];
@@ -36,7 +36,11 @@ const title = Astro.props.title || defaults[lang];
 
     <div class="turbo-container">
       <Header lang={lang} />
-      <main id="main-content" class={`desktop desktop--${variant}`} tabindex="-1">
+      <main
+        id="main-content"
+        class={`desktop desktop--${variant}`}
+        tabindex="-1"
+      >
         <slot />
       </main>
       <Footer lang={lang} />
@@ -45,7 +49,9 @@ const title = Astro.props.title || defaults[lang];
 </html>
 
 <style is:global>
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     cursor: var(--cursor-dos);
   }
 </style>
@@ -93,8 +99,11 @@ const title = Astro.props.title || defaults[lang];
   .desktop--home {
     background-color: var(--light-gray);
     color: var(--black);
-    background-image:
-      linear-gradient(45deg, var(--light-blue) 25%, transparent 25%);
+    background-image: linear-gradient(
+      45deg,
+      var(--light-blue) 25%,
+      transparent 25%
+    );
     background-size: 3px 3px;
   }
 

@@ -1,52 +1,56 @@
 ---
-import BaseLayout from '../../layouts/base-layout.astro';
-import { useTranslations } from '../../i18n/utils';
+import BaseLayout from "../../layouts/base-layout.astro";
+import { useTranslations } from "../../i18n/utils";
 
 export function getStaticPaths() {
-  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
 }
 
 const { lang } = Astro.params;
-const t = useTranslations(lang as 'es' | 'en');
+const t = useTranslations(lang as "es" | "en");
 ---
 
-<BaseLayout lang={lang as 'es' | 'en'} title={t('title.sobre')}>
+<BaseLayout lang={lang as "es" | "en"} title={t("title.sobre")}>
   <article class="page" aria-labelledby="heading">
-    <h1 id="heading" class="page-title">{t('about.heading')}</h1>
+    <h1 id="heading" class="page-title">{t("about.heading")}</h1>
 
     <section class="section" id="biografia" aria-labelledby="bio-heading">
-      <h2 id="bio-heading" class="section-title">{t('about.bio.heading')}</h2>
-      <p class="section-desc">{t('about.bio.p1')}</p>
-      <p class="section-desc">{t('about.bio.p2')}</p>
+      <h2 id="bio-heading" class="section-title">{t("about.bio.heading")}</h2>
+      <p class="section-desc">{t("about.bio.p1")}</p>
+      <p class="section-desc">{t("about.bio.p2")}</p>
     </section>
 
     <section class="section" id="cronologia" aria-labelledby="timeline-heading">
-      <h2 id="timeline-heading" class="section-title">{t('about.timeline.heading')}</h2>
+      <h2 id="timeline-heading" class="section-title">
+        {t("about.timeline.heading")}
+      </h2>
       <ul class="list timeline">
-        <li>{t('about.timeline.1')}</li>
-        <li>{t('about.timeline.2')}</li>
-        <li>{t('about.timeline.3')}</li>
-        <li>{t('about.timeline.4')}</li>
-        <li>{t('about.timeline.5')}</li>
+        <li>{t("about.timeline.1")}</li>
+        <li>{t("about.timeline.2")}</li>
+        <li>{t("about.timeline.3")}</li>
+        <li>{t("about.timeline.4")}</li>
+        <li>{t("about.timeline.5")}</li>
       </ul>
     </section>
 
     <section class="section" id="cv" aria-labelledby="cv-heading">
-      <h2 id="cv-heading" class="section-title">{t('about.cv.heading')}</h2>
-      <p class="section-desc">{t('about.cv.intro')}</p>
+      <h2 id="cv-heading" class="section-title">{t("about.cv.heading")}</h2>
+      <p class="section-desc">{t("about.cv.intro")}</p>
       <a href="/recursos/cv/" class="cv-link">
-        {t('about.cv.download')}
+        {t("about.cv.download")}
       </a>
     </section>
 
     <section class="section" id="referents" aria-labelledby="ref-heading">
-      <h2 id="ref-heading" class="section-title">{t('about.referents.heading')}</h2>
-      <p class="section-desc">{t('about.referents.p1')}</p>
+      <h2 id="ref-heading" class="section-title">
+        {t("about.referents.heading")}
+      </h2>
+      <p class="section-desc">{t("about.referents.p1")}</p>
       <ul class="list">
-        <li>{t('about.referents.1')}</li>
-        <li>{t('about.referents.2')}</li>
-        <li>{t('about.referents.3')}</li>
-        <li>{t('about.referents.4')}</li>
+        <li>{t("about.referents.1")}</li>
+        <li>{t("about.referents.2")}</li>
+        <li>{t("about.referents.3")}</li>
+        <li>{t("about.referents.4")}</li>
       </ul>
     </section>
   </article>

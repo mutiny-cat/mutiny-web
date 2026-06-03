@@ -5,15 +5,21 @@ const keyChar = text[keyIndex];
 const after = text.slice(keyIndex + 1);
 ---
 
-{href ? (
-  <a href={href} class={['menu-item', className].filter(Boolean).join(' ')}>
-    {before}<span class="key-letter">{keyChar}</span>{after}
-  </a>
-) : (
-  <span class={['menu-item', className].filter(Boolean).join(' ')}>
-    {before}<span class="key-letter">{keyChar}</span>{after}
-  </span>
-)}
+{
+  href ? (
+    <a href={href} class={["menu-item", className].filter(Boolean).join(" ")}>
+      {before}
+      <span class="key-letter">{keyChar}</span>
+      {after}
+    </a>
+  ) : (
+    <span class={["menu-item", className].filter(Boolean).join(" ")}>
+      {before}
+      <span class="key-letter">{keyChar}</span>
+      {after}
+    </span>
+  )
+}
 
 <style>
   .menu-item {

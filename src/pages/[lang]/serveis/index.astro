@@ -1,42 +1,48 @@
 ---
-import BaseLayout from '../../../layouts/base-layout.astro';
-import { useTranslations } from '../../../i18n/utils';
+import BaseLayout from "../../../layouts/base-layout.astro";
+import { useTranslations } from "../../../i18n/utils";
 
 export function getStaticPaths() {
-  return [{ params: { lang: 'es' } }, { params: { lang: 'en' } }];
+  return [{ params: { lang: "es" } }, { params: { lang: "en" } }];
 }
 
 const { lang } = Astro.params;
-const t = useTranslations(lang as 'es' | 'en');
+const t = useTranslations(lang as "es" | "en");
 ---
 
-<BaseLayout lang={lang as 'es' | 'en'} title={t('title.serveis')}>
+<BaseLayout lang={lang as "es" | "en"} title={t("title.serveis")}>
   <article class="page" aria-labelledby="heading">
-    <h1 id="heading" class="page-title">{t('services.heading')}</h1>
+    <h1 id="heading" class="page-title">{t("services.heading")}</h1>
 
     <section class="section" aria-labelledby="web-heading">
-      <h2 id="web-heading" class="section-title">{t('services.web')}</h2>
-      <p class="section-desc">{t('services.web.desc')}</p>
+      <h2 id="web-heading" class="section-title">{t("services.web")}</h2>
+      <p class="section-desc">{t("services.web.desc")}</p>
     </section>
 
     <section class="section" aria-labelledby="uxui-heading">
-      <h2 id="uxui-heading" class="section-title">{t('services.uxui')}</h2>
-      <p class="section-desc">{t('services.uxui.desc')}</p>
+      <h2 id="uxui-heading" class="section-title">{t("services.uxui")}</h2>
+      <p class="section-desc">{t("services.uxui.desc")}</p>
     </section>
 
     <section class="section" aria-labelledby="consulting-heading">
-      <h2 id="consulting-heading" class="section-title">{t('services.consulting')}</h2>
-      <p class="section-desc">{t('services.consulting.desc')}</p>
+      <h2 id="consulting-heading" class="section-title">
+        {t("services.consulting")}
+      </h2>
+      <p class="section-desc">{t("services.consulting.desc")}</p>
     </section>
 
     <section class="section" aria-labelledby="training-heading">
-      <h2 id="training-heading" class="section-title">{t('services.training')}</h2>
-      <p class="section-desc">{t('services.training.desc')}</p>
+      <h2 id="training-heading" class="section-title">
+        {t("services.training")}
+      </h2>
+      <p class="section-desc">{t("services.training.desc")}</p>
     </section>
 
     <section class="section" aria-labelledby="graphic-heading">
-      <h2 id="graphic-heading" class="section-title">{t('services.graphic')}</h2>
-      <p class="section-desc">{t('services.graphic.desc')}</p>
+      <h2 id="graphic-heading" class="section-title">
+        {t("services.graphic")}
+      </h2>
+      <p class="section-desc">{t("services.graphic.desc")}</p>
     </section>
   </article>
 </BaseLayout>
