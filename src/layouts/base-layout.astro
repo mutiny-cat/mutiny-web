@@ -49,6 +49,51 @@ const title = Astro.props.title || defaults[lang];
 </html>
 
 <style is:global>
+  ::-webkit-scrollbar {
+    width: 16px;
+    border: 5px solid var(--white);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--light-gray);
+    background-clip: padding-box;
+    border: 1px solid var(--border-light);
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: var(--light-gray);
+    background-image: linear-gradient(45deg, var(--light-blue) 25%, transparent 25%);
+    background-size: 3px 3px;
+  }
+
+  ::-webkit-scrollbar-button:single-button {
+    display: block;
+    height: 16px;
+    width: 16px;
+  }
+
+  ::-webkit-scrollbar-button:single-button:vertical:decrement {
+    border-style: solid;
+    border-width: 0 8px 8px 8px;
+    border-color: transparent transparent var(--dark-gray) transparent;
+  }
+
+  ::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+    border-color: transparent transparent var(--border-dark) transparent;
+  }
+
+  ::-webkit-scrollbar-button:single-button:vertical:increment {
+    border-style: solid;
+    border-width: 8px 8px 0 8px;
+    border-color: var(--dark-gray) transparent transparent transparent;
+  }
+
+  ::-webkit-scrollbar-button:single-button:vertical:increment:hover {
+    border-color: var(--border-dark) transparent transparent transparent;
+  }
+</style>
+
+<style is:global>
   *,
   *::before,
   *::after {
@@ -82,7 +127,8 @@ const title = Astro.props.title || defaults[lang];
 
   .desktop {
     flex: 1;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     position: relative;
     cursor: var(--cursor-dos-red);
 
