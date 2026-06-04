@@ -11,11 +11,16 @@ export interface Props {
 
 const { lang = defaultLang } = Astro.props;
 const t = useTranslations(lang);
+
+function localizeHref(href: string): string {
+  if (lang === defaultLang) return href;
+  return `/${lang}${href}`;
+}
 ---
 
 <header>
   <div class="logo">
-    <a href="/" aria-label="Inici">
+    <a href={lang === defaultLang ? "/" : `/${lang}/`} aria-label="Inici">
       <Icon name="logo-mutiny" />
     </a>
   </div>
@@ -63,7 +68,7 @@ const t = useTranslations(lang);
                                       <MenuOption
                                         text={t(sub.labelKey)}
                                         keyIndex={sub.keyIndex ?? 0}
-                                        href={sub.href}
+                                        href={sub.href ? localizeHref(sub.href) : undefined}
                                         class="dropdown-link"
                                       />
                                     </li>
@@ -79,7 +84,7 @@ const t = useTranslations(lang);
                           <MenuOption
                             text={t(child.labelKey)}
                             keyIndex={child.keyIndex ?? 0}
-                            href={child.href}
+                            href={child.href ? localizeHref(child.href) : undefined}
                             class="dropdown-link"
                           />
                         </li>
@@ -95,7 +100,7 @@ const t = useTranslations(lang);
               <MenuOption
                 text={label}
                 keyIndex={opt.keyIndex}
-                href={opt.href}
+                href={opt.href ? localizeHref(opt.href) : undefined}
                 class="top-link"
               />
             </li>

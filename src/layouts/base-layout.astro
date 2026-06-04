@@ -80,30 +80,48 @@ const title = Astro.props.title || defaults[lang];
     background-size: 3px 3px;
   }
 
-  ::-webkit-scrollbar-button:single-button {
+  ::-webkit-scrollbar-button {
     display: block;
     height: 16px;
     width: 16px;
+    background-color: var(--light-gray);
+    border: 1px solid;
+    border-color: var(--border-light) var(--border-dark) var(--border-dark)
+      var(--border-light);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  ::-webkit-scrollbar-button:vertical:start:decrement {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='4,0 8,8 0,8' fill='%23000'/%3E%3C/svg%3E");
+  }
+
+  ::-webkit-scrollbar-button:vertical:start:decrement:hover {
+    background-color: var(--border-light);
+  }
+
+  ::-webkit-scrollbar-button:vertical:end:increment {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='0,0 8,0 4,8' fill='%23000'/%3E%3C/svg%3E");
+  }
+
+  ::-webkit-scrollbar-button:vertical:end:increment:hover {
+    background-color: var(--border-light);
   }
 
   ::-webkit-scrollbar-button:single-button:vertical:decrement {
-    border-style: solid;
-    border-width: 0 8px 8px 8px;
-    border-color: transparent transparent var(--dark-gray) transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='4,0 8,8 0,8' fill='%23000'/%3E%3C/svg%3E");
   }
 
   ::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
-    border-color: transparent transparent var(--border-dark) transparent;
+    background-color: var(--border-light);
   }
 
   ::-webkit-scrollbar-button:single-button:vertical:increment {
-    border-style: solid;
-    border-width: 8px 8px 0 8px;
-    border-color: var(--dark-gray) transparent transparent transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='0,0 8,0 4,8' fill='%23000'/%3E%3C/svg%3E");
   }
 
   ::-webkit-scrollbar-button:single-button:vertical:increment:hover {
-    border-color: var(--border-dark) transparent transparent transparent;
+    background-color: var(--border-light);
   }
 </style>
 
