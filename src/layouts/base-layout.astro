@@ -69,7 +69,7 @@ const title = Astro.props.title || defaults[lang];
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: var(--light-gray);
+    background-color: var(--light-blue);
     background-clip: padding-box;
     border: 1px solid var(--border-light);
   }
@@ -84,44 +84,28 @@ const title = Astro.props.title || defaults[lang];
     display: block;
     height: 16px;
     width: 16px;
-    background-color: var(--light-gray);
+    background-color: var(--light-blue);
     border: 1px solid;
-    border-color: var(--border-light) var(--border-dark) var(--border-dark)
+    border-color: var(--border-light) var(--border-light) var(--border-light)
       var(--border-light);
     background-repeat: no-repeat;
     background-position: center;
   }
 
   ::-webkit-scrollbar-button:vertical:start:decrement {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='4,0 8,8 0,8' fill='%23000'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='4,0 8,8 0,8' fill='%23fff'/%3E%3C/svg%3E");
   }
 
   ::-webkit-scrollbar-button:vertical:start:decrement:hover {
-    background-color: var(--border-light);
+    background-color: var(--blue);
   }
 
   ::-webkit-scrollbar-button:vertical:end:increment {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='0,0 8,0 4,8' fill='%23000'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='0,0 8,0 4,8' fill='%23fff'/%3E%3C/svg%3E");
   }
 
   ::-webkit-scrollbar-button:vertical:end:increment:hover {
-    background-color: var(--border-light);
-  }
-
-  ::-webkit-scrollbar-button:single-button:vertical:decrement {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='4,0 8,8 0,8' fill='%23000'/%3E%3C/svg%3E");
-  }
-
-  ::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
-    background-color: var(--border-light);
-  }
-
-  ::-webkit-scrollbar-button:single-button:vertical:increment {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='0,0 8,0 4,8' fill='%23000'/%3E%3C/svg%3E");
-  }
-
-  ::-webkit-scrollbar-button:single-button:vertical:increment:hover {
-    background-color: var(--border-light);
+    background-color: var(--blue);
   }
 </style>
 
