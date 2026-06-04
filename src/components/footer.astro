@@ -202,4 +202,16 @@ const currentYear = new Date().getFullYear();
       modal.setAttribute("aria-hidden", "true");
     }
   });
+
+  modal.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      const href = link.getAttribute("href");
+      if (href === "/") {
+        localStorage.setItem("lang", "ca");
+      } else {
+        const match = href?.match(/^\/(es|en)\//);
+        if (match) localStorage.setItem("lang", match[1]);
+      }
+    });
+  });
 </script>

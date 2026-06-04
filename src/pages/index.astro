@@ -20,3 +20,10 @@ const t = useTranslations("ca");
     min-block-size: 100%;
   }
 </style>
+
+<script>
+  const lang = localStorage.getItem("lang");
+  if (lang && lang !== "ca") {
+    window.location.href = `/${lang}/`;
+  }
+</script>
