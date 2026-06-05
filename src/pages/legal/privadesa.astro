@@ -1,0 +1,28 @@
+---
+import BaseLayout from "@layouts/base-layout.astro";
+import { useTranslations } from "@i18n/utils";
+const t = useTranslations("ca");
+---
+
+<BaseLayout lang="ca" title="Mutiny — Privadesa" windowTitle={t("nav.legal")}>
+  <article class="page" aria-labelledby="heading">
+    <h1 id="heading" class="page-title">{t("legal.privadesa.heading")}</h1>
+    <p class="section-desc">{t("legal.privadesa.p1")}</p>
+    <p class="section-desc">{t("legal.privadesa.p2")}</p>
+  </article>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-family: var(--font-mono);
+    font-size: clamp(28px, 4vw, 48px);
+    margin-block-end: 32px;
+  }
+
+  .section-desc {
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    margin-block-end: 24px;
+    max-inline-size: 72ch;
+  }
+</style>

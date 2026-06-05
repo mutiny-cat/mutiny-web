@@ -19,14 +19,15 @@ const t = useTranslations(lang);
 
 <style>
   div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 0;
+    height: 100%;
 
     a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 0;
-      height: 48px;
-      width: 48px;
+      display: block;
+      height: 100%;
       transition: background-color 0.15s;
       
       &:hover,
@@ -42,5 +43,10 @@ const t = useTranslations(lang);
       height: auto;
       color: var(--red);
     }
+  }
+
+  div:hover {
+    background-color: var(--green);
+    cursor: pointer;
   }
 </style>

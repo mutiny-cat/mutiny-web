@@ -32,11 +32,6 @@
     text-decoration: none;
   }
 
-  :global(.desktop) a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-
   button {
     border: none;
     outline: none;
@@ -93,6 +88,11 @@
     --font-mono:
       "Perfect DOS VGA 437", "Courier New", Courier, "Lucida Console", monospace;
     --font-size: clamp(16px, 2.5vw, 24px);
+
+    --z-normal: 0;
+    --z-header: 10;
+    --z-dropdown: 20;
+    --z-modal: 30;
   }
 
   body {

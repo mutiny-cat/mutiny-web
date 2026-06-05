@@ -12,34 +12,40 @@ const t = useTranslations(lang);
 ---
 
 <div>
-  <button aria-label={t("toggle.ariaLabel.open.header")} aria-expanded="false" aria-controls="main-menu" aria-haspopup="true">
+  <button id="open-menu" aria-label={t("toggle.ariaLabel.open.header")} aria-expanded="false" aria-controls="main-menu" aria-haspopup="menu">
     <Icon name="toggle" />
   </button>
 </div>
 
 <style>
   div {
-    button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 0;
-      height: 48px;
-      width: 48px;
-      transition: background-color 0.15s;
-
-      &:hover,
-      &:focus-visible,
-      &:active {
-        background-color: var(--green);
-      }
-    }
-
-    svg {
+    display: none;
+    
+    @media (width < 1068px) {
       display: block;
-      width: 32px;
-      height: auto;
-      color: var(--red);
+
+      button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 0;
+        height: 48px;
+        width: 48px;
+        transition: background-color 0.15s;
+  
+        &:hover,
+        &:focus-visible,
+        &:active {
+          background-color: var(--green);
+        }
+      }
+
+      svg {
+        display: block;
+        width: 32px;
+        height: auto;
+        color: var(--red);
+      }
     }
   }
 </style>

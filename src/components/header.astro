@@ -23,8 +23,14 @@ const { lang = defaultLang } = Astro.props;
     height: 48px;
     background-color: var(--light-gray);
     display: grid;
-    grid-template-columns: auto auto 1fr;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     padding: 0 16px;
+
+    @media (width < 1068px) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
 </style>

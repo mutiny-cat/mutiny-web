@@ -1,0 +1,67 @@
+---
+import MenuOption from "@components/ui/menu-item.astro";
+
+export interface Props {
+  label: string;
+  items: {
+    labelKey?: string;
+    text?: string;
+    href?: string;
+    keyIndex?: number;
+    separator?: boolean;
+  }[];
+}
+
+const { label, items } = Astro.props;
+---
+
+<div class="dropdown" role="menu" aria-label={label}>
+  <div class="border">
+    <ul>
+      {
+        items.map((item) => {
+          if (item.separator) {
+            return <li class="dropdown-sep" role="separator" />;
+          }
+          return (
+            <li>
+              <MenuOption
+                text={item.text ?? ""}
+                keyIndex={item.keyIndex ?? 0}
+                href={item.href}
+                class="dropdown-link"
+              />
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</div>
+
+<style>
+  .dropdown {
+    display: none;
+    position: absolute;
+    z-index: var(--z-dropdown);
+    background: var(--light-gray);
+    box-shadow: 16px 16px 0 var(--black);
+    height: auto;
+    padding: 16px;
+  }
+
+  ul {
+    border: 2px solid var(--black);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dropdown-sep {
+    height: 2px;
+    background: var(--border-dark);
+  }
+
+  :global(li):hover .dropdown {
+    display: block;
+  }
+</style>

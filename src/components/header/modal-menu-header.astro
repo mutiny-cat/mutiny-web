@@ -1,0 +1,90 @@
+---
+import { useTranslations } from "@i18n/utils";
+import { defaultLang } from "@i18n/ui";
+import { headerMenuOptions } from "@data/menu-options";
+import MenuOption from "@components/ui/menu-item.astro";
+
+export interface Props {
+  lang?: "ca" | "es" | "en";
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+
+function localizeHref(href: string): string {
+  if (lang === defaultLang) return href;
+  return `/${lang}${href}`;
+}
+---
+
+<div class="modal" id="main-modal">
+  <div class="modal-border">
+    <div class="modal-content">
+      <ul>
+        {
+          headerMenuOptions.map((opt) => {
+            const label = t(opt.labelKey);
+
+            if (opt.children && opt.children.length > 0) {
+              return (
+                <>
+                  <li class="modal-heading">{label}</li>
+                  {opt.children.map((child) => {
+                    if (child.separator) {
+                      return <li class="modal-sep" role="separator" />;
+                    }
+                    return (
+                      <li>
+                        <MenuOption
+                          text={t(child.labelKey)}
+                          keyIndex={child.keyIndex ?? 0}
+                          href={child.href ? localizeHref(child.href) : undefined}
+                          class="modal-link"
+                        />
+                      </li>
+                    );
+                  })}
+                </>
+              );
+            }
+
+            return (
+              <li>
+                <MenuOption
+                  text={label}
+                  keyIndex={opt.keyIndex}
+                  href={opt.href ? localizeHref(opt.href) : undefined}
+                  class="modal-link"
+                />
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-modal);
+    background-color: var(--light-gray); 
+    padding: 16px;
+
+    &.open {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .border {
+    background-color: aquamarine;
+    width: 100%;
+    height: 100%;
+    border: 8px double var(--white);
+  }
+</style>
