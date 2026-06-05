@@ -5,6 +5,7 @@
       "@components/*": ["./src/components/*"],
       "@data/*": ["./src/data/*"],
       "@fonts/*": ["./src/assets/fonts/*"],
+      "@translations/*": ["./src/i18n/translations/*"],
       "@i18n/*": ["./src/i18n/*"],
       "@icons/*": ["./src/assets/icons/*"],
       "@images/*": ["./src/assets/images/*"],

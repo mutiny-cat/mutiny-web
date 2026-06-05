@@ -1,0 +1,46 @@
+---
+import { Icon } from "astro-icon/components";
+import { defaultLang } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
+
+export interface Props {
+  lang?: "ca" | "es" | "en";
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<div>
+  <a href={lang === defaultLang ? "/" : `/${lang}/`} aria-label={t("logo.ariaLabel.header")}>
+    <Icon name="logo-mutiny" />
+  </a>
+</div>
+
+<style>
+  div {
+
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 0;
+      height: 48px;
+      width: 48px;
+      transition: background-color 0.15s;
+      
+      &:hover,
+      &:focus-visible,
+      &:active {
+        background-color: var(--green);
+      }
+    }
+
+    svg {
+      display: block;
+      width: 32px;
+      height: auto;
+      color: var(--red);
+    }
+  }
+</style>

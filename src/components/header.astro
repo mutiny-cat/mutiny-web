@@ -1,9 +1,10 @@
 ---
-import { Icon } from "astro-icon/components";
 import { useTranslations } from "../i18n/utils";
 import { defaultLang } from "../i18n/ui";
 import { headerMenuOptions } from "@data/menu-options";
 import MenuOption from "./ui/menu-item.astro";
+import LogoHeader from "./header/logo-header.astro";
+import ToggleHeader from "./header/toggle-header.astro";
 
 export interface Props {
   lang?: "ca" | "es" | "en";
@@ -19,11 +20,7 @@ function localizeHref(href: string): string {
 ---
 
 <header>
-  <div class="logo">
-    <a href={lang === defaultLang ? "/" : `/${lang}/`} aria-label="Inici">
-      <Icon name="logo-mutiny" />
-    </a>
-  </div>
+  <LogoHeader lang={lang} />
   <nav class="menu-bar" aria-label="Principal">
     <ul>
       {
@@ -109,40 +106,18 @@ function localizeHref(href: string): string {
       }
     </ul>
   </nav>
-  <div class="toggle" aria-label="Menú" role="button" tabindex="0">
-    <Icon name="heroicons:bars-3" />
-  </div>
+  <ToggleHeader lang={lang} />
 </header>
 
 <style>
   header {
+    width: 100%;
+    height: 48px;
     background-color: var(--light-gray);
     display: grid;
     grid-template-columns: auto auto 1fr;
     align-items: center;
     padding: 0 16px;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    line-height: 0;
-
-    svg {
-      width: 48px;
-      height: auto;
-      color: var(--red);
-    }
-  }
-
-  .toggle {
-    display: none;
-  }
-
-  @media (max-width: 767px) {
-    .toggle {
-      display: block;
-    }
   }
 
   .menu-bar {
