@@ -1,0 +1,171 @@
+---
+import { useTranslations } from "@i18n/utils";
+import { defaultLang } from "@i18n/ui";
+import { headerMenuOptions } from "@data/menu-options";
+import MenuOption from "@components/ui/menu-item.astro";
+
+export interface Props {
+  lang?: "ca" | "es" | "en";
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+
+function localizeHref(href: string): string {
+  if (lang === defaultLang) return href;
+  return `/${lang}${href}`;
+}
+---
+
+<nav class="menu-bar" id="main-menu" aria-label={t("toggle.ariaLabel.open.header")}>
+  <ul>
+    {
+      headerMenuOptions.map((opt) => {
+        const label = t(opt.labelKey);
+
+        if (opt.children && opt.children.length > 0) {
+          return (
+            <li class="top-item">
+              <MenuOption
+                text={label}
+                keyIndex={opt.keyIndex}
+                class="top-trigger"
+              />
+              <div class="dropdown" role="menu" aria-label={label}>
+                <ul>
+                  {opt.children.map((child) => {
+                    if (child.separator) {
+                      return <li class="dropdown-sep" role="separator" />;
+                    }
+                    return (
+                      <li>
+                        <MenuOption
+                          text={t(child.labelKey)}
+                          keyIndex={child.keyIndex ?? 0}
+                          href={child.href ? localizeHref(child.href) : undefined}
+                          class="dropdown-link"
+                        />
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            </li>
+          );
+        }
+
+        return (
+          <li class="top-item">
+            <MenuOption
+              text={label}
+              keyIndex={opt.keyIndex}
+              href={opt.href ? localizeHref(opt.href) : undefined}
+              class="top-link"
+            />
+          </li>
+        );
+      })
+    }
+  </ul>
+</nav>
+
+<style>
+  .menu-bar {
+    padding: 0 16px;
+
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      padding: 0;
+    }
+  }
+
+  .top-item {
+    position: relative;
+
+    .top-link,
+    .top-trigger {
+      display: flex;
+      align-items: center;
+      padding: 8px 0;
+      white-space: nowrap;
+    }
+
+    &.open {
+      .top-trigger {
+        background: var(--green);
+        cursor: pointer;
+      }
+
+      .dropdown {
+        display: block;
+      }
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: max-content;
+      padding: 8px 16px;
+      z-index: 60;
+      background: var(--light-gray);
+      box-shadow: 16px 16px 0 var(--black);
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        background: var(--light-gray);
+        border: 2px solid var(--black);
+        padding: 8px;
+      }
+
+      .dropdown-link {
+        display: block;
+        padding: 4px 16px;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .dropdown-sep {
+    height: 2px;
+    margin: 8px -8px;
+    background: var(--border-dark);
+  }
+</style>
+
+<script>
+  const triggers = document.querySelectorAll(".top-trigger");
+  const dropdowns = document.querySelectorAll(".dropdown");
+
+  function closeAll() {
+    triggers.forEach((t) => t.parentElement?.classList.remove("open"));
+  }
+
+  triggers.forEach((t) => {
+    t.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const li = t.parentElement!;
+      if (li.classList.contains("open")) {
+        closeAll();
+      } else {
+        closeAll();
+        li.classList.add("open");
+      }
+    });
+  });
+
+  dropdowns.forEach((d) => {
+    d.addEventListener("click", (e) => {
+      e.stopPropagation();
+    });
+  });
+
+  document.addEventListener("click", closeAll);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAll();
+  });
+</script>
