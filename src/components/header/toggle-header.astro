@@ -49,3 +49,38 @@ const t = useTranslations(lang);
     }
   }
 </style>
+
+<script>
+  const btn = document.getElementById("open-menu");
+  const modal = document.getElementById("main-modal");
+
+  function openMenu() {
+    modal?.classList.add("open");
+    document.body.style.overflow = "hidden";
+    if (btn instanceof HTMLButtonElement) {
+      btn.setAttribute("aria-expanded", "true");
+    }
+  }
+
+  function closeMenu() {
+    modal?.classList.remove("open");
+    document.body.style.overflow = "";
+    if (btn instanceof HTMLButtonElement) {
+      btn.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  btn?.addEventListener("click", openMenu);
+
+  modal?.addEventListener("click", (e) => {
+    if ((e.target as HTMLElement).classList.contains("modal")) {
+      closeMenu();
+    }
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal?.classList.contains("open")) {
+      closeMenu();
+    }
+  });
+</script>

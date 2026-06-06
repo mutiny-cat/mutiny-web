@@ -57,10 +57,15 @@ function localizeHref(href: string): string {
 
 <style>
   nav {
-    background-color: transparent;
+    display: block;
+
+    @media (width < 1068px) {
+      display: none;
+    }
   }
 
   ul {
     display: flex;
+    align-items: center;
   }
 </style>
