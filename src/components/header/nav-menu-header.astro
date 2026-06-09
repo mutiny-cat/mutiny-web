@@ -1,4 +1,5 @@
 ---
+// Navegación horizontal para escritorio (≥1366px) con dropdowns en opciones con hijos
 import { useTranslations } from "@i18n/utils";
 import { defaultLang } from "@i18n/ui";
 import { headerMenuOptions } from "@data/menu-options";
@@ -12,18 +13,21 @@ export interface Props {
 const { lang = defaultLang } = Astro.props;
 const t = useTranslations(lang);
 
+// Añade el prefijo de idioma a las URLs si no es el idioma por defecto
 function localizeHref(href: string): string {
   if (lang === defaultLang) return href;
   return `/${lang}${href}`;
 }
 ---
 
+<!-- Navegación principal de escritorio: enlaces directos o con dropdown -->
 <nav>
   <ul>
     {
       headerMenuOptions.map((opt) => {
         const label = t(opt.labelKey);
 
+        // Opción con submenú: muestra el texto y un dropdown con los hijos
         if (opt.children && opt.children.length > 0) {
           return (
             <li>
@@ -41,6 +45,7 @@ function localizeHref(href: string): string {
           );
         }
 
+        // Opción de enlace directo sin submenú
         return (
           <li>
             <MenuOption
@@ -56,16 +61,18 @@ function localizeHref(href: string): string {
 </nav>
 
 <style>
+  /* Oculto en móvil/tablet, visible como flex en escritorio */
   nav {
-    display: block;
+    display: none;
 
-    @media (width < 1068px) {
-      display: none;
+    @media (min-width: 1366px) {
+      display: block;
+
+      /* Lista horizontal de opciones del menú */
+      ul {
+        display: flex;
+        align-items: center;
+      }
     }
-  }
-
-  ul {
-    display: flex;
-    align-items: center;
   }
 </style>

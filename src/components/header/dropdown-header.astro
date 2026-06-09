@@ -1,4 +1,5 @@
 ---
+// Dropdown que se muestra al hacer hover en opciones del menú con submenú
 import MenuOption from "@components/ui/menu-item.astro";
 
 export interface Props {
@@ -15,14 +16,17 @@ export interface Props {
 const { label, items } = Astro.props;
 ---
 
+<!-- Contenedor del dropdown: se posiciona debajo de la opción padre -->
 <div class="dropdown" role="menu" aria-label={label}>
   <div class="border">
     <ul>
       {
         items.map((item) => {
+          // Separador visual entre grupos de opciones
           if (item.separator) {
             return <li class="dropdown-sep" role="separator" />;
           }
+          // Ítem normal del dropdown
           return (
             <li>
               <MenuOption
@@ -40,6 +44,7 @@ const { label, items } = Astro.props;
 </div>
 
 <style>
+  /* Oculto por defecto, se muestra con hover en el <li> padre */
   .dropdown {
     display: none;
     position: absolute;
@@ -50,18 +55,23 @@ const { label, items } = Astro.props;
     padding: 16px;
   }
 
+  /* Lista vertical con borde negro */
   ul {
     border: 2px solid var(--black);
     display: flex;
     flex-direction: column;
   }
 
+  /* Separador entre grupos dentro del dropdown */
   .dropdown-sep {
     height: 2px;
     background: var(--border-dark);
   }
 
-  :global(li):hover .dropdown {
-    display: block;
+  /* Solo en escritorio con ratón: mostrar dropdown al hacer hover en el <li> */
+  @media (min-width: 1366px) and (pointer: fine) {
+    :global(li):hover .dropdown {
+      display: block;
+    }
   }
 </style>

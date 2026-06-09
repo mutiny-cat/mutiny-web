@@ -1,4 +1,5 @@
 ---
+// Footer con atajos de teclado F10/F11, selector de idiomas y créditos Creative Commons
 import { Icon } from "astro-icon/components";
 import { languages, defaultLang } from "../i18n/ui";
 import { useTranslations } from "../i18n/utils";
@@ -12,8 +13,10 @@ const t = useTranslations(lang);
 const currentYear = new Date().getFullYear();
 ---
 
+<!-- Pie de página con atajos de teclado, créditos y modal de selección de idioma -->
 <footer role="contentinfo">
   <div class="wrapper">
+    <!-- Atajos de teclado: F10 para menú, F11 para idiomas -->
     <div class="shortcuts">
       <button class="fkey" data-action="menu">
         <span class="fkey-label">F10</span>
@@ -24,12 +27,14 @@ const currentYear = new Date().getFullYear();
         <span>Idiomes [{languages[lang]}]</span>
       </button>
     </div>
+    <!-- Créditos con icono Creative Commons y año actual -->
     <div class="credit">
       <Icon name="simple-icons:creativecommons" aria-label="Creative Commons" />
       <span>{t("footer.year")}{currentYear})</span>
     </div>
   </div>
 
+  <!-- Modal overlay del selector de idiomas (se activa con F11) -->
   <div class="lang-modal-overlay" id="lang-modal" aria-hidden="true">
     <div class="lang-modal">
       <div class="lang-modal-title">Idiomes</div>
@@ -53,10 +58,12 @@ const currentYear = new Date().getFullYear();
 </footer>
 
 <style>
+  /* Footer con fondo gris claro */
   footer {
     background-color: var(--light-gray);
   }
 
+  /* Grid de 2 columnas: atajos a la izquierda, créditos a la derecha */
   .wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -64,6 +71,7 @@ const currentYear = new Date().getFullYear();
     padding-inline: 24px;
   }
 
+  /* Créditos alineados a la derecha con icono CC */
   .credit {
     display: flex;
     align-items: center;
@@ -78,6 +86,7 @@ const currentYear = new Date().getFullYear();
     }
   }
 
+  /* Atajos de teclado alineados a la izquierda */
   .shortcuts {
     justify-self: start;
     padding: 8px 0 0;
@@ -86,6 +95,7 @@ const currentYear = new Date().getFullYear();
     gap: 16px;
   }
   
+  /* Botones que simulan teclas de función (F10, F11) */
   .fkey {
     font-family: var(--font-mono);
     font-size: var(--font-size);
@@ -98,11 +108,13 @@ const currentYear = new Date().getFullYear();
     gap: 0;
   }
   
+  /* Etiqueta de la tecla en rojo */
   .fkey-label {
     color: var(--red);
     padding-right: 6px;
   }
 
+  /* Overlay del modal de idiomas: centrado en pantalla */
   .lang-modal-overlay {
     position: fixed;
     inset: 0;
@@ -112,10 +124,12 @@ const currentYear = new Date().getFullYear();
     align-items: center;
   }
 
+  /* Oculto cuando aria-hidden="true" */
   .lang-modal-overlay[aria-hidden="true"] {
     display: none;
   }
 
+  /* Ventana modal con sombra estilo DOS */
   .lang-modal {
     background: var(--menu-bg);
     border: 1px solid var(--dark-gray);
@@ -124,6 +138,7 @@ const currentYear = new Date().getFullYear();
     min-width: 200px;
   }
 
+  /* Título de la ventana modal */
   .lang-modal-title {
     background: var(--menu-bg);
     padding: 4px 16px;
@@ -138,6 +153,7 @@ const currentYear = new Date().getFullYear();
     padding: 2px 0;
   }
 
+  /* Enlaces de idioma con resaltado azul al hover */
   .lang-modal a {
     display: block;
     padding: 4px 16px;
@@ -155,14 +171,17 @@ const currentYear = new Date().getFullYear();
     outline: none;
   }
 
+  /* Idioma actual en negrita */
   .lang-modal a.active {
     font-weight: 700;
   }
 </style>
 
 <script>
+  // Modal de selección de idioma y atajos de teclado globales
   const modal = document.getElementById("lang-modal")!;
 
+  // Gestiona los atajos: F10 → foco en nav, F11 → toggle modal de idiomas
   function handleShortcut(action: string) {
     if (action === "lang") {
       const isHidden = modal.getAttribute("aria-hidden") === "true";
@@ -176,6 +195,7 @@ const currentYear = new Date().getFullYear();
     }
   }
 
+  // Atajos de teclado: F10 (menú), F11 (idiomas), Escape (cerrar modal)
   document.addEventListener("keydown", (e) => {
     if (e.key === "F10") {
       e.preventDefault();
@@ -190,6 +210,7 @@ const currentYear = new Date().getFullYear();
     }
   });
 
+  // Click en los botones de tecla de función
   document.querySelectorAll(".fkey").forEach((btn) => {
     btn.addEventListener("click", () => {
       const action = (btn as HTMLElement).dataset.action;
@@ -197,12 +218,14 @@ const currentYear = new Date().getFullYear();
     });
   });
 
+  // Click fuera del modal → cerrar
   modal.addEventListener("click", (e) => {
     if ((e.target as HTMLElement).classList.contains("lang-modal-overlay")) {
       modal.setAttribute("aria-hidden", "true");
     }
   });
 
+  // Guarda la preferencia de idioma en localStorage al hacer click en un enlace
   modal.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       const href = link.getAttribute("href");

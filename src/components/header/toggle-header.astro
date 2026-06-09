@@ -1,4 +1,5 @@
 ---
+// Botón toggle para abrir/cerrar el menú en móvil (visible solo < 1366px)
 import { Icon } from "astro-icon/components";
 import { defaultLang } from "@i18n/ui";
 import { useTranslations } from "@i18n/utils";
@@ -11,6 +12,7 @@ const { lang = defaultLang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
+<!-- Botón hamburguesa para abrir el menú modal en móvil -->
 <div>
   <button id="open-menu" aria-label={t("toggle.ariaLabel.open.header")} aria-expanded="false" aria-controls="main-menu" aria-haspopup="menu">
     <Icon name="toggle" />
@@ -18,42 +20,50 @@ const t = useTranslations(lang);
 </div>
 
 <style>
+  /* Botón toggle: visible solo en móvil/tablet */
   div {
-    display: none;
-    
-    @media (width < 1068px) {
+    display: block;
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 0;
+      height: 48px;
+      width: 48px;
+      transition: background-color 0.15s;
+
+      /* Fondo verde al interactuar */
+      &:hover,
+      &:focus-visible,
+      &:active {
+        background-color: var(--green);
+      }
+    }
+
+    /* Icono del toggle en rojo */
+    svg {
       display: block;
+      width: 32px;
+      height: auto;
+      color: var(--red);
+    }
+  }
 
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        line-height: 0;
-        height: 48px;
-        width: 48px;
-        transition: background-color 0.15s;
-  
-        &:hover,
-        &:focus-visible,
-        &:active {
-          background-color: var(--green);
-        }
-      }
-
-      svg {
-        display: block;
-        width: 32px;
-        height: auto;
-        color: var(--red);
-      }
+  /* En escritorio (≥1366px) se oculta el toggle porque se usa nav horizontal */
+  @media (min-width: 1366px) {
+    div {
+      display: none;
     }
   }
 </style>
 
 <script>
+  // Lógica de apertura/cierre del modal de menú desde el toggle
   const btn = document.getElementById("open-menu");
   const modal = document.getElementById("main-modal");
 
+  // Abre el modal, oculta el scroll y actualiza aria-expanded
   function openMenu() {
     modal?.classList.add("open");
     document.body.style.overflow = "hidden";
@@ -62,6 +72,7 @@ const t = useTranslations(lang);
     }
   }
 
+  // Cierra el modal, restaura el scroll y actualiza aria-expanded
   function closeMenu() {
     modal?.classList.remove("open");
     document.body.style.overflow = "";
@@ -70,20 +81,25 @@ const t = useTranslations(lang);
     }
   }
 
+  // Click en el botón toggle → abre el menú
   btn?.addEventListener("click", openMenu);
 
+  // Click en el overlay del modal (fuera del contenido) → cierra
   modal?.addEventListener("click", (e) => {
     if ((e.target as HTMLElement).classList.contains("modal")) {
       closeMenu();
     }
   });
 
+  // Click en el botón de cierre [■] → cierra
   modal?.querySelector("[data-close]")?.addEventListener("click", closeMenu);
 
+  // Click en cualquier enlace del modal → cierra el menú
   modal?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", closeMenu);
   });
 
+  // Tecla Escape → cierra el modal si está abierto
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modal?.classList.contains("open")) {
       closeMenu();

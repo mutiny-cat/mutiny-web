@@ -1,4 +1,5 @@
 ---
+// Importa los subcomponentes que forman la cabecera
 import { defaultLang } from "@i18n/ui";
 import LogoHeader from "./header/logo-header.astro";
 import ToggleHeader from "./header/toggle-header.astro";
@@ -9,9 +10,11 @@ export interface Props {
   lang?: "ca" | "es" | "en";
 }
 
+// Idioma por defecto si no se especifica
 const { lang = defaultLang } = Astro.props;
 ---
 
+<!-- Cabecera principal: logo + navegación escritorio + toggle móvil + modal -->
 <header>
   <LogoHeader lang={lang} />
   <NavMenuHeader lang={lang} />
@@ -20,20 +23,23 @@ const { lang = defaultLang } = Astro.props;
 </header>
 
 <style>
+  /* Barra superior fija: altura 48px, fondo gris claro */
   header {
     width: 100%;
     height: 48px;
     background-color: var(--light-gray);
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 0 16px;
     gap: 16px;
+    position: relative;
+    z-index: var(--z-header);
 
-    @media (width < 1068px) {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    /* En escritorio se reorganiza como grid de 3 columnas */
+    @media (min-width: 1366px) {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
     }
   }
 </style>

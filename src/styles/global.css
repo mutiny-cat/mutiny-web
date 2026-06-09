@@ -1,3 +1,24 @@
+/*
+ * ─── BREAKPOINTS Y ESTRATEGIA RESPONSIVE ──────────────────────────
+ *
+ *  < 734px   → Móvil         (toggle visible, nav oculto, modal accordion)
+ *  ≥ 734px   → Tablet        (zona de transición)
+ *  ≥ 1366px  → Escritorio    (nav horizontal, dropdowns con hover, toggle oculto)
+ *
+ * ─── DETECCIÓN DE DISPOSITIVO TÁCTIL ───────────────────────────────
+ *
+ *  @media (pointer: coarse) and (hover: none) → Táctil (tap para expandir)
+ *  @media (pointer: fine)                      → Ratón (hover para dropdowns)
+ *
+ * ─── ESCALA DE Z-INDEX ─────────────────────────────────────────────
+ *
+ *  --z-normal:   0   (contenido base)
+ *  --z-header:   10  (barra del header)
+ *  --z-dropdown: 20  (submenús del escritorio)
+ *  --z-modal:    30  (modal móvil / selector de idiomas / skip-link)
+ */
+
+/* Carga de la fuente monoespaciada estilo DOS VGA */
 @font-face {
   font-family: "Perfect DOS VGA 437";
   src:
@@ -6,8 +27,10 @@
   font-display: swap;
 }
 
+/* Orden de capas (layers) para controlar la especificidad */
 @layer reset, base, a11y, components, pages;
 
+/* ─── CAPA RESET: normaliza estilos por defecto de los navegadores ─── */
 @layer reset {
   *,
   *::before,
@@ -23,6 +46,7 @@
     overflow: hidden;
   }
 
+  /* Enlaces sin subrayado y heredan el color */
   a,
   a:link,
   a:visited,
@@ -32,6 +56,7 @@
     text-decoration: none;
   }
 
+  /* Botones sin estilos nativos del navegador */
   button {
     border: none;
     outline: none;
@@ -41,6 +66,7 @@
     cursor: pointer;
   }
 
+  /* Listas sin viñetas ni padding */
   ul {
     list-style: none;
     margin: 0;
@@ -48,7 +74,9 @@
   }
 }
 
+/* ─── CAPA BASE: variables CSS, tipografía y estilos fundamentales ─── */
 @layer base {
+  /* Paleta de colores estilo DOS (16 colores) y variables de diseño */
   :root {
     --black: #000000;
     --blue: #0000aa;
@@ -67,10 +95,13 @@
     --yellow: #ffff55;
     --white: #ffffff;
 
+    /* Cursor personalizado estilo DOS (bloque naranja) */
     --cursor-dos:
       url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='24'%3E%3Crect width='16' height='24' fill='%23AA5500'/%3E%3C/svg%3E")
         0 0,
       text;
+
+    /* Variables de componentes */
     --menu-bg: var(--light-gray);
     --menu-fg: var(--black);
     --menu-highlight-bg: var(--blue);
@@ -85,16 +116,21 @@
 
     --desktop-bg-alt: var(--blue);
 
+    /* Fuente monoespaciada con fallbacks */
     --font-mono:
       "Perfect DOS VGA 437", "Courier New", Courier, "Lucida Console", monospace;
+
+    /* Tamaño de fuente responsive entre 16px y 24px */
     --font-size: clamp(16px, 2.5vw, 24px);
 
+    /* Escala de z-index para controlar el apilamiento */
     --z-normal: 0;
     --z-header: 10;
     --z-dropdown: 20;
     --z-modal: 30;
   }
 
+  /* Estilos base del body */
   body {
     font-family: var(--font-mono);
     font-size: var(--font-size);
@@ -104,22 +140,35 @@
     -moz-osx-font-smoothing: unset;
   }
 
+  /* Selección de texto con fondo azul y texto blanco */
   ::selection {
     background: var(--blue);
     color: var(--white);
   }
 }
 
+/* ─── CAPA A11Y: accesibilidad, foco, contraste y movimiento reducido ─── */
 @layer a11y {
+  /* Focus visible: outline azul con offset */
   :focus-visible {
     outline: 2px solid var(--menu-highlight-bg);
     outline-offset: 2px;
   }
 
+  /* Sin outline para focus no visible (click de ratón) */
   :focus:not(:focus-visible) {
     outline: none;
   }
 
+  /* En dispositivos táctiles se desactiva el zoom al tocar */
+  @media (pointer: coarse) and (hover: none) {
+    a,
+    button {
+      touch-action: manipulation;
+    }
+  }
+
+  /* Soporte para prefers-reduced-motion: desactiva animaciones */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -130,6 +179,7 @@
     }
   }
 
+  /* Soporte para alto contraste: invierte fondos */
   @media (prefers-contrast: more) {
     :root {
       --menu-bg: #ffffff;
@@ -143,7 +193,9 @@
   }
 }
 
+/* ─── CAPA PAGES: utilidades para páginas de contenido ─── */
 @layer pages {
+  /* Contenedor de página con padding amplio y ancho máximo */
   .page {
     padding-block: 64px;
     padding-inline: 32px;
@@ -151,17 +203,20 @@
     margin-inline: auto;
   }
 
+  /* Título de página responsive */
   .page-title {
     font-family: var(--font-mono);
     font-size: clamp(28px, 4vw, 48px);
     margin-block-end: 48px;
   }
 
+  /* Sección con margen inferior y scroll-margin para anclajes */
   .section {
     margin-block-end: 48px;
     scroll-margin-block-start: 16px;
   }
 
+  /* Título de sección con borde inferior amarillo */
   .section-title {
     font-family: var(--font-mono);
     font-size: clamp(20px, 2.5vw, 28px);
@@ -170,6 +225,7 @@
     padding-block-end: 8px;
   }
 
+  /* Descripción de sección con ancho máximo de lectura */
   .section-desc {
     font-family: var(--font-mono);
     font-size: var(--font-size);
@@ -182,6 +238,7 @@
     padding: 0;
   }
 
+  /* Ítems de lista con viñeta ">" en amarillo */
   .list li {
     font-family: var(--font-mono);
     font-size: var(--font-size);

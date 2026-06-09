@@ -1,4 +1,5 @@
 ---
+// Logo con enlace a la home, localizado según el idioma activo
 import { Icon } from "astro-icon/components";
 import { defaultLang } from "@i18n/ui";
 import { useTranslations } from "@i18n/utils";
@@ -11,6 +12,7 @@ const { lang = defaultLang } = Astro.props;
 const t = useTranslations(lang);
 ---
 
+<!-- Enlace del logo: redirige a la raíz o a /idioma/ según el idioma activo -->
 <div>
   <a href={lang === defaultLang ? "/" : `/${lang}/`} aria-label={t("logo.ariaLabel.header")}>
     <Icon name="logo-mutiny" />
@@ -18,18 +20,20 @@ const t = useTranslations(lang);
 </div>
 
 <style>
+  /* Contenedor del logo: centrado con padding vertical */
   div {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 16px;
-    width: 48px;
-    height: 48px;
+    padding: 16px 0;
+    height: 100%;
 
-    @media (width < 1068px) {
-      padding: 16px 0;
+    /* En escritorio el padding es uniforme */
+    @media (min-width: 1366px) {
+      padding: 16px;
     }
 
+    /* Enlace del logo con transición de fondo al interactuar */
     a {
       display: block;
       transition: background-color 0.15s;
@@ -41,6 +45,7 @@ const t = useTranslations(lang);
       }
     }
 
+    /* Icono SVG del logo: 32px de ancho, color rojo */
     svg {
       display: block;
       width: 32px;
@@ -49,6 +54,7 @@ const t = useTranslations(lang);
     }
   }
 
+  /* Fondo verde al pasar el ratón por todo el contenedor */
   div:hover {
     background-color: var(--green);
     cursor: pointer;

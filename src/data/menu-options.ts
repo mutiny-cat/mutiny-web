@@ -1,15 +1,19 @@
+// Datos de configuración del menú de navegación
 import { ui, defaultLang } from "../i18n/ui";
 
+// Tipo que representa las claves de traducción disponibles
 type LabelKey = keyof (typeof ui)[typeof defaultLang];
 
+// Interfaz para un hijo del menú (puede tener subhijos o ser un separador)
 export interface MenuChild {
   labelKey: LabelKey;
   href?: string;
   children?: MenuChild[];
   separator?: boolean;
-  keyIndex?: number;
+  keyIndex?: number; // Posición del carácter a resaltar como tecla de acceso rápido
 }
 
+// Interfaz para una opción de primer nivel del menú
 export interface TopMenuItem {
   labelKey: LabelKey;
   href?: string;
@@ -17,6 +21,7 @@ export interface TopMenuItem {
   children?: MenuChild[];
 }
 
+// Estructura jerárquica de las opciones del header
 export const headerMenuOptions: TopMenuItem[] = [
   {
     labelKey: "nav.projectes",
@@ -31,6 +36,7 @@ export const headerMenuOptions: TopMenuItem[] = [
   {
     labelKey: "nav.sobre",
     keyIndex: 0,
+    // Submenú "Sobre" con biografía, cronología, CV, referentes
     children: [
       {
         labelKey: "nav.sobre.biografia",
@@ -64,6 +70,7 @@ export const headerMenuOptions: TopMenuItem[] = [
   {
     labelKey: "nav.legal",
     keyIndex: 0,
+    // Submenú "Legal" con aviso, privacidad, cookies, accesibilidad, créditos
     children: [
       { labelKey: "nav.legal.avis", href: "/legal/avis", keyIndex: 0 },
       {

@@ -1,4 +1,5 @@
 ---
+// Layout base de la aplicación: estructura HTML completa con header, main y footer
 import Header from "../components/header.astro";
 import Footer from "../components/footer.astro";
 import "../styles/global.css";
@@ -8,7 +9,7 @@ export interface Props {
   title?: string;
   description?: string;
   lang?: "ca" | "es" | "en";
-  variant?: "default" | "home";
+  variant?: "default" | "home"; // "default" = fondo azul con marco, "home" = fondo gris sin marco
   windowTitle?: string;
 }
 
@@ -16,6 +17,7 @@ const { lang = "ca", description = "", variant = "default", windowTitle = "" } =
   Astro.props;
 const t = useTranslations(lang);
 
+// Títulos por defecto según idioma
 const defaults: Record<string, string> = {
   ca: "Mutiny — Turbo Edition",
   es: "Mutiny — Turbo Edition",
@@ -24,6 +26,7 @@ const defaults: Record<string, string> = {
 const title = Astro.props.title || defaults[lang];
 ---
 
+<!-- Estructura HTML base con metadatos, skip-link, header, main y footer -->
 <!doctype html>
 <html lang={lang}>
   <head>
@@ -34,8 +37,10 @@ const title = Astro.props.title || defaults[lang];
     <title>{title}</title>
   </head>
   <body>
+    <!-- Enlace de salto para accesibilidad: visible solo al recibir foco -->
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
+    <!-- Contenedor principal que organiza header, contenido y footer en columna -->
     <div class="turbo-container">
       <Header lang={lang} />
       <main
@@ -44,6 +49,7 @@ const title = Astro.props.title || defaults[lang];
         tabindex="-1"
       >
         {
+          /* Variante "default": contenido dentro de un marco con borde y título de ventana */
           variant === "default" ? (
             <div class="main-border">
               <button class="card-maker" aria-hidden="true" data-close>■</button>
@@ -53,6 +59,7 @@ const title = Astro.props.title || defaults[lang];
               </div>
             </div>
           ) : (
+            /* Variante "home": contenido sin marco (página de inicio) */
             <slot />
           )
         }
@@ -62,24 +69,29 @@ const title = Astro.props.title || defaults[lang];
   </body>
 </html>
 
+<!-- Scrollbars personalizadas estilo DOS (global) -->
 <style is:global>
+  /* Barra de scroll: 16px de ancho con borde blanco */
   ::-webkit-scrollbar {
     width: 16px;
     border: 5px solid var(--white);
   }
 
+  /* "Pulgar" de la scrollbar en azul claro */
   ::-webkit-scrollbar-thumb {
     background-color: var(--light-blue);
     background-clip: padding-box;
     border: 1px solid var(--border-light);
   }
 
+  /* Carril de la scrollbar con patrón de puntos */
   ::-webkit-scrollbar-track {
     background-color: var(--light-gray);
     background-image: linear-gradient(45deg, var(--light-blue) 25%, transparent 25%);
     background-size: 3px 3px;
   }
 
+  /* Botones de flecha arriba/abajo de la scrollbar */
   ::-webkit-scrollbar-button {
     display: block;
     height: 16px;
@@ -92,6 +104,7 @@ const title = Astro.props.title || defaults[lang];
     background-position: center;
   }
 
+  /* Flecha hacia arriba */
   ::-webkit-scrollbar-button:vertical:start:decrement {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='4,0 8,8 0,8' fill='%23fff'/%3E%3C/svg%3E");
   }
@@ -100,6 +113,7 @@ const title = Astro.props.title || defaults[lang];
     background-color: var(--blue);
   }
 
+  /* Flecha hacia abajo */
   ::-webkit-scrollbar-button:vertical:end:increment {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='0,0 8,0 4,8' fill='%23fff'/%3E%3C/svg%3E");
   }
@@ -109,13 +123,16 @@ const title = Astro.props.title || defaults[lang];
   }
 </style>
 
+<!-- Cursores: por defecto flecha DOS, pointer en elementos interactivos (global) -->
 <style is:global>
+  /* Todos los elementos usan el cursor por defecto */
   *,
   *::before,
   *::after {
     cursor: default;
   }
 
+  /* Solo enlaces y botones muestran el cursor de puntero */
   a,
   a:link,
   a:visited,
@@ -129,6 +146,7 @@ const title = Astro.props.title || defaults[lang];
 </style>
 
 <style>
+  /* Botón decorativo [■] en la esquina superior del marco */
   .card-maker {
     position: absolute;
     top: 8px;
@@ -142,6 +160,7 @@ const title = Astro.props.title || defaults[lang];
     line-height: 1;
     min-width: 0;
 
+    /* Corchete izquierdo [ */
     &::before {
       content: "[";
       font-family: var(--font-mono);
@@ -149,6 +168,7 @@ const title = Astro.props.title || defaults[lang];
       color: var(--white);
     }
 
+    /* Corchete derecho ] */
     &::after {
       font-family: var(--font-mono);
       font-size: var(--font-size);
@@ -157,6 +177,7 @@ const title = Astro.props.title || defaults[lang];
     }
   }
 
+  /* Título de la ventana centrado en el borde superior del marco */
   .card-title {
     position: absolute;
     top: 0;
@@ -172,6 +193,7 @@ const title = Astro.props.title || defaults[lang];
     padding: 0 16px;
   }
   
+  /* Enlace de accesibilidad: oculto hasta recibir foco */
   .skip-link {
     position: absolute;
     top: -9999px;
@@ -189,12 +211,14 @@ const title = Astro.props.title || defaults[lang];
     }
   }
 
+  /* Contenedor principal: flex column que ocupa toda la altura de la ventana */
   .turbo-container {
     display: flex;
     flex-direction: column;
     block-size: 100vh;
   }
 
+  /* Área de contenido principal con scroll vertical */
   .desktop {
     flex: 1;
     overflow-y: auto;
@@ -207,6 +231,7 @@ const title = Astro.props.title || defaults[lang];
     }
   }
 
+  /* Variante "default": fondo azul, texto amarillo, padding */
   .desktop--default {
     background-color: var(--blue);
     color: var(--yellow);
@@ -215,6 +240,7 @@ const title = Astro.props.title || defaults[lang];
     flex-direction: column;
   }
 
+  /* Variante "home": fondo gris claro con patrón de puntos */
   .desktop--home {
     background-color: var(--light-gray);
     color: var(--black);
@@ -226,6 +252,7 @@ const title = Astro.props.title || defaults[lang];
     background-size: 3px 3px;
   }
 
+  /* Enlaces y botones dentro del área de contenido usan cursor pointer */
   .desktop a,
   .desktop a:link,
   .desktop a:visited,
@@ -234,12 +261,14 @@ const title = Astro.props.title || defaults[lang];
     cursor: pointer;
   }
 
+  /* Marco con doble borde blanco que envuelve el contenido */
   .main-border {
     flex: 1;
     overflow-y: auto;
     border: 6px double var(--white);
   }
 
+  /* Contenedor interno centrado con ancho máximo */
   .main-container {
     max-width: 1280px;
     margin: 0 auto;

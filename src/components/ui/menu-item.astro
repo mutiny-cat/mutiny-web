@@ -1,10 +1,13 @@
 ---
+// Ítem de menú que resalta la letra de acceso rápido (keyIndex) en rojo
 const { text, keyIndex, href, class: className } = Astro.props;
+// Divide el texto en tres partes: antes de la tecla, la tecla, y después
 const before = text.slice(0, keyIndex);
 const keyChar = text[keyIndex];
 const after = text.slice(keyIndex + 1);
 ---
 
+<!-- Si tiene href: enlace <a>. Si no: <span> (para botones del acordeón) -->
 {
   href ? (
     <a href={href} class={["menu-item", className].filter(Boolean).join(" ")}>
@@ -22,6 +25,7 @@ const after = text.slice(keyIndex + 1);
 }
 
 <style>
+  /* Estilo base del ítem: padding horizontal, fondo verde al pasar el ratón */
   .menu-item {
     display: block;
     padding: 0 16px;
@@ -31,10 +35,12 @@ const after = text.slice(keyIndex + 1);
     }
   }
 
+  /* Al hacer hover en el ítem, la letra clave se vuelve roja */
   .menu-item:hover .key-letter {
     color: var(--red);
   }
 
+  /* Letra de acceso rápido resaltada en rojo */
   .key-letter {
     color: var(--red);
   }
