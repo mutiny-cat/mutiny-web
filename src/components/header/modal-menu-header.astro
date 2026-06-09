@@ -17,45 +17,56 @@ function localizeHref(href: string): string {
 }
 ---
 
+<!-- Modal overlay: cubre toda la pantalla -->
 <div class="modal" id="main-modal">
+
+  <!-- Marco con doble borde blanco -->
   <div class="modal-border">
+
+    <!-- Botón de cierre: [■] sobre el borde superior -->
     <button class="close" aria-hidden="true" data-close>■</button>
+
+    <!-- Contenido del menú -->
     <div class="modal-menu">
       <ul>
         {
           headerMenuOptions.map((opt) => {
             const label = t(opt.labelKey);
 
+            {/* Opción con submenú */}
             if (opt.children && opt.children.length > 0) {
               return (
-                <>
-                  <li class="modal-heading">{label}</li>
-                  {opt.children.map((child) => {
-                    if (child.separator) {
-                      return <li class="modal-sep" role="separator" />;
-                    }
-                    return (
-                      <li>
-                        <MenuOption
-                          text={t(child.labelKey)}
-                          keyIndex={child.keyIndex ?? 0}
-                          href={child.href ? localizeHref(child.href) : undefined}
-                          class="modal-link"
-                        />
-                      </li>
-                    );
-                  })}
-                </>
+                <li>
+                  <button>
+                    <MenuOption text={label} keyIndex={opt.keyIndex} /> <span aria-hidden="true">▾</span>
+                  </button>
+                  <ul hidden>
+                    {opt.children.map((child) => {
+                      if (child.separator) {
+                        return <li class="modal-sep" role="separator" />;
+                      }
+                      return (
+                        <li>
+                          <MenuOption
+                            text={t(child.labelKey)}
+                            keyIndex={child.keyIndex ?? 0}
+                            href={child.href ? localizeHref(child.href) : undefined}
+                          />
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </li>
               );
             }
 
+            {/* Opción de enlace directo */}
             return (
               <li>
                 <MenuOption
                   text={label}
                   keyIndex={opt.keyIndex}
                   href={opt.href ? localizeHref(opt.href) : undefined}
-                  class="modal-link"
                 />
               </li>
             );
@@ -122,6 +133,47 @@ function localizeHref(href: string): string {
   }
 
   .modal-menu {
-    background-color: aqua;
+    font-size: 24px;
+        
+    button {
+      font-size: 24px;
+      font-family: var(--font-mono);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 48px;
+    }
+
+    span {
+      padding: 0;
+    }
+
+    a {
+      margin: 0;
+      padding: 0;
+    }
+
   }
 </style>
+
+<script>
+  const buttons = document.querySelectorAll(".modal-menu button");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const ul = btn.nextElementSibling;
+
+      buttons.forEach((otherBtn) => {
+        const otherUl = otherBtn.nextElementSibling;
+        if (otherUl !== ul && otherUl instanceof HTMLUListElement) {
+          otherUl.hidden = true;
+        }
+      });
+
+      if (ul instanceof HTMLUListElement) {
+        ul.hidden = !ul.hidden;
+      }
+    });
+  });
+</script>

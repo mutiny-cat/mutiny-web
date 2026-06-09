@@ -78,6 +78,12 @@ const t = useTranslations(lang);
     }
   });
 
+  modal?.querySelector("[data-close]")?.addEventListener("click", closeMenu);
+
+  modal?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && modal?.classList.contains("open")) {
       closeMenu();
