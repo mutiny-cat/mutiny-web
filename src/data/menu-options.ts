@@ -1,4 +1,4 @@
-import { ui, defaultLang } from "../i18n/ui";
+import { ui, defaultLang } from "@i18n/ui";
 
 type LabelKey = keyof (typeof ui)[typeof defaultLang];
 

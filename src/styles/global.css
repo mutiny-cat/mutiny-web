@@ -46,6 +46,21 @@
   background-color: var(--blue);
 }
 
+/* Scrollbar gris para modal-menu */
+#main-modal .window-content::-webkit-scrollbar-thumb {
+  background-color: var(--light-gray);
+}
+#main-modal .window-content::-webkit-scrollbar-track {
+  background-color: var(--dark-gray);
+  background-image: none;
+}
+#main-modal .window-content::-webkit-scrollbar-button {
+  background-color: var(--light-gray);
+}
+#main-modal .window-content::-webkit-scrollbar-button:hover {
+  background-color: var(--dark-gray);
+}
+
 @layer reset {
   *,
   *::before,

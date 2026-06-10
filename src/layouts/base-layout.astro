@@ -1,12 +1,12 @@
 ---
 // Layout principal para la página home: fondo con patrón ASCII, sin bordes
-import Header from "../components/header.astro";
-import Footer from "../components/footer.astro";
-import ModalHome from "../components/modals/modal-home.astro";
-import ModalMenu from "../components/modals/modal-menu.astro";
-import ModalLanguages from "../components/modals/modal-languages.astro";
+import Header from "@components/header.astro";
+import Footer from "@components/footer.astro";
+import ModalHome from "@components/modals/modal-home.astro";
+import ModalMenu from "@components/modals/modal-menu.astro";
+import ModalLanguages from "@components/modals/modal-languages.astro";
 import "../styles/global.css";
-import { useTranslations } from "../i18n/utils";
+import { useTranslations } from "@i18n/utils";
 
 export interface Props {
   title?: string;

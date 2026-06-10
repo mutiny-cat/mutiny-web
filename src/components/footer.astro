@@ -1,8 +1,8 @@
 ---
 // Footer simplificado: indicador de idioma + créditos
 import { Icon } from "astro-icon/components";
-import { languages, defaultLang } from "../i18n/ui";
-import { useTranslations } from "../i18n/utils";
+import { languages, defaultLang } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
 
 export interface Props {
   lang?: "ca" | "es" | "en";
@@ -47,6 +47,10 @@ const currentYear = new Date().getFullYear();
   @media (width < 1366px) {
     .footer-lang {
       display: none;
+    }
+
+    .footer-wrapper {
+      justify-content: center;
     }
   }
 
