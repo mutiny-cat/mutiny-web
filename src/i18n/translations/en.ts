@@ -178,9 +178,15 @@ export const en = {
       "Thanks to STUCOM Centre d'Estudis for the training and support.",
     "legal.credits.fib":
       "Thanks to the Barcelona School of Informatics (FIB - UPC) for the academic foundation.",
-    "legal.credits.p3":
-      "Mutiny — Turbo Edition. Designed and coded with ❤️ in Catalonia.",
+  "legal.credits.p3":
+    "Mutiny — Turbo Edition. Designed and coded with ❤️ in Catalonia.",
 
-    /* ── footer ── */
-    "footer.year": "Mutiny — Turbo Edition (1993–",
+  /* ── modals ── */
+  "modal.languages.heading": "Languages",
+  "modal.languages.catalan": "Catalan",
+  "modal.languages.spanish": "Spanish",
+  "modal.languages.english": "English",
+
+  /* ── footer ── */
+  "footer.year": "Mutiny — Turbo Edition (1993–",
 } as const;

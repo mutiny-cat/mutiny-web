@@ -1,4 +1,5 @@
 ---
+// Footer simplificado: indicador de idioma + créditos
 import { Icon } from "astro-icon/components";
 import { languages, defaultLang } from "../i18n/ui";
 import { useTranslations } from "../i18n/utils";
@@ -13,41 +14,13 @@ const currentYear = new Date().getFullYear();
 ---
 
 <footer role="contentinfo">
-  <div class="wrapper">
-    <div class="shortcuts">
-      <button class="fkey" data-action="menu">
-        <span class="fkey-label">F10</span>
-        <span>Menú</span>
-      </button>
-      <button class="fkey" data-action="lang">
-        <span class="fkey-label">F11</span>
-        <span>Idiomes [{languages[lang]}]</span>
-      </button>
+  <div class="footer-wrapper">
+    <div class="footer-lang">
+      [{languages[lang]}]
     </div>
-    <div class="credit">
+    <div class="footer-credit">
       <Icon name="simple-icons:creativecommons" aria-label="Creative Commons" />
       <span>{t("footer.year")}{currentYear})</span>
-    </div>
-  </div>
-
-  <div class="lang-modal-overlay" id="lang-modal" aria-hidden="true">
-    <div class="lang-modal">
-      <div class="lang-modal-title">Idiomes</div>
-      <ul>
-        {
-          Object.entries(languages).map(([code, label]) => (
-            <li>
-              <a
-                href={code === defaultLang ? "/" : `/${code}/`}
-                class={code === lang ? "active" : ""}
-              >
-                {code === lang ? "\u25ba " : "  "}
-                {label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
     </div>
   </div>
 </footer>
@@ -57,19 +30,32 @@ const currentYear = new Date().getFullYear();
     background-color: var(--light-gray);
   }
 
-  .wrapper {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  .footer-wrapper {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
+    padding-block: 8px;
     padding-inline: 24px;
   }
 
-  .credit {
+  .footer-lang {
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    white-space: nowrap;
+  }
+
+  @media (width < 1366px) {
+    .footer-lang {
+      display: none;
+    }
+  }
+
+  .footer-credit {
     display: flex;
     align-items: center;
     gap: 8px;
-    justify-self: end;
-    padding-block: 8px;
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
     white-space: nowrap;
 
     svg {
@@ -77,141 +63,4 @@ const currentYear = new Date().getFullYear();
       height: 1.2em;
     }
   }
-
-  .shortcuts {
-    justify-self: start;
-    padding: 8px 0 0;
-    white-space: nowrap;
-    display: flex;
-    gap: 16px;
-  }
-  
-  .fkey {
-    font-family: var(--font-mono);
-    font-size: var(--font-size);
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    line-height: inherit;
-    display: flex;
-    gap: 0;
-  }
-  
-  .fkey-label {
-    color: var(--red);
-    padding-right: 6px;
-  }
-
-  .lang-modal-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 200;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .lang-modal-overlay[aria-hidden="true"] {
-    display: none;
-  }
-
-  .lang-modal {
-    background: var(--menu-bg);
-    border: 1px solid var(--dark-gray);
-    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
-    padding: 0;
-    min-width: 200px;
-  }
-
-  .lang-modal-title {
-    background: var(--menu-bg);
-    padding: 4px 16px;
-    font-family: var(--font-mono);
-    font-size: var(--font-size);
-    font-weight: 700;
-    border-bottom: 1px solid var(--dark-gray);
-  }
-
-  .lang-modal ul {
-    list-style: none;
-    padding: 2px 0;
-  }
-
-  .lang-modal a {
-    display: block;
-    padding: 4px 16px;
-    font-family: var(--font-mono);
-    font-size: var(--font-size);
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  .lang-modal a:hover,
-  .lang-modal a:focus-visible {
-    background: var(--blue);
-    color: var(--white);
-    outline: none;
-  }
-
-  .lang-modal a.active {
-    font-weight: 700;
-  }
 </style>
-
-<script>
-  const modal = document.getElementById("lang-modal")!;
-
-  function handleShortcut(action: string) {
-    if (action === "lang") {
-      const isHidden = modal.getAttribute("aria-hidden") === "true";
-      modal.setAttribute("aria-hidden", isHidden ? "false" : "true");
-    }
-    if (action === "menu") {
-      const firstLink = document.querySelector("nav a");
-      if (firstLink instanceof HTMLElement) {
-        firstLink.focus();
-      }
-    }
-  }
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "F10") {
-      e.preventDefault();
-      handleShortcut("menu");
-    }
-    if (e.key === "F11") {
-      e.preventDefault();
-      handleShortcut("lang");
-    }
-    if (e.key === "Escape" && modal.getAttribute("aria-hidden") === "false") {
-      modal.setAttribute("aria-hidden", "true");
-    }
-  });
-
-  document.querySelectorAll(".fkey").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const action = (btn as HTMLElement).dataset.action;
-      if (action) handleShortcut(action);
-    });
-  });
-
-  modal.addEventListener("click", (e) => {
-    if ((e.target as HTMLElement).classList.contains("lang-modal-overlay")) {
-      modal.setAttribute("aria-hidden", "true");
-    }
-  });
-
-  modal.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      const href = link.getAttribute("href");
-      if (href === "/") {
-        localStorage.setItem("lang", "ca");
-      } else {
-        const match = href?.match(/^\/(es|en)\//);
-        if (match) localStorage.setItem("lang", match[1]);
-      }
-    });
-  });
-</script>

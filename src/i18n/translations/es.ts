@@ -181,9 +181,15 @@ export const es = {
       "Agradecimientos a STUCOM Centro de Estudios por la formación y el apoyo.",
     "legal.credits.fib":
       "Agradecimientos a la Facultad de Informática de Barcelona (FIB - UPC) por la base académica.",
-    "legal.credits.p3":
-      "Mutiny — Turbo Edition. Diseñado y programado con ❤️ en Cataluña.",
+  "legal.credits.p3":
+    "Mutiny — Turbo Edition. Diseñado y programado con ❤️ en Cataluña.",
 
-    /* ── footer ── */
-    "footer.year": "Mutiny — Turbo Edition (1993–",
+  /* ── modals ── */
+  "modal.languages.heading": "Idiomas",
+  "modal.languages.catalan": "Catalán",
+  "modal.languages.spanish": "Español",
+  "modal.languages.english": "Inglés",
+
+  /* ── footer ── */
+  "footer.year": "Mutiny — Turbo Edition (1993–",
 } as const;

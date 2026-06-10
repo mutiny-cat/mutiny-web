@@ -1,0 +1,85 @@
+---
+// Ventana reutilizable estilo DOS/Turbo Vision con doble borde blanco
+// Usada por: modal-menu (pantalla completa), modal-home (centrado), modal-languages (centrado)
+import CloseButton from "./close-button.astro";
+
+export interface Props {
+  variant?: "fullscreen" | "centered";
+  background?: string;
+  modalId?: string;
+}
+
+const {
+  variant = "centered",
+  background = "var(--light-gray)",
+  modalId = "",
+} = Astro.props;
+---
+
+<div
+  id={modalId || undefined}
+  class={`window window--${variant}`}
+  style={`background-color: ${background};`}
+>
+  <div class="window-frame">
+    <CloseButton />
+    <div class="window-content">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  .window {
+    display: none;
+
+    &.open {
+      display: block;
+    }
+  }
+
+  .window--fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-modal);
+    padding: 24px 16px 48px;
+
+    .window-frame {
+      height: 100%;
+    }
+
+    .window-content {
+      height: 100%;
+    }
+  }
+
+  .window--centered {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-modal);
+    padding: 24px;
+
+    &.open {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .window-frame {
+      height: auto;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+  }
+
+  .window-frame {
+    position: relative;
+    width: 100%;
+    border: 8px double var(--white);
+  }
+
+  .window-content {
+    overflow-y: scroll;
+    padding: 48px 0 48px 4px;
+  }
+</style>

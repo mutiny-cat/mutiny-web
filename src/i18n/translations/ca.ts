@@ -184,6 +184,12 @@ export const ca = {
   "legal.credits.p3":
     "Mutiny — Turbo Edition. Dissenyat i programat amb ❤️ a Catalunya.",
 
+  /* ── modals ── */
+  "modal.languages.heading": "Idiomes",
+  "modal.languages.catalan": "Català",
+  "modal.languages.spanish": "Espanyol",
+  "modal.languages.english": "Anglès",
+
   /* ── footer ── */
   "footer.year": "Mutiny — Turbo Edition (1993–",
 } as const;

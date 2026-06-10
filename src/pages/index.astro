@@ -1,25 +1,11 @@
 ---
 import BaseLayout from "../layouts/base-layout.astro";
-import CardHome from "../components/ui/card-home.astro";
-import { Icon } from "astro-icon/components";
 import { useTranslations } from "../i18n/utils";
 const t = useTranslations("ca");
 ---
 
-<BaseLayout lang="ca" variant="home">
-  <div class="home-wrapper">
-    <CardHome lang="ca" />
-  </div>
+<BaseLayout lang="ca">
 </BaseLayout>
-
-<style>
-  .home-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-block-size: 100%;
-  }
-</style>
 
 <script>
   const lang = localStorage.getItem("lang");

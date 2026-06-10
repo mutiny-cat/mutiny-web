@@ -1,10 +1,10 @@
 ---
-import BaseLayout from "../../layouts/base-layout.astro";
+import PageLayout from "../../layouts/base-layout.astro";
 import { useTranslations } from "../../i18n/utils";
 const t = useTranslations("ca");
 ---
 
-<BaseLayout lang="ca" title={t("title.serveis")} windowTitle={t("nav.serveis")}>
+<PageLayout lang="ca" title={t("title.serveis")} windowTitle={t("nav.serveis")}>
   <article class="page" aria-labelledby="heading">
     <h1 id="heading" class="page-title">{t("services.heading")}</h1>
 
@@ -39,7 +39,7 @@ const t = useTranslations("ca");
       <p class="section-desc">{t("services.graphic.desc")}</p>
     </section>
   </article>
-</BaseLayout>
+</PageLayout>
 
 <style>
   .page-title {

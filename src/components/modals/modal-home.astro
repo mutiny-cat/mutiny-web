@@ -1,0 +1,73 @@
+---
+// Modal de bienvenida: se muestra al entrar en la home
+import { Icon } from "astro-icon/components";
+import { useTranslations } from "@i18n/utils";
+import { defaultLang } from "@i18n/ui";
+import Button from "../ui/button.astro";
+import Window from "../ui/window.astro";
+
+export interface Props {
+  lang?: "ca" | "es" | "en";
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Window variant="centered" background="var(--light-gray)" modalId="modal-home">
+  <div class="home-card">
+    <div class="home-logo">
+      <Icon name="logo-mutiny" />
+    </div>
+    <h2 class="home-title">{t("home.greeting")}</h2>
+    <p class="home-subtitle">{t("home.subtitle")}</p>
+    <p class="home-body">{t("home.body")}</p>
+    <p class="home-quote">
+      {t("home.quote.prefix")} <strong>{t("home.quote")}</strong>
+    </p>
+    <Button label="OK" data-close />
+  </div>
+</Window>
+
+<style>
+  .home-card {
+    text-align: center;
+  }
+
+  .home-logo {
+    margin-block-end: 32px;
+
+    svg {
+      width: 180px;
+      height: auto;
+      color: var(--red);
+    }
+  }
+
+  .home-title {
+    font-family: var(--font-mono);
+    font-size: clamp(24px, 4vw, 40px);
+    margin-block-end: 8px;
+  }
+
+  .home-subtitle {
+    font-family: var(--font-mono);
+    font-size: clamp(16px, 2.5vw, 24px);
+    opacity: 0.8;
+    margin-block-end: 24px;
+  }
+
+  .home-body {
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    line-height: 1.6;
+    margin-block-end: 8px;
+  }
+
+  .home-quote {
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    line-height: 1.6;
+    margin-block-end: 32px;
+  }
+</style>

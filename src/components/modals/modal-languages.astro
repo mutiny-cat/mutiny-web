@@ -1,0 +1,85 @@
+---
+// Modal de selección de idioma: se activa con F11 en desktop
+import { useTranslations } from "@i18n/utils";
+import { defaultLang, languages } from "@i18n/ui";
+import Window from "../ui/window.astro";
+
+export interface Props {
+  lang?: "ca" | "es" | "en";
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+
+function langUrl(code: string): string {
+  const path = Astro.url.pathname;
+  if (code === defaultLang) {
+    return path.replace(/^\/(es|en)(\/|$)/, "/");
+  }
+  const cleanPath = path.replace(/^\/(es|en)(\/|$)/, "/");
+  return `/${code}${cleanPath}`;
+}
+
+const langLabels: Record<string, string> = {
+  ca: t("modal.languages.catalan"),
+  es: t("modal.languages.spanish"),
+  en: t("modal.languages.english"),
+};
+---
+
+<Window variant="centered" background="var(--light-gray)" modalId="lang-modal">
+  <div class="lang-list">
+    <h2>{t("modal.languages.heading")}</h2>
+    <ul>
+      {
+        Object.entries(languages).map(([code, label]) => (
+          <li>
+            <a href={langUrl(code)} class={code === lang ? "active" : ""}>
+              [{langLabels[code]}]
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Window>
+
+<style>
+  .lang-list {
+    h2 {
+      font-family: var(--font-mono);
+      font-size: var(--font-size);
+      font-weight: 700;
+      padding: 4px 16px;
+      margin-block-end: 16px;
+      border-bottom: 1px solid var(--dark-gray);
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 0;
+    }
+
+    a {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: var(--font-size);
+      padding: 4px 16px;
+      color: var(--black);
+      text-decoration: none;
+
+      &.active {
+        font-weight: 700;
+      }
+
+      &:hover {
+        background: var(--blue);
+        color: var(--white);
+      }
+    }
+  }
+</style>

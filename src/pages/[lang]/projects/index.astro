@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../../../layouts/base-layout.astro";
+import PageLayout from "../../../layouts/base-layout.astro";
 import { useTranslations } from "../../../i18n/utils";
 
 export function getStaticPaths() {
@@ -10,7 +10,7 @@ const { lang } = Astro.params;
 const t = useTranslations(lang as "es" | "en");
 ---
 
-<BaseLayout lang={lang as "es" | "en"} title={t("title.projectes")} windowTitle={t("nav.projectes")}>
+<PageLayout lang={lang as "es" | "en"} title={t("title.projectes")} windowTitle={t("nav.projectes")}>
   <article class="page" aria-labelledby="heading">
     <h1 id="heading" class="page-title">{t("projects.heading")}</h1>
 
@@ -41,4 +41,4 @@ const t = useTranslations(lang as "es" | "en");
       </ul>
     </section>
   </article>
-</BaseLayout>
+</PageLayout>

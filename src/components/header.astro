@@ -1,22 +1,27 @@
 ---
+// Header: logo + navegación (desktop) + F11 idiomas (desktop) + toggle (móvil)
 import { defaultLang } from "@i18n/ui";
+import { useTranslations } from "@i18n/utils";
 import LogoHeader from "./header/logo-header.astro";
-import ToggleHeader from "./header/toggle-header.astro";
 import NavMenuHeader from "./header/nav-menu-header.astro";
-import ModalMenuHeader from "./header/modal-menu-header.astro";
+import ToggleHeader from "./header/toggle-header.astro";
 
 export interface Props {
   lang?: "ca" | "es" | "en";
 }
 
 const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <header>
   <LogoHeader lang={lang} />
   <NavMenuHeader lang={lang} />
+  <div class="f11-shortcut" id="f11-trigger">
+    <span class="f11-key">F11</span>
+    {t("modal.languages.heading")}
+  </div>
   <ToggleHeader lang={lang} />
-  <ModalMenuHeader lang={lang} />
 </header>
 
 <style>
@@ -25,15 +30,53 @@ const { lang = defaultLang } = Astro.props;
     height: 48px;
     background-color: var(--light-gray);
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     align-items: center;
     padding: 0 16px;
-    gap: 16px;
+  }
 
-    @media (width < 1068px) {
+  .f11-shortcut {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .f11-key {
+    color: var(--red);
+  }
+
+  .f11-key::after {
+    content: ":";
+    font-family: var(--font-mono);
+    color: var(--black);
+  }
+
+  @media (width < 1366px) {
+    header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+    }
+
+    .f11-shortcut {
+      display: none;
     }
   }
 </style>
+
+<script>
+  // F11 abre el modal de idiomas
+  document.getElementById("f11-trigger")?.addEventListener("click", () => {
+    document.getElementById("lang-modal")?.classList.toggle("open");
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "F11") {
+      e.preventDefault();
+      document.getElementById("lang-modal")?.classList.toggle("open");
+    }
+  });
+</script>

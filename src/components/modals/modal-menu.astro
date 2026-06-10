@@ -1,0 +1,205 @@
+---
+// Modal de menú para dispositivos táctiles: acordeón de opciones + idiomas
+import { useTranslations } from "@i18n/utils";
+import { defaultLang, languages } from "@i18n/ui";
+import { headerMenuOptions } from "@data/menu-options";
+import MenuOption from "@components/ui/menu-item.astro";
+import { Icon } from "astro-icon/components";
+import Window from "../ui/window.astro";
+
+export interface Props {
+  lang?: "ca" | "es" | "en";
+}
+
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+
+function localizeHref(href: string): string {
+  if (lang === defaultLang) return href;
+  return `/${lang}${href}`;
+}
+
+function langUrl(code: string): string {
+  const path = Astro.url.pathname;
+  if (code === defaultLang) {
+    return path.replace(/^\/(es|en)(\/|$)/, "/");
+  }
+  const cleanPath = path.replace(/^\/(es|en)(\/|$)/, "/");
+  return `/${code}${cleanPath}`;
+}
+---
+
+<Window variant="fullscreen" background="var(--light-gray)" modalId="main-modal">
+  <div class="modal-menu">
+    <div class="modal-logo">
+      <Icon name="logo-mutiny" />
+    </div>
+    <ul>
+      {
+        headerMenuOptions.map((opt) => {
+          const label = t(opt.labelKey);
+
+          if (opt.children && opt.children.length > 0) {
+            return (
+              <li class="has-children">
+                <button>
+                  <MenuOption text={label} keyIndex={opt.keyIndex} />
+                  <span class="chevron" aria-hidden="true">▾</span>
+                </button>
+                <ul hidden>
+                  {opt.children.map((child) => {
+                    if (child.separator) return null;
+                    return (
+                      <li>
+                        <MenuOption
+                          text={t(child.labelKey)}
+                          keyIndex={child.keyIndex ?? 0}
+                          href={child.href ? localizeHref(child.href) : undefined}
+                        />
+                      </li>
+                    );
+                  })}
+                </ul>
+              </li>
+            );
+          }
+
+          return (
+            <li>
+              <MenuOption
+                text={label}
+                keyIndex={opt.keyIndex}
+                href={opt.href ? localizeHref(opt.href) : undefined}
+              />
+            </li>
+          );
+        })
+      }
+    </ul>
+    <div class="modal-langs">
+      {
+        Object.entries(languages).map(([code, label]) => (
+          <a href={langUrl(code)} class={code === lang ? "active" : ""}>
+            [{label}]
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Window>
+
+<style>
+  .modal-menu {
+    font-size: 20px;
+
+    .modal-logo {
+      display: flex;
+      justify-content: center;
+      padding: 16px 0 32px;
+
+      svg {
+        width: 72px;
+        height: auto;
+        color: var(--red);
+      }
+    }
+
+    li {
+      min-height: 48px;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+    }
+
+    .has-children {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 0;
+    }
+
+    .has-children ul li {
+      padding-inline-start: 24px;
+    }
+
+    button {
+      font-size: 20px;
+      font-family: var(--font-mono);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 48px;
+      padding: 0 16px;
+
+      &:active {
+        background-color: var(--green);
+        color: var(--white);
+      }
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline-offset: -2px;
+    }
+
+    .chevron {
+      transition: transform 0.2s;
+    }
+
+    .chevron.open {
+      transform: rotate(180deg);
+    }
+
+    span {
+      padding: 0;
+    }
+
+    a {
+      margin: 0;
+      padding: 0;
+    }
+
+    .modal-langs {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      padding: 16px 0;
+
+      a {
+        font-family: var(--font-mono);
+        font-size: 20px;
+        text-decoration: none;
+        line-height: 1;
+        padding: 4px;
+
+        &.active {
+          background-color: var(--green);
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  const buttons = document.querySelectorAll(".modal-menu button");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const ul = btn.nextElementSibling;
+      const chevron = btn.querySelector(".chevron");
+
+      buttons.forEach((otherBtn) => {
+        const otherUl = otherBtn.nextElementSibling;
+        if (otherUl !== ul && otherUl instanceof HTMLUListElement) {
+          otherUl.hidden = true;
+          otherBtn.querySelector(".chevron")?.classList.remove("open");
+        }
+      });
+
+      if (ul instanceof HTMLUListElement) {
+        ul.hidden = !ul.hidden;
+        chevron?.classList.toggle("open", !ul.hidden);
+      }
+    });
+  });
+</script>
