@@ -14,6 +14,16 @@ export interface Props {
 const { lang = defaultLang } = Astro.props;
 const t = useTranslations(lang);
 
+// Construye la URL para cambiar de idioma manteniendo la página actual
+function langUrl(code: string): string {
+  const path = Astro.url.pathname;
+  if (code === defaultLang) {
+    return path.replace(/^\/(es|en)(\/|$)/, "/");
+  }
+  const cleanPath = path.replace(/^\/(es|en)(\/|$)/, "/");
+  return `/${code}${cleanPath}`;
+}
+
 // Añade el prefijo de idioma a las URLs si no es el idioma por defecto
 function localizeHref(href: string): string {
   if (lang === defaultLang) return href;
@@ -75,7 +85,7 @@ function localizeHref(href: string): string {
       {
         Object.entries(languages).map(([code, label]) => (
           <a
-            href={code === defaultLang ? "/" : `/${code}/`}
+            href={langUrl(code)}
             class={code === lang ? "active" : ""}
           >
             [{label}]
