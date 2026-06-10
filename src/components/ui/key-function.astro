@@ -1,0 +1,48 @@
+---
+// Botón de tecla de función: accesible, click o tecla Fx activan el modal asociado
+export interface Props {
+  key: string;
+  label: string;
+  modalId?: string;
+}
+
+const { key: fxKey, label, modalId = "lang-modal" } = Astro.props;
+
+const btnId = `fx-${fxKey.toLowerCase()}`;
+---
+
+<button
+  id={btnId}
+  class="fx-button"
+  data-modal={modalId}
+  aria-label={`${fxKey}: ${label}`}
+>
+  <span class="fx-key">{fxKey}</span>
+  <span class="fx-label">{label}</span>
+</button>
+
+<style>
+  .fx-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+
+  .fx-key {
+    color: var(--red);
+
+    &::after {
+      content: "-";
+      color: var(--black);
+      margin-left: 4px;
+    }
+  }
+
+  .fx-label {
+    color: var(--black);
+  }
+</style>

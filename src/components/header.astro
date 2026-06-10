@@ -1,7 +1,6 @@
 ---
-// Header: logo + navegación (desktop) + F11 idiomas (desktop) + toggle (móvil)
-import { defaultLang } from "@i18n/ui";
-import { useTranslations } from "@i18n/utils";
+// Header: logo + navegación (desktop) + idioma activo (desktop) + toggle (móvil)
+import { defaultLang, languages } from "@i18n/ui";
 import LogoHeader from "./header/logo-header.astro";
 import NavMenuHeader from "./header/nav-menu-header.astro";
 import ToggleHeader from "./header/toggle-header.astro";
@@ -11,15 +10,13 @@ export interface Props {
 }
 
 const { lang = defaultLang } = Astro.props;
-const t = useTranslations(lang);
 ---
 
 <header>
   <LogoHeader lang={lang} />
   <NavMenuHeader lang={lang} />
-  <div class="f11-shortcut" id="f11-trigger">
-    <span class="f11-key">F11</span>
-    {t("modal.languages.heading")}
+  <div class="lang-shortcut" id="f11-trigger">
+    [{languages[lang]}]
   </div>
   <ToggleHeader lang={lang} />
 </header>
@@ -35,24 +32,11 @@ const t = useTranslations(lang);
     padding: 0 16px;
   }
 
-  .f11-shortcut {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .lang-shortcut {
     font-family: var(--font-mono);
     font-size: var(--font-size);
     white-space: nowrap;
     cursor: pointer;
-  }
-
-  .f11-key {
-    color: var(--red);
-  }
-
-  .f11-key::after {
-    content: ":";
-    font-family: var(--font-mono);
-    color: var(--black);
   }
 
   @media (width < 1366px) {
@@ -61,22 +45,15 @@ const t = useTranslations(lang);
       justify-content: space-between;
     }
 
-    .f11-shortcut {
+    .lang-shortcut {
       display: none;
     }
   }
 </style>
 
 <script>
-  // F11 abre el modal de idiomas
+  // Click en el indicador de idioma abre el modal de idiomas
   document.getElementById("f11-trigger")?.addEventListener("click", () => {
     document.getElementById("lang-modal")?.classList.toggle("open");
-  });
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "F11") {
-      e.preventDefault();
-      document.getElementById("lang-modal")?.classList.toggle("open");
-    }
   });
 </script>

@@ -57,6 +57,23 @@ const title = Astro.props.title || defaults[lang];
   </body>
 </html>
 
+<script>
+  function toggleLangModal() {
+    document.getElementById("lang-modal")?.classList.toggle("open");
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "F11") {
+      e.preventDefault();
+      toggleLangModal();
+    }
+  });
+
+  document.querySelectorAll(".fx-button").forEach((btn) => {
+    btn.addEventListener("click", toggleLangModal);
+  });
+</script>
+
 <style>
   .skip-link {
     position: absolute;

@@ -191,5 +191,6 @@ export const es = {
   "modal.languages.english": "Inglés",
 
   /* ── footer ── */
+  "footer.help": "Ayuda:",
   "footer.year": "Mutiny — Turbo Edition (1993–",
 } as const;

@@ -1,22 +1,23 @@
 ---
-// Footer simplificado: indicador de idioma + créditos
+// Footer simplificado: solo créditos CC + año
 import { Icon } from "astro-icon/components";
-import { languages, defaultLang } from "@i18n/ui";
 import { useTranslations } from "@i18n/utils";
+import KeyFunction from "./ui/key-function.astro";
 
 export interface Props {
   lang?: "ca" | "es" | "en";
 }
 
-const { lang = defaultLang } = Astro.props;
+const { lang } = Astro.props;
 const t = useTranslations(lang);
 const currentYear = new Date().getFullYear();
 ---
 
 <footer role="contentinfo">
   <div class="footer-wrapper">
-    <div class="footer-lang">
-      [{languages[lang]}]
+    <div class="footer-left">
+      <span class="footer-help">{t("footer.help")}</span>
+      <KeyFunction key="F11" label={t("modal.languages.heading")} />
     </div>
     <div class="footer-credit">
       <Icon name="simple-icons:creativecommons" aria-label="Creative Commons" />
@@ -38,14 +39,20 @@ const currentYear = new Date().getFullYear();
     padding-inline: 24px;
   }
 
-  .footer-lang {
+  .footer-help {
     font-family: var(--font-mono);
     font-size: var(--font-size);
     white-space: nowrap;
   }
 
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
   @media (width < 1366px) {
-    .footer-lang {
+    .footer-left {
       display: none;
     }
 
