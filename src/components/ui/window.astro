@@ -67,7 +67,12 @@ const {
     width: 100%;
     height: 100%;
     border: 8px double var(--white);
-    padding: 48px 16px;
+  }
+
+  /* Contenido interior con scroll si es necesario */
+  .window-content {
+    overflow-y: scroll;
+    padding: 48px 0 48px 16px;
   }
 
   /* Detalles por variante */
@@ -75,18 +80,13 @@ const {
     height: 100%;
   }
 
+  .window--fullscreen .window-content {
+    height: 100%;
+  }
+
   .window--centered .window-frame {
     height: auto;
     max-height: 80vh;
-    overflow-y: auto;
-  }
-
-  /* Contenido interior con scroll si es necesario */
-  .window-content {
-    overflow-y: auto;
-  }
-
-  .window--fullscreen .window-content {
-    height: 100%;
+    overflow-y: scroll;
   }
 </style>
