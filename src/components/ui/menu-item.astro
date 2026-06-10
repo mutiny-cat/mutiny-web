@@ -29,15 +29,16 @@ const after = text.slice(keyIndex + 1);
   .menu-item {
     display: block;
     padding: 0 16px;
-
-    &:hover {
-      background-color: var(--green);
-    }
   }
 
-  /* Al hacer hover en el ítem, la letra clave se vuelve roja */
-  .menu-item:hover .key-letter {
-    color: var(--red);
+  @media (hover: hover) {
+    .menu-item:hover {
+      background-color: var(--green);
+    }
+
+    .menu-item:hover .key-letter {
+      color: var(--red);
+    }
   }
 
   /* Letra de acceso rápido resaltada en rojo */

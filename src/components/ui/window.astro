@@ -1,0 +1,92 @@
+---
+// Ventana reutilizable estilo DOS/Turbo Vision con doble borde blanco
+// Usada por: modal del header (pantalla completa) y modal de idiomas del footer (centrado)
+import CloseButton from "./close-button.astro";
+
+export interface Props {
+  variant?: "fullscreen" | "centered";
+  background?: string;
+  modalId?: string;
+}
+
+const {
+  variant = "centered",
+  background = "var(--light-gray)",
+  modalId = "",
+} = Astro.props;
+---
+
+<div
+  id={modalId || undefined}
+  class={`window window--${variant}`}
+  style={`background-color: ${background};`}
+>
+  <div class="window-frame">
+    <CloseButton />
+    <div class="window-content">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Base: oculta por defecto */
+  .window {
+    display: none;
+
+    &.open {
+      display: block;
+    }
+  }
+
+  /* Variante pantalla completa: cubre todo el viewport */
+  .window--fullscreen {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-modal);
+    padding: 32px 32px 48px;
+  }
+
+  /* Variante centrada: ventana adaptada al contenido */
+  .window--centered {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-modal);
+    padding: 24px;
+
+    &.open {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  /* Marco con doble borde blanco */
+  .window-frame {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: 8px double var(--white);
+    padding: 48px 16px;
+  }
+
+  /* Detalles por variante */
+  .window--fullscreen .window-frame {
+    height: 100%;
+  }
+
+  .window--centered .window-frame {
+    height: auto;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  /* Contenido interior con scroll si es necesario */
+  .window-content {
+    overflow-y: auto;
+  }
+
+  .window--fullscreen .window-content {
+    height: 100%;
+  }
+</style>

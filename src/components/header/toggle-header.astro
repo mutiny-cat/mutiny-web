@@ -86,7 +86,11 @@ const t = useTranslations(lang);
 
   // Click en el overlay del modal (fuera del contenido) → cierra
   modal?.addEventListener("click", (e) => {
-    if ((e.target as HTMLElement).classList.contains("modal")) {
+    const target = e.target as HTMLElement;
+    if (
+      target.classList.contains("window") ||
+      target.classList.contains("window-frame")
+    ) {
       closeMenu();
     }
   });
