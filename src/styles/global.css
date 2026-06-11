@@ -61,6 +61,21 @@
   background-color: var(--dark-gray);
 }
 
+/* Scrollbar gris para modal-home */
+#modal-home .window-content::-webkit-scrollbar-thumb {
+  background-color: var(--light-gray);
+}
+#modal-home .window-content::-webkit-scrollbar-track {
+  background-color: var(--dark-gray);
+  background-image: none;
+}
+#modal-home .window-content::-webkit-scrollbar-button {
+  background-color: var(--light-gray);
+}
+#modal-home .window-content::-webkit-scrollbar-button:hover {
+  background-color: var(--dark-gray);
+}
+
 @layer reset {
   *,
   *::before,
