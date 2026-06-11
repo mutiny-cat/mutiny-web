@@ -119,8 +119,8 @@ export const en = {
   "about.referents.p1":
     "These are some of the projects and people that inspire us:",
   "about.referents.devs": "Developers",
-  "about.referents.devs.1": "Miguel Ángel Duran (Midudev)",
-  "about.referents.devs.2": "J. Román (Manz)",
+  "about.referents.devs.1": "Miguel Angel Duran (Midudev)",
+  "about.referents.devs.2": "J. Román (ManzDev)",
   "about.referents.devs.3": "Brais Moure (Mouredev)",
   "about.referents.uxui": "UX/UI Designers",
   "about.referents.uxui.1": "Juanpol DI",

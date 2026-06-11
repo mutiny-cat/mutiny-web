@@ -119,8 +119,8 @@ export const ca = {
   "about.referents.p1":
     "Aquests són alguns dels projectes i persones que ens inspiren:",
   "about.referents.devs": "Desenvolupadors",
-  "about.referents.devs.1": "Miguel Ángel Duran (Midudev)",
-  "about.referents.devs.2": "J. Román (Manz)",
+  "about.referents.devs.1": "Miguel Angel Duran (Midudev)",
+  "about.referents.devs.2": "J. Román (ManzDev)",
   "about.referents.devs.3": "Brais Moure (Mouredev)",
   "about.referents.uxui": "Dissenyadors UX/UI",
   "about.referents.uxui.1": "Juanpol DI",
