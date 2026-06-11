@@ -35,7 +35,8 @@ export const ca = {
   "title.legal": "Mutiny — Legalitat",
 
   /* ── home ── */
-  "home.greeting": "Hola, som Mutiny",
+  "home.greeting": "Hola, soc Mutiny",
+  "home.author": "(Jordi Luque Montoliu)",
   "home.subtitle": "Estudi digital d'inspiració retro",
   "home.body":
     "Disseny web, identitat visual i consultoria tecnològica amb estètica dels 80.",

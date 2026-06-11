@@ -35,7 +35,8 @@ export const en = {
     "title.legal": "Mutiny — Legal",
 
     /* ── home ── */
-    "home.greeting": "Hello, we are Mutiny",
+    "home.greeting": "Hello, I am Mutiny",
+  "home.author": "(Jordi Luque Montoliu)",
     "home.subtitle": "Retro-inspired digital studio",
     "home.body":
       "Web design, visual identity and tech consulting with 80s aesthetics.",

@@ -20,6 +20,7 @@ const t = useTranslations(lang);
       <Icon name="logo-mutiny" />
     </div>
     <h2 class="home-title">{t("home.greeting")}</h2>
+    <p class="home-author">{t("home.author")}</p>
     <p class="home-subtitle">{t("home.subtitle")}</p>
     <p class="home-body">{t("home.body")}</p>
     <p class="home-quote">
@@ -31,7 +32,12 @@ const t = useTranslations(lang);
 
 <style>
   .home-card {
+    padding: 64px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .home-logo {
@@ -48,6 +54,12 @@ const t = useTranslations(lang);
     font-family: var(--font-mono);
     font-size: clamp(24px, 4vw, 40px);
     margin-block-end: 8px;
+  }
+
+  .home-author {
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    margin-block-end: 16px;
   }
 
   .home-subtitle {

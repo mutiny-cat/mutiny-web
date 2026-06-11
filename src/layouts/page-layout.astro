@@ -35,7 +35,7 @@ const title = Astro.props.title || defaults[lang];
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
-  <body>
+  <body data-lang={lang}>
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
     <div class="turbo-container">
@@ -201,4 +201,6 @@ const title = Astro.props.title || defaults[lang];
     const home = document.querySelector(".desktop")?.dataset.home || "/";
     window.location.href = home;
   });
+  // Guardar idioma actual como preferencia
+  localStorage.setItem("lang", document.body.dataset.lang || "{lang}");
 </script>

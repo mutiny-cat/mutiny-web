@@ -34,7 +34,7 @@ const title = Astro.props.title || defaults[lang];
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
   </head>
-  <body>
+  <body data-lang={lang}>
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
     <div class="turbo-container">
@@ -74,6 +74,16 @@ const title = Astro.props.title || defaults[lang];
       btn.closest(".window")?.classList.remove("open");
     });
   });
+
+  // Mostrar modal-home al cargar (primera visita o desde el logo)
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get("modal") === "home" || !sessionStorage.getItem("modal-home-shown")) {
+    document.getElementById("modal-home")?.classList.add("open");
+    sessionStorage.setItem("modal-home-shown", "true");
+  }
+
+  // Guardar idioma actual como preferencia
+  localStorage.setItem("lang", document.body.dataset.lang || "{lang}");
 </script>
 
 <style is:global>

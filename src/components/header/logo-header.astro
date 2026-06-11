@@ -12,7 +12,7 @@ const t = useTranslations(lang);
 ---
 
 <div>
-  <a href={lang === defaultLang ? "/" : `/${lang}/`} aria-label={t("logo.ariaLabel.header")}>
+  <a href={lang === defaultLang ? "/?modal=home" : `/${lang}/?modal=home`} aria-label={t("logo.ariaLabel.header")}>
     <Icon name="logo-mutiny" />
   </a>
 </div>
