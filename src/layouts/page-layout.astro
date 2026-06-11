@@ -40,9 +40,9 @@ const title = Astro.props.title || defaults[lang];
 
     <div class="turbo-container">
       <Header lang={lang} />
-      <main id="main-content" class="desktop" tabindex="-1">
+      <main id="main-content" class="desktop" tabindex="-1" data-home={lang === "ca" ? "/" : `/${lang}/`}>
         <CloseButton top="8px" left="48px" background="var(--blue)" />
-        <span class="page-title">{windowTitle || "Título de la página"}.pas</span>
+        <span class="page-title">{windowTitle || "Título de la página"}.mte</span>
         <div class="main-border">
           <div class="main-container">
             <slot />
@@ -194,5 +194,11 @@ const title = Astro.props.title || defaults[lang];
     btn.addEventListener("click", () => {
       btn.closest(".window")?.classList.remove("open");
     });
+  });
+
+  // El botón de cierre del layout redirige a la home
+  document.querySelector(".close")?.addEventListener("click", () => {
+    const home = document.querySelector(".desktop")?.dataset.home || "/";
+    window.location.href = home;
   });
 </script>
