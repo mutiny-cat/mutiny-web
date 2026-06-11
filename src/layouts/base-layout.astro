@@ -67,6 +67,13 @@ const title = Astro.props.title || defaults[lang];
   document.querySelectorAll(".fx-button").forEach((btn) => {
     btn.addEventListener("click", toggleLangModal);
   });
+
+  // Cerrar cualquier modal al hacer click en [data-close]
+  document.querySelectorAll("[data-close]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      btn.closest(".window")?.classList.remove("open");
+    });
+  });
 </script>
 
 <style is:global>

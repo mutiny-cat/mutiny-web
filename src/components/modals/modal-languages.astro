@@ -27,15 +27,14 @@ const langLabels: Record<string, string> = {
 };
 ---
 
-<Window variant="centered" background="var(--light-gray)" modalId="lang-modal">
+<Window variant="centered" background="var(--light-gray)" modalId="lang-modal" title={t("modal.languages.heading")}>
   <div class="lang-list">
-    <h2>{t("modal.languages.heading")}</h2>
     <ul>
       {
         Object.entries(languages).map(([code, label]) => (
           <li>
             <a href={langUrl(code)} class={code === lang ? "active" : ""}>
-              [{langLabels[code]}]
+              {langLabels[code]}
             </a>
           </li>
         ))
@@ -46,18 +45,13 @@ const langLabels: Record<string, string> = {
 
 <style>
   .lang-list {
-    h2 {
-      font-family: var(--font-mono);
-      font-size: var(--font-size);
-      font-weight: 700;
-      padding: 4px 16px;
-      margin-block-end: 16px;
-      border-bottom: 1px solid var(--dark-gray);
-    }
+    width: 100%;
+    max-width: 640px;
 
     ul {
       list-style: none;
       padding: 0;
+      margin-left: 0;
     }
 
     li {
@@ -74,11 +68,13 @@ const langLabels: Record<string, string> = {
 
       &.active {
         font-weight: 700;
+        background: var(--green);
+        color: var(--white);
       }
 
       &:hover {
-        background: var(--blue);
-        color: var(--white);
+        background: var(--green);
+        color: var(--black);
       }
     }
   }
