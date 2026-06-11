@@ -86,7 +86,7 @@ export const es = {
     "about.bio.p1":
       "Mutiny nace de la fascinación por la informática de los años 80 y la serie Halt and Catch Fire (AMC). Como Cameron Howe y Donna Clark, creemos en la tecnología como herramienta de transformación.",
     "about.bio.p2":
-      "Desarrollador web full-stack con más de una década de experiencia en proyectos digitales. Especializado en accesibilidad, rendimiento y arquitectura de software.",
+      "Diseñador y desarrollador web con más de una década de experiencia en proyectos digitales. Especializado en accesibilidad, rendimiento y arquitectura de software.",
     "about.timeline.heading": "Cronología",
     "about.timeline.1": "1989 — Primer ordenador: IBM PS/2 8086",
     "about.timeline.2": "1990 — Primer curso de informática",
