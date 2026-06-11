@@ -123,7 +123,7 @@ export const en = {
   "about.referents.devs.2": "J. Román (Manz)",
   "about.referents.devs.3": "Brais Moure (Mouredev)",
   "about.referents.uxui": "UX/UI Designers",
-  "about.referents.uxui.1": "Juanpol",
+  "about.referents.uxui.1": "Juanpol DI",
   "about.referents.uxui.2": "Carmen Ansio (Cosmic red)",
   "about.referents.uxui.3": "UX from Mars",
   "about.referents.micro": "Microinformatics",
