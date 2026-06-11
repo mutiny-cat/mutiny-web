@@ -129,7 +129,7 @@ export const en = {
   "about.referents.uxui.3": "Cris Busquets (uiFromMars)",
   "about.referents.uxui.4": "Ana Rangel",
   "about.referents.micro": "Microinformatics",
-  "about.referents.micro.1": "David Casas Martín",
+  "about.referents.micro.1": "David Casas Martín (Competencia Digital)",
   "about.referents.graphic": "Graphic Design",
   "about.referents.graphic.1": "Marco García (marcocreativo)",
   "about.referents.graphic.2": "Rajesh Rajput",
