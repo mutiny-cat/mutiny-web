@@ -43,13 +43,10 @@ const title = Astro.props.title || defaults[lang];
       <main id="main-content" class="desktop" tabindex="-1">
         <CloseButton top="8px" left="48px" background="var(--blue)" />
         <span class="page-title">{windowTitle || "Título de la página"}.pas</span>
-        <CloseButton top="8px" left="48px" background="var(--blue)" />
-        <span class="page-title">{windowTitle || "Título de la página"}.pas</span>
         <div class="main-border">
           <div class="main-container">
             <slot />
           </div>
-        </div>
         </div>
       </main>
       <Footer lang={lang} />
@@ -59,29 +56,6 @@ const title = Astro.props.title || defaults[lang];
     <ModalLanguages lang={lang} />
   </body>
 </html>
-
-<script>
-  function toggleLangModal() {
-    document.getElementById("lang-modal")?.classList.toggle("open");
-  }
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "F11") {
-      e.preventDefault();
-      toggleLangModal();
-    }
-  });
-
-  document.querySelectorAll(".fx-button").forEach((btn) => {
-    btn.addEventListener("click", toggleLangModal);
-  });
-
-  document.querySelectorAll("[data-close]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      btn.closest(".window")?.classList.remove("open");
-    });
-  });
-</script>
 
 <style>
   .skip-link {
@@ -199,3 +173,26 @@ const title = Astro.props.title || defaults[lang];
     background-color: var(--blue);
   }
 </style>
+
+<script>
+  function toggleLangModal() {
+    document.getElementById("lang-modal")?.classList.toggle("open");
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "F11") {
+      e.preventDefault();
+      toggleLangModal();
+    }
+  });
+
+  document.querySelectorAll(".fx-button").forEach((btn) => {
+    btn.addEventListener("click", toggleLangModal);
+  });
+
+  document.querySelectorAll("[data-close]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      btn.closest(".window")?.classList.remove("open");
+    });
+  });
+</script>
