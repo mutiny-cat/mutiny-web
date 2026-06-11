@@ -1,5 +1,5 @@
 ---
-// Header: logo + navegación (desktop) + idioma activo (desktop) + toggle (móvil)
+// Header: logo + navegación (desktop) + idiomas (desktop) + toggle (móvil)
 import { defaultLang, languages } from "@i18n/ui";
 import LogoHeader from "./header/logo-header.astro";
 import NavMenuHeader from "./header/nav-menu-header.astro";
@@ -10,14 +10,33 @@ export interface Props {
 }
 
 const { lang = defaultLang } = Astro.props;
+
+// Construye la URL para cambiar de idioma manteniendo la página actual
+function langUrl(code: string): string {
+  const path = Astro.url.pathname;
+  if (code === defaultLang) {
+    return path.replace(/^\/(es|en)(\/|$)/, "/");
+  }
+  const cleanPath = path.replace(/^\/(es|en)(\/|$)/, "/");
+  return `/${code}${cleanPath}`;
+}
 ---
 
 <header>
   <LogoHeader lang={lang} />
   <NavMenuHeader lang={lang} />
-  <div class="lang-shortcut" id="f11-trigger">
-    [{languages[lang]}]
-  </div>
+  <nav class="lang-list" aria-label="Selector de idioma">
+    {
+      Object.entries(languages).map(([code, label]) => (
+        <a
+          href={langUrl(code)}
+          class={code === lang ? "active" : ""}
+        >
+          [{label}]
+        </a>
+      ))
+    }
+  </nav>
   <ToggleHeader lang={lang} />
 </header>
 
@@ -32,11 +51,28 @@ const { lang = defaultLang } = Astro.props;
     padding: 0 16px;
   }
 
-  .lang-shortcut {
+  .lang-list {
+    display: flex;
+    align-items: center;
     font-family: var(--font-mono);
     font-size: var(--font-size);
     white-space: nowrap;
-    cursor: pointer;
+
+    a {
+      text-decoration: none;
+      color: var(--black);
+      padding: 2px 4px;
+
+      &.active {
+        background-color: var(--green);
+        color: var(--white);
+      }
+
+      &:hover {
+        background-color: var(--green);
+        color: var(--black);
+      }
+    }
   }
 
   @media (width < 1366px) {
@@ -45,15 +81,8 @@ const { lang = defaultLang } = Astro.props;
       justify-content: space-between;
     }
 
-    .lang-shortcut {
+    .lang-list {
       display: none;
     }
   }
 </style>
-
-<script>
-  // Click en el indicador de idioma abre el modal de idiomas
-  document.getElementById("f11-trigger")?.addEventListener("click", () => {
-    document.getElementById("lang-modal")?.classList.toggle("open");
-  });
-</script>
