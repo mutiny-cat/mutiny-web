@@ -126,7 +126,7 @@ export const en = {
   "about.referents.uxui": "UX/UI Designers",
   "about.referents.uxui.1": "Juanpol DI",
   "about.referents.uxui.2": "Carmen Ansio (Cosmic red)",
-  "about.referents.uxui.3": "Cris Busquets (UX from Mars)",
+  "about.referents.uxui.3": "Cris Busquets (uiFromMars)",
   "about.referents.uxui.4": "Ana Rangel",
   "about.referents.micro": "Microinformatics",
   "about.referents.micro.1": "David Casas Martín",
