@@ -59,11 +59,29 @@ const t = useTranslations("ca");
         {t("about.referents.heading")}
       </h2>
       <p class="section-desc">{t("about.referents.p1")}</p>
+
+      <h3 class="ref-heading">{t("about.referents.devs")}</h3>
       <ul class="list">
-        <li>{t("about.referents.1")}</li>
-        <li>{t("about.referents.2")}</li>
-        <li>{t("about.referents.3")}</li>
-        <li>{t("about.referents.4")}</li>
+        <li>{t("about.referents.devs.1")}</li>
+        <li>{t("about.referents.devs.2")}</li>
+        <li>{t("about.referents.devs.3")}</li>
+      </ul>
+
+      <h3 class="ref-heading">{t("about.referents.uxui")}</h3>
+      <ul class="list">
+        <li>{t("about.referents.uxui.1")}</li>
+        <li>{t("about.referents.uxui.2")}</li>
+        <li>{t("about.referents.uxui.3")}</li>
+      </ul>
+
+      <h3 class="ref-heading">{t("about.referents.micro")}</h3>
+      <ul class="list">
+        <li>{t("about.referents.micro.1")}</li>
+      </ul>
+
+      <h3 class="ref-heading">{t("about.referents.graphic")}</h3>
+      <ul class="list">
+        <li>{t("about.referents.graphic.1")}</li>
       </ul>
     </section>
   </article>
@@ -132,5 +150,12 @@ const t = useTranslations("ca");
     background: var(--yellow);
     color: var(--blue);
     text-decoration: none;
+  }
+
+  .ref-heading {
+    font-family: var(--font-mono);
+    font-size: var(--font-size);
+    font-weight: 700;
+    margin-block: 16px 8px;
   }
 </style>

@@ -115,13 +115,21 @@ export const en = {
     "about.cv.intro":
       "You can download the full CV in PDF format or check the LinkedIn profile.",
     "about.cv.download": "Download CV (PDF)",
-    "about.referents.heading": "Tech references",
-    "about.referents.p1":
-      "These are some of the projects and people that inspire us:",
-    "about.referents.1": "Turbo Pascal / Borland — Classic user interface.",
-    "about.referents.2": "Perfect DOS VGA 437 — Original bitmap typeface.",
-    "about.referents.3": "Motherfucking Website — Digital minimalism.",
-    "about.referents.4": "Halt and Catch Fire (AMC) — Spirit of 80s computing.",
+  "about.referents.heading": "Tech references",
+  "about.referents.p1":
+    "These are some of the projects and people that inspire us:",
+  "about.referents.devs": "Developers",
+  "about.referents.devs.1": "Miguel Ángel Duran (Midudev)",
+  "about.referents.devs.2": "J. Román (Manz)",
+  "about.referents.devs.3": "Brais Moure (Mouredev)",
+  "about.referents.uxui": "UX/UI Designers",
+  "about.referents.uxui.1": "Juanpol",
+  "about.referents.uxui.2": "Carmen Ansio (Cosmic red)",
+  "about.referents.uxui.3": "UX from Mars",
+  "about.referents.micro": "Microinformatics",
+  "about.referents.micro.1": "David Casas Martín",
+  "about.referents.graphic": "Graphic Design",
+  "about.referents.graphic.1": "Marco García (marcocreativo)",
 
     /* ── resources ── */
     "resources.heading": "Resources",

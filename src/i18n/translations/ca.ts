@@ -118,12 +118,18 @@ export const ca = {
   "about.referents.heading": "Referents tecnològics",
   "about.referents.p1":
     "Aquests són alguns dels projectes i persones que ens inspiren:",
-  "about.referents.1":
-    "Turbo Pascal / Borland — Interfície d'usuari clàssica.",
-  "about.referents.2": "Perfect DOS VGA 437 — Tipografia bitmap original.",
-  "about.referents.3": "Motherfucking Website — Minimalisme digital.",
-  "about.referents.4":
-    "Halt and Catch Fire (AMC) — Esperit de la informàtica dels 80.",
+  "about.referents.devs": "Desenvolupadors",
+  "about.referents.devs.1": "Miguel Ángel Duran (Midudev)",
+  "about.referents.devs.2": "J. Román (Manz)",
+  "about.referents.devs.3": "Brais Moure (Mouredev)",
+  "about.referents.uxui": "Dissenyadors UX/UI",
+  "about.referents.uxui.1": "Juanpol",
+  "about.referents.uxui.2": "Carmen Ansio (Cosmic red)",
+  "about.referents.uxui.3": "UX from Mars",
+  "about.referents.micro": "Microinformàtica",
+  "about.referents.micro.1": "David Casas Martín",
+  "about.referents.graphic": "Disseny gràfic",
+  "about.referents.graphic.1": "Marco García (marcocreativo)",
 
   /* ── recursos ── */
   "resources.heading": "Recursos",

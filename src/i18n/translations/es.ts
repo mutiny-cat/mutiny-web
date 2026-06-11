@@ -115,15 +115,21 @@ export const es = {
     "about.cv.intro":
       "Puedes descargar el currículum completo en formato PDF o consultar el perfil de LinkedIn.",
     "about.cv.download": "Descargar CV (PDF)",
-    "about.referents.heading": "Referentes tecnológicos",
-    "about.referents.p1":
-      "Estos son algunos de los proyectos y personas que nos inspiran:",
-    "about.referents.1":
-      "Turbo Pascal / Borland — Interfaz de usuario clásica.",
-    "about.referents.2": "Perfect DOS VGA 437 — Tipografía bitmap original.",
-    "about.referents.3": "Motherfucking Website — Minimalismo digital.",
-    "about.referents.4":
-      "Halt and Catch Fire (AMC) — Espíritu de la informática de los 80.",
+  "about.referents.heading": "Referentes tecnológicos",
+  "about.referents.p1":
+    "Estos son algunos de los proyectos y personas que nos inspiran:",
+  "about.referents.devs": "Desarrolladores",
+  "about.referents.devs.1": "Miguel Ángel Duran (Midudev)",
+  "about.referents.devs.2": "J. Román (Manz)",
+  "about.referents.devs.3": "Brais Moure (Mouredev)",
+  "about.referents.uxui": "Diseñadores UX/UI",
+  "about.referents.uxui.1": "Juanpol",
+  "about.referents.uxui.2": "Carmen Ansio (Cosmic red)",
+  "about.referents.uxui.3": "UX from Mars",
+  "about.referents.micro": "Microinformática",
+  "about.referents.micro.1": "David Casas Martín",
+  "about.referents.graphic": "Diseño gráfico",
+  "about.referents.graphic.1": "Marco García (marcocreativo)",
 
     /* ── recursos ── */
     "resources.heading": "Recursos",
