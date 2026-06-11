@@ -125,11 +125,12 @@ export const es = {
   "about.referents.uxui": "Diseñadores UX/UI",
   "about.referents.uxui.1": "Juanpol DI",
   "about.referents.uxui.2": "Carmen Ansio (Cosmic red)",
-  "about.referents.uxui.3": "UX from Mars",
+  "about.referents.uxui.3": "Cris Busquets (UX from Mars)",
   "about.referents.micro": "Microinformática",
   "about.referents.micro.1": "David Casas Martín",
   "about.referents.graphic": "Diseño gráfico",
   "about.referents.graphic.1": "Marco García (marcocreativo)",
+  "about.referents.graphic.2": "Rajesh Rajput",
 
     /* ── recursos ── */
     "resources.heading": "Recursos",
