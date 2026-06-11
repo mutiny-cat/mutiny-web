@@ -41,12 +41,15 @@ const title = Astro.props.title || defaults[lang];
     <div class="turbo-container">
       <Header lang={lang} />
       <main id="main-content" class="desktop" tabindex="-1">
+        <CloseButton top="8px" left="48px" background="var(--blue)" />
+        <span class="page-title">{windowTitle || "Título de la página"}.pas</span>
+        <CloseButton top="8px" left="48px" background="var(--blue)" />
+        <span class="page-title">{windowTitle || "Título de la página"}.pas</span>
         <div class="main-border">
-          <CloseButton top="8px" left="48px" />
-          <span class="page-title">{windowTitle || "Título de la página"}.pas</span>
           <div class="main-container">
             <slot />
           </div>
+        </div>
         </div>
       </main>
       <Footer lang={lang} />
@@ -106,8 +109,7 @@ const title = Astro.props.title || defaults[lang];
 
   .desktop {
     flex: 1;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
     position: relative;
     cursor: var(--cursor-dos);
     background-color: var(--blue);
@@ -131,9 +133,8 @@ const title = Astro.props.title || defaults[lang];
 
   .main-border {
     flex: 1;
-    overflow-y: auto;
+    overflow-y: scroll;
     border: 6px double var(--white);
-    position: relative;
   }
 
   .main-container {
@@ -143,16 +144,58 @@ const title = Astro.props.title || defaults[lang];
 
   .page-title {
     position: absolute;
-    top: 0;
+    top: 8px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     font-family: var(--font-mono);
-    font-size: var(--font-size);
+    font-size: 24px;
     font-weight: 700;
     color: var(--white);
     background: var(--blue);
-    max-inline-size: fit-content;
+    line-height: 1;
     padding: 0 16px;
+    white-space: nowrap;
+    z-index: 1;
+  }
+</style>
+
+<!-- Scrollbar estilo DOS para el contenido de página -->
+<style is:global>
+  .main-border::-webkit-scrollbar {
+    width: 16px;
+    border: 5px solid var(--white);
+  }
+  .main-border::-webkit-scrollbar-thumb {
+    background-color: var(--light-blue);
+    background-clip: padding-box;
+    border: 1px solid var(--border-light);
+  }
+  .main-border::-webkit-scrollbar-track {
+    background-color: var(--light-gray);
+    background-image: linear-gradient(45deg, var(--light-blue) 25%, transparent 25%);
+    background-size: 3px 3px;
+  }
+  .main-border::-webkit-scrollbar-button {
+    display: block;
+    height: 16px;
+    width: 16px;
+    background-color: var(--light-blue);
+    border: 1px solid;
+    border-color: var(--border-light) var(--border-light) var(--border-light) var(--border-light);
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .main-border::-webkit-scrollbar-button:vertical:start:decrement {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='4,0 8,8 0,8' fill='%23fff'/%3E%3C/svg%3E");
+  }
+  .main-border::-webkit-scrollbar-button:vertical:start:decrement:hover {
+    background-color: var(--blue);
+  }
+  .main-border::-webkit-scrollbar-button:vertical:end:increment {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='0,0 8,0 4,8' fill='%23fff'/%3E%3C/svg%3E");
+  }
+  .main-border::-webkit-scrollbar-button:vertical:end:increment:hover {
+    background-color: var(--blue);
   }
 </style>

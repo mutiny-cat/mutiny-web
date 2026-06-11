@@ -4,14 +4,16 @@
 export interface Props {
   top?: string;
   left?: string;
+  background?: string;
 }
 
-const { top = "-14px", left = "16px" } = Astro.props;
+const { top = "-14px", left = "16px", background = "var(--light-gray)" } =
+  Astro.props;
 ---
 
 <button
   class="close"
-  style={`top: ${top}; left: ${left};`}
+  style={`top: ${top}; left: ${left}; background-color: ${background};`}
   aria-hidden="true"
   data-close
 >
@@ -26,7 +28,6 @@ const { top = "-14px", left = "16px" } = Astro.props;
     color: var(--light-green);
     box-shadow: none;
     padding: 0;
-    background: var(--light-gray);
     line-height: 1;
     min-width: 0;
     display: flex;
